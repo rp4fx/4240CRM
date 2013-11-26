@@ -1,0 +1,9 @@
+connector
+-persistence interface
+Network
+-nodes
+-relations
+Persistence
+-Node Relation Generation
+-Database Interface
+Database

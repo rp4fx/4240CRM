@@ -55,23 +55,37 @@ class PersonToDatabase(EntityToDatabase):
 class EntityToAttributeTable:
     def __init__(self, db):
         self.db = db
+        self.opened_connection = False
 
-    def get_ready_to_add(self, parent, parentid, cursor):
+    def get_ready_to_add(self, parent, parentid, cursor=None):
         self.parent = parent
         self.parentid = parentid
         self.cursor = cursor
 
-    def add_to_table(self, parent, parentid, cursor):
+    def add_to_table(self, parent, parentid, cursor=None):
         self.get_ready_to_add(parent, parentid, cursor)
         print "Override this method!"
 
+    def connect_to_database(self):
+        self.conn = sqlite3.connect(self.db)
+        self.cursor = self.conn.cursor()
+        self.opened_connection = True
+
+    def close_db_connection(self):
+        self.conn.commit()
+        self.conn.close()
+
 
 class PhoneToAttributeTable(EntityToAttributeTable):
-    def add_to_table(self, person, personid, cursor):
+    def add_to_table(self, person, personid, cursor=None):
         self.get_ready_to_add(person, personid, cursor)
+        if self.cursor is None:
+            self.connect_to_database()
         for phone in self.parent.phones:
             phoneid = self.insert_phone(phone, self.parentid)
             print "Inserted phone for person %s with id %s" %(self.parentid, phoneid)
+        if self.opened_connection:
+            self.close_db_connection()
 
     def insert_phone(self, phone, personid):
         query = 'INSERT INTO phone (personid, type, number) VALUES (?, ?, ?)'
@@ -83,11 +97,15 @@ class PhoneToAttributeTable(EntityToAttributeTable):
 
 
 class EmailToAttributeTable(EntityToAttributeTable):
-    def add_to_table(self, person, personid, cursor):
+    def add_to_table(self, person, personid, cursor=None):
         self.get_ready_to_add(person, personid, cursor)
+        if self.cursor is None:
+            self.connect_to_database()
         for email in self.parent.emails:
             emailid = self.insert_email(email, self.parentid)
             print "Inserted email for person %s with id %s" %(self.parentid, emailid)
+        if self.opened_connection:
+            self.close_db_connection()
 
     def insert_email(self, email, personid):
         query = 'INSERT INTO email (personid, address) VALUES (?, ?)'

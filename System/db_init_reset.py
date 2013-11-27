@@ -32,7 +32,7 @@ def create_tables(c):
     print "All tables were created."
 
 def connect_to_db():
-    conn = sqlite3.connect('test.db')
+    conn = sqlite3.connect('personal_graph.db')
     return conn.cursor()
 
 action = "-1"

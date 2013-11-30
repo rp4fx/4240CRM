@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Connectors/Connector.py" afterPath="$PROJECT_DIR$/Connectors/Connector.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="4240CRM.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1385798876576" ignored="false" />
+    <file path="/Dummy.txt" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1385798884759" ignored="false" />
     <file path="/FacebookContactsConnector.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1385798825397" ignored="false" />
     <file path="$PROJECT_DIR$/../Facebook/Personal CRM accessKey.txt" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1385793390518" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -358,7 +357,11 @@
       <created>1385798877924</created>
       <updated>1385798877924</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Stubs after experimentation with facepy and sdk">
+      <created>1385798886371</created>
+      <updated>1385798886371</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">

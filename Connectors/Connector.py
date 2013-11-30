@@ -24,6 +24,6 @@ class Connector:
         print "Password: {0}".format(pass_to_print)
 
 #Testing
-#conn = Connector()
-#conn.request_credentials()
-#conn.print_credentials()
+conn = Connector()
+conn.request_credentials()
+conn.print_credentials()

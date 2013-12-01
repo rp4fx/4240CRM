@@ -2,22 +2,9 @@ __author__ = 'roran_000'
 
 from abc import *
 import sqlite3 as sq
+from System.Entities import *
 
 
-class Module():
-    __metadata__ = ABCMeta
-    @abstractproperty
-    def db(self):pass
-
-    @abstractproperty
-    def con(self):pass
-
-    @abstractproperty
-    def cursor(self):pass
-
-    @abstractmethod
-    def get_contact_list(self):pass
-        #get stuff from db
 
 def return_rows_db(curs):
     ret = []
@@ -124,6 +111,9 @@ class CRM():
         self.create_relation(person.PID,relation,msg.timestamp)
         self.add_msg(msg,person.PID,relation)
         self.add_msgPerson(person.PID,msg.MID,relation)
+
+
+    def edit_existing_attribute(self,attribute,value,table_name):pass
 
 
 

@@ -34,6 +34,16 @@ def check_person_exists(curs,PID):
     else:
         return False
 
+def get_columns(curs,table):
+    curs.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = %s" %(table))
+    return_rows_db(curs)
+
+def check_attribute_exists(curs,table,attribute):
+    attribute_list = get_columns(curs,table)
+    if (attribute in attribute_list):
+        return True
+    else:
+        False
 
 class msg:
     def __int__(self,MID,content,timestamp):
@@ -110,6 +120,8 @@ class CRM():
         self.create_relation(person.PID,relation,msg.timestamp)
         self.add_msg(msg,person.PID,relation)
         self.add_msgPerson(person.PID,msg.MID,relation)
+
+
 
 
 

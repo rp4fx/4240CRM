@@ -35,8 +35,12 @@ def check_person_exists(curs,PID):
         return False
 
 def get_columns(curs,table):
-    curs.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = %s" %(table))
-    return_rows_db(curs)
+    curs.execute("PRAGMA table_info (%s)" %(table))
+    ret = []
+    rows = curs.fetchall()
+    for r in rows:
+        ret.append(r[1])
+    return ret
 
 def check_attribute_exists(curs,table,attribute):
     attribute_list = get_columns(curs,table)

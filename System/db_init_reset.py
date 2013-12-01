@@ -26,7 +26,7 @@ def create_tables(c):
     c.execute('CREATE TABLE IF NOT EXISTS phone (phoneid INTEGER PRIMARY KEY, personid INTEGER, orgid INTEGER, type text, number text)')
     c.execute('CREATE TABLE IF NOT EXISTS profile (profileid INTEGER PRIMARY KEY, personid INTEGER, orgid INTEGER, username text, uri text, type text)')
     #relationship tables
-    c.execute('CREATE TABLE IF NOT EXISTS personPerson (personid1 INTEGER, personid2 INTEGER, relationship text, starttime INTEGER, endtime INTEGER)')
+    c.execute('CREATE TABLE IF NOT EXISTS personPerson (personid INTEGER, personid2 INTEGER, relationship text, starttime INTEGER, endtime INTEGER)')
     c.execute('CREATE TABLE IF NOT EXISTS orgPerson (orgid INTEGER, personid INTEGER, relationship text, starttime INTEGER, endtime INTEGER)')
     c.execute('CREATE TABLE IF NOT EXISTS messagePerson (messageid INTEGER, personid INTEGER, relationship text)')
     print "All tables were created."

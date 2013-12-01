@@ -12,7 +12,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/4240CRM$db_init_reset.coverage" NAME="db_init_reset Coverage Results" MODIFIED="1385916038428" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/System" />
+    <SUITE FILE_PATH="coverage/4240CRM$db_init_reset.coverage" NAME="db_init_reset Coverage Results" MODIFIED="1385921898427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/System" />
     <SUITE FILE_PATH="coverage/4240CRM$Module.coverage" NAME="Module Coverage Results" MODIFIED="1385916051483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Modules" />
     <SUITE FILE_PATH="coverage/4240CRM$FacebookContactsConnector.coverage" NAME="FacebookContactsConnector Coverage Results" MODIFIED="1385915519221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Connectors/GoogleContactsConnector" />
   </component>
@@ -40,7 +40,7 @@
       <file leaf-file-name="Module.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Modules/Module.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="23" selection-start="1649" selection-end="1649" vertical-scroll-proportion="0.37597913" vertical-offset="1012" max-vertical-offset="1802">
+            <state line="111" column="51" selection-start="3608" selection-end="3608" vertical-scroll-proportion="0.82245433" vertical-offset="1572" max-vertical-offset="2533">
               <folding>
                 <element signature="e#26#43#0" expanded="true" />
               </folding>
@@ -229,7 +229,7 @@
       <recent name="C:\Users\Alex\Desktop\cs 4240\Personal CRM\4240CRM\Connectors" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Module">
+  <component name="RunManager" selected="Python.db_init_reset">
     <configuration default="false" name="Connector" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -464,8 +464,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.Module" />
-        <item index="1" class="java.lang.String" itemvalue="Python.db_init_reset" />
+        <item index="0" class="java.lang.String" itemvalue="Python.db_init_reset" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Module" />
         <item index="2" class="java.lang.String" itemvalue="Python.FacebookContactsConnector" />
         <item index="3" class="java.lang.String" itemvalue="Python.Connector" />
       </list>
@@ -627,7 +627,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Module.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="23" selection-start="1649" selection-end="1649" vertical-scroll-proportion="0.37597913" vertical-offset="1012" max-vertical-offset="1802">
+        <state line="111" column="51" selection-start="3608" selection-end="3608" vertical-scroll-proportion="0.82245433" vertical-offset="1572" max-vertical-offset="2533">
           <folding>
             <element signature="e#26#43#0" expanded="true" />
           </folding>

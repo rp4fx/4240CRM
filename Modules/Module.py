@@ -19,7 +19,7 @@ class Module():
     def get_contact_list(self):pass
         #get stuff from db
 
-def return_rows_db(self,curs):
+def return_rows_db(curs):
     ret = []
     rows = curs.fetchall()
     for r in rows:
@@ -43,6 +43,18 @@ class msg:
     def __str__(self):
         return self.content
 
+class person:
+    def __init__(self,PID,firstname,lastname,othername,birthday,gender,note):
+        self.PID = PID
+        self.first = firstname
+        self.last = lastname
+        self.other = othername
+        self.birth = birthday
+        self.gender = gender
+        self.note = note
+    def __str__(self):
+        return self.first +" "+self.last
+
 
 class CRM():
 
@@ -52,21 +64,52 @@ class CRM():
         self.PID = PID
 
     def contact_by_rec(self):
-        self.curs.execute("SElECT * from personPerson WHERE personid = %d ORDER BY endtime", (self.PID))
+        self.curs.execute("SElECT * from personPerson WHERE personid = %d ORDER BY endtime"% (self.PID))
         return return_rows_db(self.curs)
 
 
     def view_contact_msg(self,con_PID,MID):
-        self.curs.execute("SELECT content,timestamp FROM message NATURAL JOIN messagePerson WHERE personId = %d AND messageId = %d ",
+        self.curs.execute("SELECT content,timestamp FROM message NATURAL JOIN messagePerson WHERE personid = %d AND messageid = %d "%
             (con_PID,MID))
         return return_rows_db(self.curs)
 
-    def add_msg(self,msg):
-        self.curs.execute("INSERT INTO message VALUES (msg.MID,msg.content,msg.timestamp)")
+    def add_msg(self,msg,con_PID,relation):
+        self.curs.execute("INSERT INTO message VALUES (%d,%s,%d)"%(msg.MID,msg.content,msg.timestamp))
+        self.con.commit()
+        self.add_msgPerson(con_PID,msg.MID,relation)
+
+    def add_msgPerson(self,con_PID,MID,relation):
+        self.curs.execute("INSERT INTO messagePerson VALUES (%d,%d,%s)"%(MID,con_PID,relation))
         self.con.commit()
 
-    def add_msgPerson(self,conPID,MID):
-        print 'do stuff'
+
+    def inc_endtime_db(self,con_PID,timestamp):
+        self.curs.execute("UPDATE personPerson SET endtime = %d WHERE personid = %d AND personid = %d", (timestamp,self.PID,con_PID))
+        self.con.commit()
+        self.curs.execute("UPDATE personPerson SET endtime = %d WHERE personid = %d AND personid = %d", (timestamp,con_PID,self.PID))
+        self.con.commit()
+
+    def create_new_person(self,person):
+        self.curs.execute("INSERT INTO person VALUES (%d,%s,%s,%s,%d,%s,%s)",
+                          (person.PID,person.first,person.last,person.other,person.birth,person.gender,person.note))
+        self.commit()
+
+    def create_relation(self,con_PID,relation,time):
+        self.curs.execute("INSERT INTO person VALUES (%d,%d,%s,%d,%d)", (self.PID,con_PID,relation,time,time))
+        self.con.commit()
+        self.curs.execute("INSERT INTO person VALUES (%d,%d,%s,%d,%d)", (con_PID,self.PID,relation,time,time))
+        self.con.commit()
+
+    def add_msg_existing(self,msg,con_PID,relation,timestamp):
+        self.add_msg(msg.con_PID,relation)
+        self.add_msgPerson(con_PID,msg.MID,relation)
+        self.inc_endtime_db(con_PID,timestamp)
+
+    def add_msg_new(self,msg,con_PID,relation,person):
+        self.create_new_person(person)
+        self.create_relation(person.PID,relation,msg.timestamp)
+        self.add_msg(msg,person.PID,relation)
+        self.add_msgPerson(person.PID,msg.MID,relation)
 
 
 

@@ -1,7 +1,8 @@
 from System.Entities import Email, Person, Phone
 from System.Entities.Organization import *
 #from Connectors.Connector import Connector
-from System.Entities.Person import GetNameFromGoogleContactsStrategy
+#from System.Entities.Person import GetNameFromGoogleContactsStrategy
+from System.Entities.Person import GetNameFromFacebookContactsStrategy
 from System.EntityToDatabase import PersonToDatabase
 
 #Have to install through pip install requests/facepy
@@ -9,7 +10,7 @@ from facepy import *
 import requests
 import json
 
-ACCESS_TOKEN = "CAADaQW5ft88BALCNSBmoDFXGlAwXqFKmHbTnZC2R9uSvoOtcU8NoDUZBsFQZCVuOcIDyxeFIWPmCiXBCVeKdQJxH2kb6HIBTlPEYY9PxlLK8tpjvoxVp6aQgwV051lN3pKZBrjbnWQXqAM2lxJmJgc6TpwgjYNJVGnERcPaFHHv8f8BCbNbLh8ideg4OTnUZD"
+ACCESS_TOKEN = "CAADaQW5ft88BAEom63ZA5FFnB27pUUNbJBmsjDoqrCr5TkvwbrQAdBA0JSxVoZB1ujKCenM5VjRex6DDqSFp7d1ZCW6UyknFrYoX2gFiAcKIwJiaNGqTj0mc6lQcGlXAlQKMNcYfxXEFnjZBnCZCZCBOss1Lo6gx3IgAjCmY52SuHjY0WFInJvDV8bveTfjUEZD"
 class FacebookContactsConnector:
     #FACEBOOK_APP_ID = "239974559496143"
     #FACEBOOK_APP_SECRET = "eec6ae1b9b6445375c03cb9624f7b49f"
@@ -48,8 +49,10 @@ class FacebookContactsConnector:
         note = "From Facebook"
         org = Organization(orgid,name,note)
         if not self.org_in_db(org):
-            print "Pushing to DB"
-        #print education
+            print "Pushing to DB ", org #need to confirm with Timur for methodology
+        else:
+            print "Already exists!", org #confirm db code
+
 
     def import_education(self, id):
         query = "SELECT education FROM user WHERE uid="+id
@@ -64,11 +67,21 @@ class FacebookContactsConnector:
     def friends_to_db(self):
         print "TO DO"
 
-
+    def add_email_addresses(self, contact, p):
+        if contact.email is not None:
+            for email in contact.email:
+                e = Email.Email()
+                e.address = email.address
+                p.emails.append(e)
 
     def run(self):
-        #print self.graph.get('me') #returns node rather than database table
+        me = self.graph.get('me') #returns node rather than database table
+        print me["first_name"]
         id = self.friends[30]["id"]
+        #print self.graph.get(id)["name"]
+        other = self.graph.get(id)
+        if "name" in other:
+            print "name"
         print id
         self.import_user_info(id)
         education = self.import_education(id)

@@ -10,14 +10,15 @@ from facepy import *
 import requests
 import json
 
-ACCESS_TOKEN = "CAADaQW5ft88BAEom63ZA5FFnB27pUUNbJBmsjDoqrCr5TkvwbrQAdBA0JSxVoZB1ujKCenM5VjRex6DDqSFp7d1ZCW6UyknFrYoX2gFiAcKIwJiaNGqTj0mc6lQcGlXAlQKMNcYfxXEFnjZBnCZCZCBOss1Lo6gx3IgAjCmY52SuHjY0WFInJvDV8bveTfjUEZD"
+ACCESS_TOKEN = "CAADaQW5ft88BAHdDV72yFs5gt3W9yB0jGzh2NxRL0LfciTkBzBYZCEhtBcmMKXLhAZA2k9etV2yoT4upWjeDKUbWyjsAAyMsZBhyJ8gV8vXXkVSFSmQP4E8yg78QQURCRh3rZCGPtwmnjEIZAHYsyjH3xvJw4xCniM2skESWD1DL3f76XYUhOcndCnBxonFsZD"
+LIMIT = 3
 class FacebookContactsConnector:
     #FACEBOOK_APP_ID = "239974559496143"
     #FACEBOOK_APP_SECRET = "eec6ae1b9b6445375c03cb9624f7b49f"
     def __init__(self, db):
         #Willl have to hardcode access code until GUI is written
         #self.my_connector = Connector()
-        self.people = []
+        self.contacts = [] #will be processed into friends
         self.db = db
         self.app_id = 239974559496143
         self.app_secret = "eec6ae1b9b6445375c03cb9624f7b49f"
@@ -31,64 +32,66 @@ class FacebookContactsConnector:
         friends = self.graph.get("me/friends")
         return friends["data"]
 
-    def import_user_info(self, user):
-        data = self.graph.get(user)
+    #returns a dict of person formatted data ["birthday": bd, "gender": m/f"]
+    def get_user_info(self, user):
         birthday = "Not Listed"
-        if "birthday" in data:
-            birthday = data["birthday"]
-            print birthday
-        id = data["id"]
-        ##TO DO --> Build Person from Facebook
-        print "Building new person..."
-    # Find this precondition if necessary
-    def org_in_db(self, org):
-        return False
+        if "birthday" in user:
+            birthday = user["birthday"]
+        gender = ""
+        if "gender" in user:
+            gender = user["gender"]
+        return {"gender": gender, "birthday": birthday}
+
     def build_education_org(self, school):
         name = school["school"]["name"]
-        orgid = school["school"]["id"] + 0
+        orgid = school["school"]["id"]
         note = "From Facebook"
         org = Organization(orgid,name,note)
-        if not self.org_in_db(org):
+        return org
+        '''if not self.org_in_db(org):
             print "Pushing to DB ", org #need to confirm with Timur for methodology
         else:
             print "Already exists!", org #confirm db code
+            '''
 
+    #build a new person for all contacts. push the friends that aren't in db to db
+    def process_friends(self):
+        count = 0;
+        for f in self.friends:
+            id = f["id"]
+            friend = self.graph.get(id)
+            p = self.build_person(friend)
+            self.contacts.append(p)
+            #pass full education history in
+            if "education" in friend:
+                self.process_education(friend["education"])
+            #Limited for purposes of testing
+            count += 1
+            if count > LIMIT:
+                return
+    def build_person(self, friend):
+        info = self.get_user_info(friend)
+        #check for organization
+        p = Person.Person()
+        fb_strategy = GetNameFromFacebookContactsStrategy(friend)
+        p.add_name_from_service(fb_strategy)
+        p.birthday = info["birthday"]
+        p.gender = info["gender"]
+        return p
 
-    def import_education(self, id):
-        query = "SELECT education FROM user WHERE uid="+id
+    def process_education(self, education):
+        for school in education:
+            org = self.build_education_org(school)
+            self.push_org_db(org)
 
-        response = self.graph.fql(query)
-        ##format {"education": [school_1: properties][school_2: properties]
-        education = response["data"][0]
-        #print education
+    def push_org_db(self, org):
+        print "TO DO: PUSHING TO DB:", org
 
-        return education
-
-    def friends_to_db(self):
-        print "TO DO"
-
-    def add_email_addresses(self, contact, p):
-        if contact.email is not None:
-            for email in contact.email:
-                e = Email.Email()
-                e.address = email.address
-                p.emails.append(e)
+    def push_person_db(self, person):
+        print "TO DO: PUSHING TO DB:", person
 
     def run(self):
-        me = self.graph.get('me') #returns node rather than database table
-        print me["first_name"]
-        id = self.friends[30]["id"]
-        #print self.graph.get(id)["name"]
-        other = self.graph.get(id)
-        if "name" in other:
-            print "name"
-        print id
-        self.import_user_info(id)
-        education = self.import_education(id)
-        school = education["education"][0]
-        print school
-        #school = education[]
-        self.build_education_org(school)
+        self.process_friends()
         #print friends["data"]
        #store temp copy of graph
       # print self.graph.get('me/posts')

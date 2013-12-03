@@ -9,7 +9,9 @@ class Email(Message.Message):
         self.textbody = ''
         #self.htmlbody=''
         self.subject=''
-        self.addresses=[]
+        self.addressfrom=[]
+        self.addressto=[]
+        self.addresscc=[]
         self.timestamp=''
         self.fillerStrategy=fillerFromIMAPStrategy()
     def print_out(self):
@@ -23,23 +25,21 @@ class fillerFromIMAPStrategy(fillerStrategy):
         for response_part in msg_data:
             if isinstance(response_part, tuple):
                 msg = email.message_from_string(response_part[1])
-                if not msg.is_multipart():
-                    self.textbody=msg.get_payload()
-                    self.subject=msg['Subeject']
-                    self.address=msg['From']
-                    self.timestamp=msg['Date']
-                    print self.timestamp
+                print 'message wrapped'
+                maintype = msg.get_content_maintype()
+                if maintype == 'multipart':
+                    for part in msg.get_payload():
+                        if part.get_content_type() == 'text/plain':
+                            self.textbody= part.get_payload()
+                elif maintype == 'text':
+                    self.textbody= msg.get_payload()
+
+                self.subject=msg['SUBJECT']
+                self.addressfrom=msg['FROM']
+                self.addressto=msg['TO']
+                self.addresscc=msg['CC']
+                self.timestamp=msg['DATE']
+                #print "To:"+self.addressto+" From:"+self.addressfrom+" Subject:"+self.subject+ "Body:"+self.textbody
                # elif:
-                #    print "multipart message"
-                    #msg.walk()
-                #for header in [ 'subject', 'to', 'from' ]:
-                 #   print '%-8s: %s' % (header.upper(), msg[header])
 
 
-
-       #self.htmlbody=
-       #self.subject=source.fetch(e_id, '(body[header.fields (subject)])')[0][1][9:]
-       #self.addresses=source.fetch(e_id,'(BODY[HEADER.FIELDS (FROM)])')
-       #timestamp=source.fetch(e_id,'(INTERNALDATE)')
-       #print self.textbody
-        #0

@@ -1,7 +1,7 @@
 __author___ = 'Zachary'
 import imaplib
 import time
-from datetime import date
+from datetime import date,timedelta
 from System.Entities import Email, Person, Phone
 from Connectors.Connector import Connector
 from System.Entities.Email import fillerStrategy
@@ -39,7 +39,7 @@ class IMAPConnector(Connector):
 
     def import_emails(self):
         self.login()
-        e_ids=self.search("ALL")
+        e_ids=self.search(self.emailquery())
         for id in e_ids[0].split():
             e = Email.Email()
             e.fillerStrategy.fill(self.server,id)
@@ -48,18 +48,16 @@ class IMAPConnector(Connector):
         #self.process_feed(feed, self.create_person)
 
     def emailquery(self):
-        t=date.today()
+        t=date.today()-timedelta(days=90)
         t.replace(month=t.month-3)
         if(t.month<0):
             t.replace(month=12+t.month)
-        searchquery ='SINCE:{}/{}/{}'.format(t.year,t.month,t.day)
-        print searchquery
+        searchquery ='(SINCE "{}")'.format(t.strftime("%d-%b-%Y"))
+
         return searchquery
 
     def search(self,emailquery):
         status,e_ids =self.server.search(None,emailquery)
-        for id in e_ids:
-            print id
         return e_ids
     def login(self):
         self.server.login(self.username,self.password)

@@ -84,14 +84,33 @@ class FacebookContactsConnector:
             org = self.build_education_org(school)
             self.push_org_db(org)
 
+    def org_in_db(self, org):
+        return False
+    #True if pushed, False if already in DB
     def push_org_db(self, org):
-        print "TO DO: PUSHING TO DB:", org
+        if self.org_in_db(org):
+            return False
+        else:
+            print "TO DO: PUSHING TO DB:", org
+            return True
 
+    def person_in_db(self, person):
+        return False
+
+    #True if pushed; False otherwise
     def push_person_db(self, person):
-        print "TO DO: PUSHING TO DB:", person
+        if self.person_in_db(person):
+            return False
+        else:
+            print "TO DO: PUSHING TO DB:", person
+            return True
 
+    def process_messages(self):
+        print "TO DO: PROCESS MESSAGES"
     def run(self):
         self.process_friends()
+        self.process_messages()
+
         #print friends["data"]
        #store temp copy of graph
       # print self.graph.get('me/posts')

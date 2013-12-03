@@ -67,3 +67,18 @@ class GetNameFromGoogleContactsStrategy(GetNameStrategy):
             #no name...
             #print "No name for this contact..."
         return [self.first_name, self.last_name, self.other_name]
+
+class GetNameFromFacebookContactsStrategy(GetNameStrategy):
+    #@node The json representation of GraphAPI.get(id_entity)
+    def __init__(self, node):
+        self.node = node
+        self.first_name = ''
+        self.last_name = ''
+        self.other_name = ''
+
+    def get_name(self):
+        self.first_name = self.node["first_name"]
+        self.last_name = self.node["last_name"]
+        if "name" in self.node:
+            self.other_name = self.node["name"]
+        return [self.first_name,self.last_name, self.other_name]

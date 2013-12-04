@@ -2,8 +2,6 @@ __author__ = 'roran_000'
 
 from Tkinter import *
 from ttk import *
-from tkintertable.Tables import TableCanvas
-from tkintertable.TableModels import TableModel
 from functools import partial
 
 

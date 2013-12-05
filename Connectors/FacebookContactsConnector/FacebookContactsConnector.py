@@ -1,4 +1,4 @@
-from System.Entities import Email, Person, Phone, Message
+from System.Entities import EmailMessage, Person, Phone, Message
 from System.Entities.Organization import *
 #from Connectors.Connector import Connector
 #from System.Entities.Person import GetNameFromGoogleContactsStrategy
@@ -60,11 +60,11 @@ class FacebookContactsConnector:
         count = 0;
         for f in self.friends:
             id = f["id"]
-            friend = self.build_person_from_id(self, id)
+            friend = self.build_person_from_id(id)
             self.contacts.append(friend)
             #pass full education history in
-            if "education" in friend:
-                self.process_education(friend["education"])
+            #if "education" in friend:
+              #  self.process_education(friend["education"])
             #Limited for purposes of testing
             count += 1
             if count > LIMIT:
@@ -149,7 +149,7 @@ class FacebookContactsConnector:
         information = self.get_message_information(m, conversant_ids)
         time_stamp = self.get_time(m["created_time"])
         message = Message.Message(id, body, time_stamp)
-        #message.set_people(information)
+        message.set_people(information)
         return message
 
     def get_message_information(self, m, conversant_ids):
@@ -171,13 +171,23 @@ class FacebookContactsConnector:
         str_time = datetime.datetime.fromtimestamp(int(unix_time)).strftime('%Y-%m-%d %H:%M:%S')
         return str_time
 
+    def add_contacts_to_db(self):
+        entity_to_database = PersonToDatabase(self.people, self.db)
+        entity_to_database.add_standard_attribute_table_setters()
+        entity_to_database.add_people_to_database()
+
+    def associate_people_with_messages(self):
+        for conversation in self.message_threads:
+            print conversation
 
     def run(self):
-       # self.process_friends()
-        print self.message_threads
+        #Get All information Locally
+        self.process_friends()
         self.process_messages()
+        #Associate all friends with their proper messages
+        self.associate_people_with_messages()
         print str(self.message_threads)
 
 
-f = FacebookContactsConnector("db_temp")
+f = FacebookContactsConnector("personal_graph.db")
 f.run()

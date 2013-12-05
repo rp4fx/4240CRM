@@ -6,6 +6,7 @@ from System.Entities import EmailMessage, Person, Phone
 from Connectors.Connector import Connector
 from System.Entities.EmailMessage import fillerStrategy
 from System.EntityToDatabase import EmailToDatabase
+from System.DatabasetoEntity import DatabaseToPerson,EmailAttributeTableGetter
 
 
 class IMAPConnector(Connector):
@@ -16,11 +17,10 @@ class IMAPConnector(Connector):
         self.username = ''
         self.password = ''
         self.email_id=''
-        #self.db
+        self.db=db
     def serve(self):
        # try:
             return imaplib.IMAP4_SSL("imap.gmail.com",993)
-
 
     def run(self):
         print "Starting the IMAP Connector"
@@ -48,6 +48,7 @@ class IMAPConnector(Connector):
             self.emails.append(e)
         #feed = self.gd_client.GetContacts()
         #self.process_feed(feed, self.create_person)
+
     def check_success(self):
         for email in self.emails:
             print email.subject
@@ -61,12 +62,12 @@ class IMAPConnector(Connector):
         if(t.month<0):
             t.replace(month=12+t.month)
         searchquery ='(SINCE "{}")'.format(t.strftime("%d-%b-%Y"))
-
         return searchquery
 
     def search(self,emailquery):
         status,e_ids =self.server.search(None,emailquery)
         return e_ids
+
     def login(self):
         self.server.login(self.username,self.password)
         self.server.select()
@@ -77,8 +78,24 @@ class IMAPConnector(Connector):
         entity_to_database = EmailToDatabase(self.people, self.db)
         entity_to_database.add_standard_entity_to_attribute_table()
         entity_to_database.add_message_to_database()
+
+    def format(self,estring):
+        estring
+
     def find_people(self):
-        self.db
+        dbfrom=DatabaseToPerson(self.db)
+        dbfrom.add_attribute_table_getter(EmailAttributeTableGetter(self.db))
+        peoplelist=dbfrom.get_people_from_database()
+        for emailmessage in self.emails: #inside IMAP, generated emailmessages
+            for person in peoplelist:    #pulled from db reconstructed people (all)
+                for pemail in person.emails:
+                    for name in emailmessage.people['FROM']: #one set of emailaddress
+
+                        if pemail.address in name:
+                            print "Match: "+pemail.address+" message: "+name
+                        else:
+                            print "No Match: "+pemail.address+" message: "+name
+
 
 '''
     def process_feed(self, feed, processing_method):
@@ -154,6 +171,7 @@ class IMAPConnector(Connector):
         entity_to_database.add_standard_entity_to_attribute_table()
         entity_to_database.add_people_to_database()
         '''
-conn = IMAPConnector(None)
+conn = IMAPConnector("../../System/personal_graph.db")
 conn.run()
 conn.check_success()
+#conn.find_people()

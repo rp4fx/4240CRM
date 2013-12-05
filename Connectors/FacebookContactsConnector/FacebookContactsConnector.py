@@ -120,6 +120,7 @@ class FacebookContactsConnector:
         conversation = []
         query = "SELECT message_id, body, created_time FROM message WHERE thread_id="+thread_id
         raw_conversation = self.graph.fql(query)["data"] #the entire conversation on that thread
+        print raw_conversation
         #has body, created_time, and message_id
         for m in raw_conversation:
             message = self.build_message(m)

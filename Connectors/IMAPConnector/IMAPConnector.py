@@ -5,16 +5,17 @@ from datetime import date,timedelta
 from System.Entities import Email, Person, Phone
 from Connectors.Connector import Connector
 from System.Entities.Email import fillerStrategy
-#from System.EntityToDatabase import PersonToDatabase
+from System.EntityToDatabase import EmailToDatabase
 
 
 class IMAPConnector(Connector):
 
-    def __init__(self):
+    def __init__(self,db):
         self.emails = []
         self.server = self.serve()
         self.username = ''
         self.password = ''
+        self.email_id=''
         #self.db
     def serve(self):
        # try:
@@ -63,6 +64,13 @@ class IMAPConnector(Connector):
         self.server.login(self.username,self.password)
         self.server.select()
         #self.gd_client.ClientLogin(username, password, self.gd_client.source)
+    def add_emails_to_database(self):
+        self.find_people()
+        entity_to_database = EmailToDatabase(self.people, self.db)
+        entity_to_database.add_standard_entity_to_attribute_table()
+        entity_to_database.add_message_to_database()
+    def find_people(self):
+        self.db
 '''
     def process_feed(self, feed, processing_method):
         ctr = 0

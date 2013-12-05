@@ -1,9 +1,10 @@
 __author__ = 'Timur'
 import xml.etree.ElementTree as ET
-
+#import Group
 
 class Person:
     def __init__(self):
+        self.members=self
         self.first_name = ''
         self.last_name = ''
         self.other_name = ''

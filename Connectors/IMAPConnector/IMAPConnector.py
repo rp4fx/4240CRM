@@ -145,5 +145,5 @@ class IMAPConnector(Connector):
         entity_to_database.add_standard_entity_to_attribute_table()
         entity_to_database.add_people_to_database()
         '''
-conn = IMAPConnector()
+conn = IMAPConnector(None)
 conn.run()

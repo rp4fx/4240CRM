@@ -39,6 +39,7 @@ class fillerFromIMAPStrategy(fillerStrategy):
                 self.addressto=msg['TO']
                 self.addresscc=msg['CC']
                 self.timestamp=msg['DATE']
+                print self.timestamp
                 #print "To:"+self.addressto+" From:"+self.addressfrom+" Subject:"+self.subject+ "Body:"+self.textbody
                # elif:
 

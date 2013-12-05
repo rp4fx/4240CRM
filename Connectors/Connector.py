@@ -3,9 +3,10 @@ import getpass
 
 
 class Connector:
-    def __init__(self):
+    def __init__(self,db):
         self.username = ''
         self.password = ''
+        self.db=db
 
     def request_credentials(self):
         while not self.username:

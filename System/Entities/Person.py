@@ -13,7 +13,7 @@ class Person:
         self.emails = []
         self.phones = []
         self.note = ''
-        self.relationships = ''
+        self.relationships = {}
 
     def add_name_from_service(self, GetNameStrategy):
         name = GetNameStrategy.get_name()

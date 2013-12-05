@@ -44,7 +44,7 @@ class DatabaseToPerson(DatabaseToEntity):
         return self.entities   # return a list of people
 
     def query_person_table(self):
-        self.cursor.execute("SElECT * from person")
+        self.cursor.execute("SElECT * FROM person")
         rows_from_db = self.return_rows_db(self.cursor)
         for row in rows_from_db:
             p = Person()
@@ -75,7 +75,7 @@ class DatabaseToMessage(DatabaseToEntity):
         self.cursor.execute("SElECT * FROM message")
         rows_from_db = self.return_rows_db(self.cursor)
         for row in rows_from_db:
-            m = Message()
+            m = Message(row[0], row[1], row[2])
             m.messageid = row[0]
             m.content = row[1]
             m.timestamp = row[2]
@@ -179,16 +179,24 @@ class PersonMessageLinker:
             messageid = row[0]
             person_id = row[1]
             relationship = row[2]
-            #gotta fix this...
             for message in self.messages:
                 if message.messageid == messageid:
                     for person in self.people:
                         if person.person_id == person_id:
-                            if relationship == "To" or relationship == "CC" or relationship == "BCC":
-                                person.messages_received = message
+                            self.add_relationship_to_person(person, message, relationship)
+                            self.add_relationship_to_message(person, message, relationship)
 
+    def add_relationship_to_person(self, person, message, relationship):
+        if relationship in person.relationships:
+            person.relationships[relationship].append(message)
+        else:
+            person.relationships[relationship] = [message]
+
+    def add_relationship_to_message(self, person, message, relationship):
+        message.people[relationship].append(person)
 
 # test
+"""
 db = "personal_graph.db"
 dbToPerson = DatabaseToPerson(db)
 emailAttr = EmailAttributeTableGetter(db)
@@ -198,7 +206,15 @@ dbToPerson.add_attribute_table_getter(phoneAttr)
 people = dbToPerson.get_people_from_database()
 for person in people:
     person.print_out()
-
+dbToMessage = DatabaseToMessage(db)
+messages = dbToMessage.get_messages_from_database()
+linker = PersonMessageLinker(people, messages, db)
+linker.link()
+for message in messages:
+    message.print_out()
+#checking if it's actually printed
+messages[0].people["FROM"][0].print_out()
+"""
 
 
 """

@@ -20,7 +20,7 @@ def create_tables(c):
     #entity tables
     c.execute('CREATE TABLE IF NOT EXISTS person (personid INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT, othername TEXT, birthday INTEGER, gender TEXT, note TEXT)')
     c.execute('CREATE TABLE IF NOT EXISTS org (orgid INTEGER PRIMARY KEY, name TEXT, note TEXT)')
-    c.execute('CREATE TABLE IF NOT EXISTS message (messageid INTEGER PRIMARY KEY, content TEXT, timestamp INTEGER)')
+    c.execute('CREATE TABLE IF NOT EXISTS message (messageid INTEGER PRIMARY KEY, content TEXT, subject TEXT, timestamp INTEGER)')
     #attribute tables
     c.execute('CREATE TABLE IF NOT EXISTS email (emailid INTEGER PRIMARY KEY, personid INTEGER, orgid INTEGER, address text)')
     c.execute('CREATE TABLE IF NOT EXISTS phone (phoneid INTEGER PRIMARY KEY, personid INTEGER, orgid INTEGER, type text, number text)')

@@ -19,6 +19,7 @@ class EntityToDatabase:
     def add_attribute_table_setter(self, attribute_table_setter):
         self.attribute_table_setters.append(attribute_table_setter)
 
+# RENAME THIS!!!! SHOULD BE EmailMessageToDatabase
 class EmailToDatabase(EntityToDatabase):
     def add_standard_entity_to_attribute_table(self):
         phone_processor = PhoneAttributeTableSetter(self.db)
@@ -62,8 +63,8 @@ class PersonToDatabase(EntityToDatabase):
         for person in self.entities:
             personid = self.insert_person(person)
             print "Inserted person with id %s" %(personid)
-            for entity_to_attribute_table in self.attribute_table_setters:
-                entity_to_attribute_table.add_to_table(person, personid, self.cursor)
+            for attribute_table_setter in self.attribute_table_setters:
+                attribute_table_setter.add_to_table(person, personid, self.cursor)
         self.close_db_connection()
 
     def insert_person(self, person):

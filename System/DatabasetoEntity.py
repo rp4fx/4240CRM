@@ -35,15 +35,15 @@ class DatabaseToEntity:
         self.attribute_table_getters.append(attribute_table_getter)
 
 
-class DatabaseToPerson (DatabaseToEntity):
+class DatabaseToPerson(DatabaseToEntity):
     def get_people_from_database(self):
         self.connect_to_database()
-        self.query_person_database()
-        self.query_attribute_databases()
+        self.query_person_table()
+        self.query_attribute_tables()
         self.close_db_connection()
         return self.entities   # return a list of people
 
-    def query_person_database(self):
+    def query_person_table(self):
         self.cursor.execute("SElECT * from person")
         rows_from_db = self.return_rows_db(self.cursor)
         for row in rows_from_db:
@@ -57,11 +57,34 @@ class DatabaseToPerson (DatabaseToEntity):
             p.note = row[6]
             self.entities.append(p)
 
-    def query_attribute_databases(self):
+    def query_attribute_tables(self):
         for person in self.entities:
             for attribute_table_getter in self.attribute_table_getters:
-                cursor = self.cursor
-                attribute_table_getter.get_attribute(person, person.person_id, cursor)
+                attribute_table_getter.get_attribute(person, person.person_id, self.cursor)
+
+
+class DatabaseToMessage(DatabaseToEntity):
+    def get_messages_from_database(self):
+        self.connect_to_database()
+        self.query_message_table()
+        self.query_attribute_tables()
+        self.close_db_connection()
+        return self.entities
+
+    def query_message_table(self):
+        self.cursor.execute("SElECT * FROM message")
+        rows_from_db = self.return_rows_db(self.cursor)
+        for row in rows_from_db:
+            m = Message()
+            m.messageid = row[0]
+            m.content = row[1]
+            m.timestamp = row[2]
+            self.entities.append(m)
+
+    def query_attribute_tables(self):
+        for message in self.entities:
+            for attribute_table_getter in self.attribute_table_getters:
+                attribute_table_getter.get_attribute(message, message.messageid, self.cursor)
 
 
 class AttributeTableGetter:
@@ -94,7 +117,7 @@ class EmailAttributeTableGetter(AttributeTableGetter):
         self.cursor = cursor
         if self.cursor is None:
             self.connect_to_database()
-        self.cursor.execute("SELECT emailid, address FROM email where personid = %d " %(personid))
+        self.cursor.execute("SELECT emailid, address FROM email WHERE personid = %d " %(personid))
         rows_from_db = self.return_rows_db(self.cursor)
         for row in rows_from_db:
             e = Email()
@@ -120,6 +143,49 @@ class PhoneAttributeTableGetter(AttributeTableGetter):
             person.phones.append(phone)
         if self.opened_connection:
             self.close_db_connection()
+
+
+class PersonMessageLinker:
+    def __init__(self, people, messages, db):
+        self.people = people
+        self.messages = messages
+        self.db = db
+
+    def connect_to_database(self):
+        self.conn = sqlite3.connect(self.db)
+        self.cursor = self.conn.cursor()
+        self.opened_connection = True
+
+    def close_db_connection(self):
+        self.conn.commit()
+        self.conn.close()
+
+    def return_rows_db(self, cursor):
+        ret = []
+        rows = cursor.fetchall()
+        for r in rows:
+            ret.append(r)
+        return ret
+
+    def link(self):
+        self.connect_to_database()
+        self.query_messagePerson_table()
+        self.close_db_connection()
+
+    def query_messagePerson_table(self):
+        self.cursor.execute("SElECT * FROM messagePerson")
+        rows_from_db = self.return_rows_db(self.cursor)
+        for row in rows_from_db:
+            messageid = row[0]
+            person_id = row[1]
+            relationship = row[2]
+            #gotta fix this...
+            for message in self.messages:
+                if message.messageid == messageid:
+                    for person in self.people:
+                        if person.person_id == person_id:
+                            if relationship == "To" or relationship == "CC" or relationship == "BCC":
+                                person.messages_received = message
 
 
 # test

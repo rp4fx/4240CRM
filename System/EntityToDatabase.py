@@ -21,17 +21,17 @@ class EntityToDatabase:
 
 class EmailToDatabase(EntityToDatabase):
     def add_standard_entity_to_attribute_table(self):
-        phone_processor = PhoneToAttributeTable(self.db)
-        self.add_entity_to_attribute_table(phone_processor)
-        email_processor = EmailToAttributeTable(self.db)
-        self.add_entity_to_attribute_table(email_processor)
+        phone_processor = PhoneAttributeTableSetter(self.db)
+        self.add_attribute_table_setter(phone_processor)
+        email_processor = EmailAttributeTableSetter(self.db)
+        self.add_attribute_table_setter(email_processor)
 
     def add_people_to_database(self):
         self.connect_to_database()
         for person in self.entities:
             personid = self.insert_person(person)
             print "Inserted person with id %s" %(personid)
-            for entity_to_attribute_table in self.entity_to_attribute_table:
+            for entity_to_attribute_table in self.add_attribute_table_setter:
                 entity_to_attribute_table.add_to_table(person, personid, self.cursor)
         self.close_db_connection()
 

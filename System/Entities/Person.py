@@ -13,13 +13,16 @@ class Person:
         self.emails = []
         self.phones = []
         self.note = ''
-        self.relationships = {}
+        self.messages = [] #list of all the messages associated with this person
 
     def add_name_from_service(self, GetNameStrategy):
         name = GetNameStrategy.get_name()
         self.first_name = name[0]
         self.last_name = name[1]
         self.other_name = name[2]
+
+    def add_message(self, message):
+        self.messages.append(message)
 
     def print_out(self):
         print "---------------------------------"
@@ -34,6 +37,10 @@ class Person:
             phone.print_out()
         print self.note
         print "---------------------------------"
+
+    def get_name(self):
+        name = self.first_name + " " + self.last_name
+        return name
 
     def __str__(self):
         self.print_out()

@@ -9,10 +9,10 @@ import xml.etree.ElementTree as ET
 
 
 # decided not to inherit connector, but rather use as a parameter
-# avoiding the issue of multiple inheritance (though I don't know if this would inherit from anything else
+# avoiding the issue of multiple inheritance (though I don't know if this would inherit from anything else)
 class GoogleContactsConnector:
     def __init__(self, db):
-        self.my_connector = Connector()
+        self.my_connector = Connector(db)
         self.gd_client = gdata.contacts.client.ContactsClient(source='GoogleInc-ContactsPythonSample-1')
         self.people = []
         self.db = db

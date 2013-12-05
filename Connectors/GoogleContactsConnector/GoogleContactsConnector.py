@@ -1,5 +1,5 @@
 __author__ = 'Timur'
-from System.Entities import Email, Person, Phone
+from System.Entities import EmailMessage, Person, Phone
 from Connectors.Connector import Connector
 from System.Entities.Person import GetNameFromGoogleContactsStrategy
 from System.EntityToDatabase import PersonToDatabase
@@ -73,7 +73,7 @@ class GoogleContactsConnector:
     def add_email_addresses(self, contact, p):
         if contact.email is not None:
             for email in contact.email:
-                e = Email.Email()
+                e = EmailMessage.EmailMessage()
                 e.address = email.address
                 p.emails.append(e)
                 #print "Email: {0}".format(email.address)

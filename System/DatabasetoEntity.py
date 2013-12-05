@@ -2,7 +2,7 @@ __author__ = 'roran_000'
 
 import sqlite3
 from System.Entities.Person import *
-from System.Entities.Email import *
+from System.Entities.EmailMessage import *
 from System.Entities.Organization import *
 from System.Entities.Phone import *
 from System.Entities.Profile import *

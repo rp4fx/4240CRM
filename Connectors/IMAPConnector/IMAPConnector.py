@@ -2,9 +2,9 @@ __author___ = 'Zachary'
 import imaplib
 import time
 from datetime import date,timedelta
-from System.Entities import Email, Person, Phone
+from System.Entities import EmailMessage, Person, Phone
 from Connectors.Connector import Connector
-from System.Entities.Email import fillerStrategy
+from System.Entities.EmailMessage import fillerStrategy
 from System.EntityToDatabase import EmailToDatabase
 
 
@@ -42,7 +42,7 @@ class IMAPConnector(Connector):
         self.login()
         e_ids=self.search(self.emailquery())
         for id in e_ids[0].split():
-            e = Email.Email()
+            e = EmailMessage.EmailMessage()
             e.fillerStrategy.fill(self.server,id)
             e.setMessage()
             print id

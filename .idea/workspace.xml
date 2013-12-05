@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/Entities/Email.py" afterPath="$PROJECT_DIR$/System/Entities/Email.py" />
+      <change type="MOVED" beforePath="C:\Users\Zachary\PycharmProjects\4240CRM\System\Entities\Email.py" afterPath="$PROJECT_DIR$/System/Entities/EmailMessage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/DatabasetoEntity.py" afterPath="$PROJECT_DIR$/System/DatabasetoEntity.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py" afterPath="$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Connectors/GoogleContactsConnector/GoogleContactsConnector.py" afterPath="$PROJECT_DIR$/Connectors/GoogleContactsConnector/GoogleContactsConnector.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py" afterPath="$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/Entities/Message.py" afterPath="$PROJECT_DIR$/System/Entities/Message.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="4240CRM.iws" />
@@ -48,7 +50,7 @@
       <file leaf-file-name="FacebookContactsConnector.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="0" selection-start="1942" selection-end="1942" vertical-scroll-proportion="0.0" vertical-offset="553" max-vertical-offset="2669">
+            <state line="45" column="0" selection-start="1949" selection-end="1949" vertical-scroll-proportion="0.0" vertical-offset="553" max-vertical-offset="2669">
               <folding />
             </state>
           </provider>
@@ -63,10 +65,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Email.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/System/Entities/Email.py">
+      <file leaf-file-name="EmailMessage.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/System/Entities/EmailMessage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="13" selection-start="1164" selection-end="1164" vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="952">
+            <state line="40" column="0" selection-start="1441" selection-end="1441" vertical-scroll-proportion="0.90581715" vertical-offset="285" max-vertical-offset="952">
               <folding />
             </state>
           </provider>
@@ -81,10 +83,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IMAPConnector.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="IMAPConnector.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="44" selection-start="1462" selection-end="1462" vertical-scroll-proportion="0.47091413" vertical-offset="680" max-vertical-offset="2669">
+            <state line="8" column="0" selection-start="294" selection-end="294" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2669">
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
               </folding>
@@ -124,6 +126,7 @@
         <option value="$PROJECT_DIR$/System/Entities/Message.py" />
         <option value="$PROJECT_DIR$/System/Entities/Email.py" />
         <option value="$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py" />
+        <option value="$PROJECT_DIR$/System/Entities/EmailMessage.py" />
       </list>
     </option>
   </component>
@@ -603,7 +606,11 @@
       <created>1386211839204</created>
       <updated>1386211839204</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="IMAP intermediary">
+      <created>1386215177146</created>
+      <updated>1386215177146</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -701,7 +708,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="1942" selection-end="1942" vertical-scroll-proportion="0.0" vertical-offset="553" max-vertical-offset="2669">
+        <state line="45" column="0" selection-start="1949" selection-end="1949" vertical-scroll-proportion="0.0" vertical-offset="553" max-vertical-offset="2669">
           <folding />
         </state>
       </provider>
@@ -720,13 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/System/Entities/Email.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="13" selection-start="1164" selection-end="1164" vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="952">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/System/Entities/Message.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="48" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0" vertical-offset="47" max-vertical-offset="476">
@@ -736,10 +736,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="44" selection-start="1462" selection-end="1462" vertical-scroll-proportion="0.47091413" vertical-offset="680" max-vertical-offset="2669">
+        <state line="8" column="0" selection-start="294" selection-end="294" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2669">
           <folding>
             <element signature="e#24#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/System/Entities/EmailMessage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="0" selection-start="1441" selection-end="1441" vertical-scroll-proportion="0.90581715" vertical-offset="285" max-vertical-offset="952">
+          <folding />
         </state>
       </provider>
     </entry>

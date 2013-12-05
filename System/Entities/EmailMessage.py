@@ -4,7 +4,7 @@ import time
 import email
 from datetime import date
 import Message
-class Email(Message.Message):
+class EmailMessage(Message.Message):
     def __init__(self):
         self.content = ''
         #self.htmlbody=''

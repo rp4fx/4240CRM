@@ -727,7 +727,11 @@
       <created>1386287110058</created>
       <updated>1386287110058</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Changed people[] over to lists from strings">
+      <created>1386287249859</created>
+      <updated>1386287249859</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">

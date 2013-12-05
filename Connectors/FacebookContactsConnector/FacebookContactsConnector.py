@@ -1,4 +1,4 @@
-from System.Entities import Email, Person, Phone, Message
+from System.Entities import EmailMessage, Person, Phone, Message
 from System.Entities.Organization import *
 #from Connectors.Connector import Connector
 #from System.Entities.Person import GetNameFromGoogleContactsStrategy

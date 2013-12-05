@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 
 class Person:
     def __init__(self):
+        self.person_id = ''
         self.first_name = ''
         self.last_name = ''
         self.other_name = ''

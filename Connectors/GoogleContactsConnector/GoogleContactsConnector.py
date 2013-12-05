@@ -108,5 +108,5 @@ class GoogleContactsConnector:
 
     def add_contacts_to_db(self):
         entity_to_database = PersonToDatabase(self.people, self.db)
-        entity_to_database.add_standard_entity_to_attribute_table()
+        entity_to_database.add_standard_attribute_table_setters()
         entity_to_database.add_people_to_database()

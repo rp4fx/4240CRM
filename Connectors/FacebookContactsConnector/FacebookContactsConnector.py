@@ -178,7 +178,9 @@ class FacebookContactsConnector:
 
     def associate_people_with_messages(self):
         for conversation in self.message_threads:
-            print conversation
+            people = conversation[0].people
+            person_to = people["TO"]
+            print person_to.
 
     def run(self):
         #Get All information Locally

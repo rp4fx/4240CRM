@@ -10,9 +10,10 @@ class CRM(Frame):
     def __init__(self, parent):
         Frame.__init__(self, parent)
         self.parent = parent
-        self.initUI()
         self.people = []
         self.messages = []
+        self.get_people_and_messages()
+        self.initUI()
 
     def initUI(self):
         self.parent.title("Personal CRM")
@@ -59,7 +60,6 @@ class CRM(Frame):
     def find_person_by_id(self, person_id):
         print "searching for person with person id: %s" % person_id
         for p in self.people:
-            print p.person_id
             if str(p.person_id) == person_id:
                 print "Found person :)"
                 return p
@@ -72,7 +72,7 @@ class CRM(Frame):
         msg.pack()
 
     def add_data_to_tree(self, tree):
-        self.get_people_and_messages()
+        #self.get_people_and_messages()
         self.add_people_to_tree(tree)
         tree.insert('', 'end', 'timur', text='1', tags=('#entry'), values=('Timur Aleshin M 10/01/1991'))
         tree.insert('', 'end', 'zack', text='2', tags=('#entry'), values=('Zack Seid M'))

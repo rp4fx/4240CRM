@@ -13,7 +13,10 @@ class Person:
         self.emails = []
         self.phones = []
         self.note = ''
-        self.messages = [] #list of all the messages associated with this person
+        #self.messages = [] #list of all the messages associated with this person
+        self.relationships = {} #list of all the relationships associated with the person including messages
+        # so there will be a "TO" key with a list of messages as the value and a "CC" key with a list of messages as a value
+        # this way we can have more relationships that we don't anticipate for at the writing of this method
 
     def add_name_from_service(self, GetNameStrategy):
         name = GetNameStrategy.get_name()

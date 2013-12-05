@@ -1,8 +1,8 @@
-__author__ = 'roran_000'
+__author__ = 'timur'
 
 import sqlite3
 from System.Entities.Person import *
-from System.Entities.EmailMessage import *
+from System.Entities.Email import *
 from System.Entities.Organization import *
 from System.Entities.Phone import *
 from System.Entities.Profile import *
@@ -24,23 +24,28 @@ class DatabaseToEntity:
         self.conn.commit()
         self.conn.close()
 
-    def add_attribute_table_getters(self, attribute_table_getter):
+    def return_rows_db(self, cursor):
+        ret = []
+        rows = cursor.fetchall()
+        for r in rows:
+            ret.append(r)
+        return ret
+
+    def add_attribute_table_getter(self, attribute_table_getter):
         self.attribute_table_getters.append(attribute_table_getter)
+
 
 class DatabaseToPerson (DatabaseToEntity):
     def get_people_from_database(self):
         self.connect_to_database()
-        self.query_database()
-        for person in self.entities:
-            personid = self.insert_person(person)
-            print "Inserted person with id %s" %(personid)
-            for entity_to_attribute_table in self.attribute_table_setters:
-                entity_to_attribute_table.add_to_table(person, personid, self.cursor)
+        self.query_person_database()
+        self.query_attribute_databases()
         self.close_db_connection()
+        return self.entities   # return a list of people
 
-    def query_database(self):
+    def query_person_database(self):
         self.cursor.execute("SElECT * from person")
-        rows_from_db = return_rows_db(self.cursor)
+        rows_from_db = self.return_rows_db(self.cursor)
         for row in rows_from_db:
             p = Person()
             p.person_id = row[0]
@@ -50,22 +55,14 @@ class DatabaseToPerson (DatabaseToEntity):
             p.birthday = row[4]
             p.gender = row[5]
             p.note = row[6]
+            self.entities.append(p)
 
-        people_list =[]
-        self.curs.execute("SELECT address from email where personid = %d " %(self.PID))
-        email_list = return_rows_db(self.curs)
-        self.curs.execute("SELECT number from phone where personid = %s" % (self.PID))
-        phone_list = return_rows_db(self.curs)
-        for p in people_list_unmade:
-            person = Person(p[0],p[1],p[2],p[3],p[4],p[5],p[6],email_list,phone_list)
-            people_list.append(person)
+    def query_attribute_databases(self):
+        for person in self.entities:
+            for attribute_table_getter in self.attribute_table_getters:
+                cursor = self.cursor
+                attribute_table_getter.get_attribute(person, person.person_id, cursor)
 
-    def return_rows_db(self, cursor):
-        ret = []
-        rows = cursor.fetchall()
-        for r in rows:
-            ret.append(r)
-        return ret
 
 class AttributeTableGetter:
     def __init__(self, db):
@@ -81,23 +78,64 @@ class AttributeTableGetter:
         self.conn.commit()
         self.conn.close()
 
+    def return_rows_db(self, cursor):
+        ret = []
+        rows = cursor.fetchall()
+        for r in rows:
+            ret.append(r)
+        return ret
+
+    def get_attribute(self, parent, parentid, cursor=None):
+        print "Override this method!"
+
+
+class EmailAttributeTableGetter(AttributeTableGetter):
+    def get_attribute(self, person, personid, cursor=None):
+        self.cursor = cursor
+        if self.cursor is None:
+            self.connect_to_database()
+        self.cursor.execute("SELECT emailid, address FROM email where personid = %d " %(personid))
+        rows_from_db = self.return_rows_db(self.cursor)
+        for row in rows_from_db:
+            e = Email()
+            e.email_id = row[0]
+            e.address = row[1]
+            person.emails.append(e)
+        if self.opened_connection:
+            self.close_db_connection()
+
+
 class PhoneAttributeTableGetter(AttributeTableGetter):
     def get_attribute(self, person, personid, cursor=None):
         self.cursor = cursor
         if self.cursor is None:
             self.connect_to_database()
-        self.cursor.execute("SELECT emailid, address from email where personid = %d " %(personid))
-        rows_from_db = return_rows_db(self.cursor)
+        self.cursor.execute("SELECT phoneid, type, number FROM phone where personid = %d " %(personid))
+        rows_from_db = self.return_rows_db(self.cursor)
         for row in rows_from_db:
-            e = Email()
-            e
+            phone = Phone()
+            phone.phone_id = row[0]
+            phone.type = row[1]
+            phone.number = row[2]
+            person.phones.append(phone)
         if self.opened_connection:
             self.close_db_connection()
 
 
+# test
+db = "personal_graph.db"
+dbToPerson = DatabaseToPerson(db)
+emailAttr = EmailAttributeTableGetter(db)
+phoneAttr = PhoneAttributeTableGetter(db)
+dbToPerson.add_attribute_table_getter(emailAttr)
+dbToPerson.add_attribute_table_getter(phoneAttr)
+people = dbToPerson.get_people_from_database()
+for person in people:
+    person.print_out()
 
 
 
+"""
 def return_rows_db(curs):
     ret = []
     rows = curs.fetchall()
@@ -195,4 +233,6 @@ class InfoFromDb:
         for r in relation_list_unmade:
              relation_list.append(Relationship(r[0],r[1],r[1]))
         return relation_list
+"""
+
 

@@ -3,6 +3,7 @@ __author__ = 'Timur'
 
 class Phone:
     def __init__(self):
+        self.phone_id = -1
         self.number = ''
         self.type = ''
 

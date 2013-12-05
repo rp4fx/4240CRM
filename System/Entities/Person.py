@@ -34,6 +34,8 @@ class Person:
         print self.note
         print "---------------------------------"
 
+    def __str__(self):
+        self.print_out()
 
 class GetNameStrategy:
     def get_name(self):

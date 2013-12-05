@@ -9,7 +9,7 @@ from System.EntityToDatabase import PersonToDatabase
 from facepy import *
 import datetime
 
-ACCESS_TOKEN = "CAACEdEose0cBAFq0PSJ4dDeOZAsm3hkh2SHwDCUkZCx8UcRaxfoyah1RbW2RfRCLsadqNR0oJnyGWm5dG4A2gtGrnJiMtKf44ovOL39LnCq61XNZCvWTylBsy7GXtEyzxOtqdsqHXSFrDdCrdEh6EENKrqp9F5xwHpYkhFhrOS0xmuDM3qWECeg5yDHZASgZD"
+ACCESS_TOKEN = "CAADaQW5ft88BABJUczonhrGFq3drf67zw4rUFIq3cqpOHZCjS5GslqIB7bkocZBk1g0SkZAxhKoqqCboC3NWqrNkzdIpw2gAdfMZC5zfacZApJVoHrUFpEviOZBZBktFlIVcw0zkkniTyhijToxxZB2TfoKPHJcZAVsFub3eR0KV7uJZBOZCS2VpsIFb8NXOyU2VfoZD"
 LIMIT = 3
 APP_SECRET = "eec6ae1b9b6445375c03cb9624f7b49f"
 class FacebookContactsConnector:
@@ -50,17 +50,22 @@ class FacebookContactsConnector:
         org = Organization(orgid,name,note)
         return org
 
+    def build_person_from_id(self, id):
+        user = self.graph.get(id)
+        person = self.build_person(user)
+        return person
+
     #build a new person for all contacts. push the friends that aren't in db to db
     def process_friends(self):
         count = 0;
         for f in self.friends:
             id = f["id"]
-            friend = self.graph.get(id)
-            p = self.build_person(friend)
-            self.contacts.append(p)
+            friend = self.build_person_from_id(id)
+            self.contacts.append(friend)
             #pass full education history in
-            if "education" in friend:
-                self.process_education(friend["education"])
+            #Version 1.0 Not handling Education
+            #if "education" in friend:
+             #   self.process_education(friend["education"])
             #Limited for purposes of testing
             count += 1
             if count > LIMIT:
@@ -118,24 +123,50 @@ class FacebookContactsConnector:
     #returns a list of processed messages from the given thread_id
     def get_conversation(self, thread_id):
         conversation = []
-        query = "SELECT message_id, body, created_time FROM message WHERE thread_id="+thread_id
+        query = "SELECT message_id, body, created_time, author_id FROM message WHERE thread_id="+thread_id
         raw_conversation = self.graph.fql(query)["data"] #the entire conversation on that thread
-        print raw_conversation
-        #has body, created_time, and message_id
+        #must determine who is viewer_id. if the from == viewer_id, then the to == the other
+        conversant_ids = self.get_conversant_ids(raw_conversation)
+       # print raw_conversation
         for m in raw_conversation:
-            message = self.build_message(m)
+            message = self.build_message(m, conversant_ids)
             conversation.append(message)
 
         return conversation
 
+    def get_conversant_ids(self, raw_conversation):
+        owner_id = self.graph.get("me")["id"]
+        for message in raw_conversation:
+            if not message["author_id"] == owner_id:
+                return {"owner_id": owner_id, "friend_id": message["author_id"]}
+        #never reached
+        return {"owner_id": owner_id, "friend_id": ""}
+
     #converts json message to Entities.Message object
-    def build_message(self, m):
+    def build_message(self, m, conversant_ids):
         body = m["body"]
         id = m["message_id"]
-        #convert from unix time stamp
+        information = self.get_message_information(m, conversant_ids)
         time_stamp = self.get_time(m["created_time"])
         message = Message.Message(id, body, time_stamp)
+        message.set_people(information)
+
         return message
+
+    def get_message_information(self, m, conversant_ids):
+        from_id = m["author_id"]
+        person_from = self.build_person_from_id(str(from_id))
+        to_id = self.get_recipient(from_id, conversant_ids)
+        person_to = self.build_person_from_id(str(to_id))
+        information = {"TO:": [person_to], "FROM:": [person_from], "CC:": [], "BCC:": []}
+        return information
+
+
+    def get_recipient(self, from_id, conversant_ids):
+        if from_id == conversant_ids["owner_id"]:
+            return conversant_ids["friend_id"]
+        else:
+            return conversant_ids["owner_id"]
 
     def get_time(self, unix_time):
         str_time = datetime.datetime.fromtimestamp(int(unix_time)).strftime('%Y-%m-%d %H:%M:%S')
@@ -143,10 +174,10 @@ class FacebookContactsConnector:
 
 
     def run(self):
-       # self.process_friends()
-        print self.message_threads
+        self.process_friends()
+       # print self.message_threads
         self.process_messages()
-        print str(self.message_threads)
+       # print str(self.message_threads)
 
 
 f = FacebookContactsConnector("db_temp")

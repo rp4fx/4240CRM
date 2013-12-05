@@ -9,7 +9,6 @@ class Message:
         self.timestamp = timestamp
         self.people = {"TO:": [], "FROM:": [], "CC:": [], "BCC:": []}
 
-
     def __str__(self):
         return "Message content: "+ self.content+"\nSent: "+self.timestamp
 

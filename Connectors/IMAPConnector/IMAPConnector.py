@@ -48,6 +48,12 @@ class IMAPConnector(Connector):
             self.emails.append(e)
         #feed = self.gd_client.GetContacts()
         #self.process_feed(feed, self.create_person)
+    def check_success(self):
+        for email in self.emails:
+            print email.subject
+            print email.timestamp
+            print email.people
+            print email.content
 
     def emailquery(self):
         t=date.today()-timedelta(days=90)
@@ -65,6 +71,7 @@ class IMAPConnector(Connector):
         self.server.login(self.username,self.password)
         self.server.select()
         #self.gd_client.ClientLogin(username, password, self.gd_client.source)
+
     def add_emails_to_database(self):
         self.find_people()
         entity_to_database = EmailToDatabase(self.people, self.db)
@@ -72,6 +79,7 @@ class IMAPConnector(Connector):
         entity_to_database.add_message_to_database()
     def find_people(self):
         self.db
+
 '''
     def process_feed(self, feed, processing_method):
         ctr = 0
@@ -148,3 +156,4 @@ class IMAPConnector(Connector):
         '''
 conn = IMAPConnector(None)
 conn.run()
+conn.check_success()

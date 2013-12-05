@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/4240CRM.iml" afterPath="$PROJECT_DIR$/.idea/4240CRM.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/DatabasetoEntity.py" afterPath="$PROJECT_DIR$/System/DatabasetoEntity.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/Entities/EmailMessage.py" afterPath="$PROJECT_DIR$/System/Entities/EmailMessage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py" afterPath="$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py" afterPath="$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/Entities/Message.py" afterPath="$PROJECT_DIR$/System/Entities/Message.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="4240CRM.iws" />
@@ -40,10 +35,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EntityToDatabase.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="EntityToDatabase.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="14" selection-start="35" selection-end="35" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="2550">
+            <state line="70" column="25" selection-start="2921" selection-end="2921" vertical-scroll-proportion="0.9047619" vertical-offset="867" max-vertical-offset="2550">
               <folding />
             </state>
           </provider>
@@ -72,7 +67,7 @@
       <file leaf-file-name="EmailMessage.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/Entities/EmailMessage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="56" selection-start="902" selection-end="902" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
+            <state line="30" column="16" selection-start="1286" selection-end="1286" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="867">
               <folding />
             </state>
           </provider>
@@ -87,10 +82,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IMAPConnector.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="IMAPConnector.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="27" selection-start="1356" selection-end="1356" vertical-scroll-proportion="0.33147633" vertical-offset="561" max-vertical-offset="2533">
+            <state line="80" column="15" selection-start="2536" selection-end="2536" vertical-scroll-proportion="0.0" vertical-offset="1003" max-vertical-offset="2686">
               <folding />
             </state>
           </provider>
@@ -603,13 +598,18 @@
       <created>1386206424001</created>
       <updated>1386206424001</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="METHOD AGAIN">
+      <created>1386217731727</created>
+      <updated>1386217731727</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="62" y="0" width="1300" height="722" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -618,14 +618,13 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32337433" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32451499" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -663,7 +662,8 @@
     <MESSAGE value="updated to begin pulling information and stubs for building information to be pushed to DB" />
     <MESSAGE value="added Stategy pattern for facebook, updated build org for education" />
     <MESSAGE value="Finished logic for processing people up to the pushing to db" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished logic for processing people up to the pushing to db" />
+    <MESSAGE value="METHOD AGAIN" />
+    <option name="LAST_COMMIT_MESSAGE" value="METHOD AGAIN" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -719,23 +719,9 @@
         <state line="79" column="0" selection-start="2939" selection-end="2939" vertical-scroll-proportion="-7.92" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="14" selection-start="35" selection-end="35" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/System/Entities/Person.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="0" selection-start="1048" selection-end="1048" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/System/Entities/Message.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
           <folding />
         </state>
       </provider>
@@ -749,16 +735,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/System/Entities/Message.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="476">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/System/Entities/EmailMessage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="56" selection-start="902" selection-end="902" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="884">
+        <state line="30" column="16" selection-start="1286" selection-end="1286" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="867">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="27" selection-start="1356" selection-end="1356" vertical-scroll-proportion="0.33147633" vertical-offset="561" max-vertical-offset="2533">
+        <state line="80" column="15" selection-start="2536" selection-end="2536" vertical-scroll-proportion="0.0" vertical-offset="1003" max-vertical-offset="2686">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="25" selection-start="2921" selection-end="2921" vertical-scroll-proportion="0.9047619" vertical-offset="867" max-vertical-offset="2550">
           <folding />
         </state>
       </provider>

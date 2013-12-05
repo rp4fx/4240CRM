@@ -28,7 +28,6 @@ class fillerFromIMAPStrategy(fillerStrategy):
         for response_part in msg_data:
             if isinstance(response_part, tuple):
                 msg = email.message_from_string(response_part[1])
-                print 'message wrapped'
                 maintype = msg.get_content_maintype()
                 if maintype == 'multipart':
                     for part in msg.get_payload():

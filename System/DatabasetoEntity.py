@@ -89,7 +89,7 @@ class PhoneAttributeTableGetter(AttributeTableGetter):
         self.cursor.execute("SELECT emailid, address from email where personid = %d " %(personid))
         rows_from_db = return_rows_db(self.cursor)
         for row in rows_from_db:
-            e = Email()
+            e = EmailMessage()
             e
         if self.opened_connection:
             self.close_db_connection()

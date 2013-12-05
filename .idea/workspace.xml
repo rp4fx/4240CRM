@@ -3,13 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py" afterPath="$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/Entities/Message.py" afterPath="$PROJECT_DIR$/System/Entities/Message.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="4240CRM.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386038067113" ignored="false" />
-    <file path="/FacebookContactsConnector.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386042416202" ignored="false" />
+    <file path="/Dummy.txt" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386199904114" ignored="false" />
+    <file path="/FacebookContactsConnector.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386206209271" ignored="false" />
     <file path="/Person.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386006317730" ignored="false" />
+    <file path="$PROJECT_DIR$/../../CS 3240/Team4CS3240/Client/client.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386199999456" ignored="false" />
+    <file path="$PROJECT_DIR$/../../CS 3240/Team4CS3240/Server/server.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386199900424" ignored="false" />
+    <file path="/Message.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386206365596" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +44,7 @@
       <file leaf-file-name="EntityToDatabase.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="29" selection-start="129" selection-end="129" vertical-scroll-proportion="0.0">
+            <state line="1" column="14" selection-start="35" selection-end="35" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -49,10 +53,19 @@
       <file leaf-file-name="FacebookContactsConnector.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="4" selection-start="3189" selection-end="3189" vertical-scroll-proportion="0.7969697">
+            <state line="116" column="22" selection-start="4286" selection-end="4286" vertical-scroll-proportion="-0.5181818">
               <folding>
-                <element signature="e#0#48#0" expanded="true" />
+                <element signature="e#0#57#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Message.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/System/Entities/Message.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="0" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -60,34 +73,7 @@
       <file leaf-file-name="Person.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/Entities/Person.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="14" selection-start="2412" selection-end="2412" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Organization.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/System/Entities/Organization.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="4" selection-start="30" selection-end="31" vertical-scroll-proportion="-1.04">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GoogleContactsConnector.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Connectors/GoogleContactsConnector/GoogleContactsConnector.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="37" selection-start="2226" selection-end="2226" vertical-scroll-proportion="6.36">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="launcher.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/System/launcher.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0">
+            <state line="15" column="44" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -122,6 +108,7 @@
         <option value="$PROJECT_DIR$/System/DatabasetoEntity.py" />
         <option value="$PROJECT_DIR$/System/Entities/Person.py" />
         <option value="$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py" />
+        <option value="$PROJECT_DIR$/System/Entities/Message.py" />
       </list>
     </option>
   </component>
@@ -157,6 +144,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -217,20 +205,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="4240CRM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="4240CRM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Connectors" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -273,7 +247,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -281,7 +254,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../FSC" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../CS 3240" />
     <property name="FullScreen" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -297,6 +270,120 @@
       <recent name="C:\Users\Alex\Desktop\cs 4240\Personal CRM\4240CRM\Connectors\FacebookContactsConnector" />
       <recent name="C:\Users\Alex\Desktop\cs 4240\Personal CRM\4240CRM\Connectors" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree">
+    <UpdateInfo date="Moments ago" ActionInfo="_Update">
+      <UpdatedFiles>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated from server" />
+          <option name="myStatusName" value="Changed on server" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CHANGED_ON_SERVER" />
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Updated" />
+            <option name="myStatusName" value="Changed" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="UPDATED" />
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/Modules/CRM.py</PATH>
+            <PATH vcs="Git" revision="">$PROJECT_DIR$/System/Entities/Email.py</PATH>
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Created" />
+            <option name="myStatusName" value="Created" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="CREATED" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Deleted" />
+            <option name="myStatusName" value="Deleted" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="true" />
+            <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" value="Restored" />
+            <option name="myStatusName" value="Will be restored" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" value="RESTORED" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Modified" />
+          <option name="myStatusName" value="Modified" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MODIFIED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Skipped" />
+          <option name="myStatusName" value="Skipped" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="SKIPPED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with conflicts" />
+          <option name="myStatusName" value="Will be merged with conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_CONFLICTS" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with tree conflicts" />
+          <option name="myStatusName" value="Merged with tree conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged with property conflicts" />
+          <option name="myStatusName" value="Will be merged with property conflicts" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Merged" />
+          <option name="myStatusName" value="Will be merged" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="MERGED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Not in repository" />
+          <option name="myStatusName" value="Not in repository" />
+          <option name="mySupportsDeletion" value="true" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UNKNOWN" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Locally added" />
+          <option name="myStatusName" value="Locally added" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="LOCALLY_ADDED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Locally removed" />
+          <option name="myStatusName" value="Locally removed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="LOCALLY_REMOVED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Switched" />
+          <option name="myStatusName" value="Switched" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="SWITCHED" />
+        </FILE-GROUP>
+      </UpdatedFiles>
+    </UpdateInfo>
   </component>
   <component name="RunManager" selected="Python.FacebookContactsConnector">
     <configuration default="false" name="db_init_reset" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -598,7 +685,15 @@
       <created>1386006373067</created>
       <updated>1386006373067</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Finished logic for processing people up to the pushing to db">
+      <created>1386042511440</created>
+      <updated>1386042511440</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Finished logic for processing people up to the pushing to db">
+      <created>1386042866759</created>
+      <updated>1386042866759</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -609,12 +704,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2659091" sideWeight="0.67235494" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.275" sideWeight="0.6746575" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32764506" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32534248" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -668,7 +763,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Stategy pattern for facebook, updated build org for education" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished logic for processing people up to the pushing to db" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -685,16 +780,12 @@
     <MESSAGE value="Stubs after experimentation with facepy and sdk" />
     <MESSAGE value="updated to begin pulling information and stubs for building information to be pushed to DB" />
     <MESSAGE value="added Stategy pattern for facebook, updated build org for education" />
+    <MESSAGE value="Finished logic for processing people up to the pushing to db" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/System/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Connectors/Connector.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="0" selection-start="856" selection-end="856" vertical-scroll-proportion="0.0" />
@@ -737,9 +828,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/System/launcher.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="5" column="0" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Modules/CRM.py">
@@ -747,39 +836,42 @@
         <state line="12" column="0" selection-start="92" selection-end="92" vertical-scroll-proportion="0.44262296" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
+    <entry file="file://$PROJECT_DIR$/System/Entities/Organization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="29" selection-start="129" selection-end="129" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="3" column="4" selection-start="30" selection-end="31" vertical-scroll-proportion="-1.04" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Connectors/GoogleContactsConnector/GoogleContactsConnector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="37" selection-start="2226" selection-end="2226" vertical-scroll-proportion="6.36">
+        <state line="79" column="0" selection-start="2939" selection-end="2939" vertical-scroll-proportion="-7.92" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="14" selection-start="35" selection-end="35" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/System/Entities/Person.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="14" selection-start="2412" selection-end="2412" vertical-scroll-proportion="0.0">
+        <state line="15" column="44" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/System/Entities/Organization.py">
+    <entry file="file://$PROJECT_DIR$/System/Entities/Message.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="4" selection-start="30" selection-end="31" vertical-scroll-proportion="-1.04">
+        <state line="9" column="0" selection-start="196" selection-end="196" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="4" selection-start="3189" selection-end="3189" vertical-scroll-proportion="0.7969697">
+        <state line="116" column="22" selection-start="4286" selection-end="4286" vertical-scroll-proportion="-0.5181818">
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#0#57#0" expanded="true" />
           </folding>
         </state>
       </provider>

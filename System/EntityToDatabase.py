@@ -86,13 +86,13 @@ class AttributeTableSetter:
         self.db = db
         self.opened_connection = False
 
-    def get_ready_to_add(self, parent, parentid, cursor=None):
+    def prepare_to_add(self, parent, parentid, cursor=None):
         self.parent = parent
         self.parentid = parentid
         self.cursor = cursor
 
     def add_to_table(self, parent, parentid, cursor=None):
-        self.get_ready_to_add(parent, parentid, cursor)
+        self.prepare_to_add(parent, parentid, cursor)
         print "Override this method!"
 
     def connect_to_database(self):
@@ -107,7 +107,7 @@ class AttributeTableSetter:
 
 class PhoneAttributeTableSetter(AttributeTableSetter):
     def add_to_table(self, person, personid, cursor=None):
-        self.get_ready_to_add(person, personid, cursor)
+        self.prepare_to_add(person, personid, cursor)
         if self.cursor is None:
             self.connect_to_database()
         for phone in self.parent.phones:
@@ -127,7 +127,7 @@ class PhoneAttributeTableSetter(AttributeTableSetter):
 
 class EmailAttributeTableSetter(AttributeTableSetter):
     def add_to_table(self, person, personid, cursor=None):
-        self.get_ready_to_add(person, personid, cursor)
+        self.prepare_to_add(person, personid, cursor)
         if self.cursor is None:
             self.connect_to_database()
         for email in self.parent.emails:

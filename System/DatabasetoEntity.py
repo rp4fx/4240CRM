@@ -75,7 +75,7 @@ class DatabaseToMessage(DatabaseToEntity):
         self.cursor.execute("SElECT * FROM message")
         rows_from_db = self.return_rows_db(self.cursor)
         for row in rows_from_db:
-            m = Message()
+            m = Message(row[0], row[1], row[2])
             m.messageid = row[0]
             m.content = row[1]
             m.timestamp = row[2]
@@ -205,6 +205,14 @@ dbToPerson.add_attribute_table_getter(phoneAttr)
 people = dbToPerson.get_people_from_database()
 for person in people:
     person.print_out()
+dbToMessage = DatabaseToMessage(db)
+messages = dbToMessage.get_messages_from_database()
+linker = PersonMessageLinker(people, messages, db)
+linker.link()
+for message in messages:
+    message.print_out()
+#checking if it's actually printed
+messages[0].people["FROM"][0].print_out()
 
 
 

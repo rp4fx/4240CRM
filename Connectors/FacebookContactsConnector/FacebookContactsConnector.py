@@ -9,18 +9,18 @@ from System.EntityToDatabase import PersonToDatabase
 from facepy import *
 import datetime
 
-ACCESS_TOKEN = "CAADaQW5ft88BABJUczonhrGFq3drf67zw4rUFIq3cqpOHZCjS5GslqIB7bkocZBk1g0SkZAxhKoqqCboC3NWqrNkzdIpw2gAdfMZC5zfacZApJVoHrUFpEviOZBZBktFlIVcw0zkkniTyhijToxxZB2TfoKPHJcZAVsFub3eR0KV7uJZBOZCS2VpsIFb8NXOyU2VfoZD"
-LIMIT = 3
+ACCESS_TOKEN = "CAADaQW5ft88BAA0e4cHSfNMJSKrEfQGnE5dFVRzwgO1AhXrf51mFhrVb8v9jWvepGUO2muZAcRHGWRjZAGua5ZAWoUeP4OTtOn0Kl8jyMulqKVB0XpuKWejBmXDR6UdxFzZByeDK8A6PaGpGjPZBQspjixxaa9oZCfi3T0kjBzZB8IPszJOCetReLuX5N9Cc0YZD"
+LIMIT = 5
 APP_SECRET = "eec6ae1b9b6445375c03cb9624f7b49f"
+APP_ID = 239974559496143
 class FacebookContactsConnector:
-    #FACEBOOK_APP_ID = "239974559496143"
-    #FACEBOOK_APP_SECRET = "eec6ae1b9b6445375c03cb9624f7b49f"
+
     def __init__(self, db):
         #Willl have to hardcode access code until GUI is written
         #self.my_connector = Connector()
-        self.contacts = [] #will be processed from raw friends
+        self.contacts = {} #"Firstname LastName": Person Object
         self.db = db
-        self.app_id = 239974559496143
+        self.app_id = APP_ID
         self.app_secret = APP_SECRET
         self.access_token = ACCESS_TOKEN
         #token, date = get_extended_access_token(self.access_token, self.app_id, self.app_secret)
@@ -51,7 +51,7 @@ class FacebookContactsConnector:
         return org
 
     def build_person_from_id(self, id):
-        user = self.graph.get(id)
+        user = self.graph.get(str(id))
         person = self.build_person(user)
         return person
 
@@ -61,7 +61,8 @@ class FacebookContactsConnector:
         for f in self.friends:
             id = f["id"]
             friend = self.build_person_from_id(id)
-            self.contacts.append(friend)
+            name = friend.get_name()
+            self.contacts[name] = friend
             #pass full education history in
             #if "education" in friend:
               #  self.process_education(friend["education"])
@@ -146,20 +147,34 @@ class FacebookContactsConnector:
     def build_message(self, m, conversant_ids):
         body = m["body"]
         id = m["message_id"]
-        information = self.get_message_information(m, conversant_ids)
         time_stamp = self.get_time(m["created_time"])
         message = Message.Message(id, body, time_stamp)
+        information = self.get_message_information(m, conversant_ids, message)
         message.set_people(information)
         return message
 
-    def get_message_information(self, m, conversant_ids):
+    def get_message_information(self, m, conversant_ids, message):
         from_id = m["author_id"]
-        person_from = self.build_person_from_id(str(from_id))
+        person_from = self.person_from_contacts(from_id)
+        person_from.add_message(message)
         to_id = self.get_recipient(from_id, conversant_ids)
-        person_to = self.build_person_from_id(str(to_id))
+        person_to = self.person_from_contacts(to_id)
+        person_to.add_message(message)
         information = {"TO": person_to, "FROM": person_from, "CC": "", "BCC": ""}
         return information
 
+    #Check for person in contacts, if not, add them to contact list
+    def person_from_contacts(self, id):
+        person = self.build_person_from_id(id)
+        name = person.get_name()
+        if name in self.contacts:
+            #print name + " in contacts"
+            person = self.contacts[name]
+        else:
+            #print "MESSAGE FROM NEW CONTACT"
+            self.contacts[name] = person
+
+        return person
 
     def get_recipient(self, from_id, conversant_ids):
         if from_id == conversant_ids["owner_id"]:
@@ -176,20 +191,23 @@ class FacebookContactsConnector:
         entity_to_database.add_standard_attribute_table_setters()
         entity_to_database.add_people_to_database()
 
-    def associate_people_with_messages(self):
-        for conversation in self.message_threads:
-            people = conversation[0].people
-            person_to = people["TO"]
-            print person_to.
+
+    def update_contacts_for_conversations(self, conversation, person_to, person_from):
+        name_to = person_to.get_name()
+        print name_to in self.contacts
+
 
     def run(self):
         #Get All information Locally
         self.process_friends()
+        #print self.contacts
         self.process_messages()
-        #Associate all friends with their proper messages
-        self.associate_people_with_messages()
-        print str(self.message_threads)
 
+        for person in self.contacts:
+            messages = self.contacts[person].messages
+            for m in messages:
+                print self.contacts[person].get_name()
+                print m
 
 f = FacebookContactsConnector("personal_graph.db")
 f.run()

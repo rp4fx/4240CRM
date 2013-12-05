@@ -1,4 +1,4 @@
-from System.Entities import EmailMessage, Person, Phone, Message
+from System.Entities import Email, Person, Phone, Message
 from System.Entities.Organization import *
 #from Connectors.Connector import Connector
 #from System.Entities.Person import GetNameFromGoogleContactsStrategy
@@ -60,12 +60,11 @@ class FacebookContactsConnector:
         count = 0;
         for f in self.friends:
             id = f["id"]
-            friend = self.build_person_from_id(id)
+            friend = self.build_person_from_id(self, id)
             self.contacts.append(friend)
             #pass full education history in
-            #Version 1.0 Not handling Education
-            #if "education" in friend:
-             #   self.process_education(friend["education"])
+            if "education" in friend:
+                self.process_education(friend["education"])
             #Limited for purposes of testing
             count += 1
             if count > LIMIT:
@@ -142,6 +141,7 @@ class FacebookContactsConnector:
         #never reached
         return {"owner_id": owner_id, "friend_id": ""}
 
+
     #converts json message to Entities.Message object
     def build_message(self, m, conversant_ids):
         body = m["body"]
@@ -149,8 +149,7 @@ class FacebookContactsConnector:
         information = self.get_message_information(m, conversant_ids)
         time_stamp = self.get_time(m["created_time"])
         message = Message.Message(id, body, time_stamp)
-        message.set_people(information)
-
+        #message.set_people(information)
         return message
 
     def get_message_information(self, m, conversant_ids):
@@ -158,7 +157,7 @@ class FacebookContactsConnector:
         person_from = self.build_person_from_id(str(from_id))
         to_id = self.get_recipient(from_id, conversant_ids)
         person_to = self.build_person_from_id(str(to_id))
-        information = {"TO:": [person_to], "FROM:": [person_from], "CC:": [], "BCC:": []}
+        information = {"TO": person_to, "FROM": person_from, "CC": "", "BCC": ""}
         return information
 
 
@@ -174,10 +173,10 @@ class FacebookContactsConnector:
 
 
     def run(self):
-        self.process_friends()
-       # print self.message_threads
+       # self.process_friends()
+        print self.message_threads
         self.process_messages()
-       # print str(self.message_threads)
+        print str(self.message_threads)
 
 
 f = FacebookContactsConnector("db_temp")

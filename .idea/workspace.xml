@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/System/Entities/Group.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/4240CRM.iml" afterPath="$PROJECT_DIR$/.idea/4240CRM.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Connectors/Connector.py" afterPath="$PROJECT_DIR$/Connectors/Connector.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/Entities/Email.py" afterPath="$PROJECT_DIR$/System/Entities/Email.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/EntityToDatabase.py" afterPath="$PROJECT_DIR$/System/EntityToDatabase.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py" afterPath="$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/Entities/Message.py" afterPath="$PROJECT_DIR$/System/Entities/Message.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/Entities/Person.py" afterPath="$PROJECT_DIR$/System/Entities/Person.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="4240CRM.iws" />
@@ -45,7 +39,7 @@
       <file leaf-file-name="EntityToDatabase.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="14" selection-start="35" selection-end="35" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="2550">
+            <state line="9" column="0" selection-start="198" selection-end="198" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="2550">
               <folding />
             </state>
           </provider>
@@ -54,7 +48,7 @@
       <file leaf-file-name="FacebookContactsConnector.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="120" column="54" selection-start="4477" selection-end="4477" vertical-scroll-proportion="0.0" vertical-offset="2040" max-vertical-offset="2686">
+            <state line="45" column="0" selection-start="1942" selection-end="1942" vertical-scroll-proportion="0.0" vertical-offset="553" max-vertical-offset="2669">
               <folding />
             </state>
           </provider>
@@ -63,7 +57,7 @@
       <file leaf-file-name="Message.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/Entities/Message.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="48" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+            <state line="10" column="48" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0" vertical-offset="47" max-vertical-offset="476">
               <folding />
             </state>
           </provider>
@@ -72,7 +66,7 @@
       <file leaf-file-name="Email.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/Entities/Email.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="48" selection-start="809" selection-end="809" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="816">
+            <state line="35" column="13" selection-start="1164" selection-end="1164" vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="952">
               <folding />
             </state>
           </provider>
@@ -81,7 +75,7 @@
       <file leaf-file-name="Person.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/Entities/Person.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1547">
+            <state line="20" column="21" selection-start="531" selection-end="531" vertical-scroll-proportion="0.0" vertical-offset="64" max-vertical-offset="1547">
               <folding />
             </state>
           </provider>
@@ -90,7 +84,7 @@
       <file leaf-file-name="IMAPConnector.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="24" selection-start="366" selection-end="366" vertical-scroll-proportion="0.19944598" vertical-offset="149" max-vertical-offset="2618">
+            <state line="50" column="44" selection-start="1462" selection-end="1462" vertical-scroll-proportion="0.47091413" vertical-offset="680" max-vertical-offset="2669">
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
               </folding>
@@ -128,6 +122,7 @@
         <option value="$PROJECT_DIR$/System/Entities/Person.py" />
         <option value="$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py" />
         <option value="$PROJECT_DIR$/System/Entities/Message.py" />
+        <option value="$PROJECT_DIR$/System/Entities/Email.py" />
         <option value="$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py" />
       </list>
     </option>
@@ -604,13 +599,18 @@
       <created>1386206424001</created>
       <updated>1386206424001</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="IMAP intermediary">
+      <created>1386211839204</created>
+      <updated>1386211839204</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="62" y="0" width="1300" height="728" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -626,7 +626,6 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -643,7 +642,8 @@
     <MESSAGE value="updated to begin pulling information and stubs for building information to be pushed to DB" />
     <MESSAGE value="added Stategy pattern for facebook, updated build org for education" />
     <MESSAGE value="Finished logic for processing people up to the pushing to db" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished logic for processing people up to the pushing to db" />
+    <MESSAGE value="IMAP intermediary" />
+    <option name="LAST_COMMIT_MESSAGE" value="IMAP intermediary" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -699,44 +699,44 @@
         <state line="79" column="0" selection-start="2939" selection-end="2939" vertical-scroll-proportion="-7.92" vertical-offset="0" max-vertical-offset="0" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="0" selection-start="1942" selection-end="1942" vertical-scroll-proportion="0.0" vertical-offset="553" max-vertical-offset="2669">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="14" selection-start="35" selection-end="35" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+        <state line="9" column="0" selection-start="198" selection-end="198" vertical-scroll-proportion="0.0" vertical-offset="17" max-vertical-offset="2550">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/System/Entities/Person.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="346" selection-end="346" vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1547">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="54" selection-start="4477" selection-end="4477" vertical-scroll-proportion="0.0" vertical-offset="2040" max-vertical-offset="2686">
+        <state line="20" column="21" selection-start="531" selection-end="531" vertical-scroll-proportion="0.0" vertical-offset="64" max-vertical-offset="1547">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/System/Entities/Email.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="48" selection-start="809" selection-end="809" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="816">
+        <state line="35" column="13" selection-start="1164" selection-end="1164" vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="952">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/System/Entities/Message.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="48" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+        <state line="10" column="48" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0" vertical-offset="47" max-vertical-offset="476">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="24" selection-start="366" selection-end="366" vertical-scroll-proportion="0.19944598" vertical-offset="149" max-vertical-offset="2618">
+        <state line="50" column="44" selection-start="1462" selection-end="1462" vertical-scroll-proportion="0.47091413" vertical-offset="680" max-vertical-offset="2669">
           <folding>
             <element signature="e#24#38#0" expanded="true" />
           </folding>

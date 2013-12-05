@@ -44,6 +44,9 @@ class IMAPConnector(Connector):
         for id in e_ids[0].split():
             e = Email.Email()
             e.fillerStrategy.fill(self.server,id)
+            e.setMessage()
+            print id
+            print e.people["FROM"]
             self.emails.append(e)
         #feed = self.gd_client.GetContacts()
         #self.process_feed(feed, self.create_person)

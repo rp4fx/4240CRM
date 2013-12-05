@@ -44,7 +44,7 @@ class DatabaseToPerson(DatabaseToEntity):
         return self.entities   # return a list of people
 
     def query_person_table(self):
-        self.cursor.execute("SElECT * from person")
+        self.cursor.execute("SElECT * FROM person")
         rows_from_db = self.return_rows_db(self.cursor)
         for row in rows_from_db:
             p = Person()
@@ -196,6 +196,7 @@ class PersonMessageLinker:
         message.people[relationship].append(person)
 
 # test
+"""
 db = "personal_graph.db"
 dbToPerson = DatabaseToPerson(db)
 emailAttr = EmailAttributeTableGetter(db)
@@ -213,7 +214,7 @@ for message in messages:
     message.print_out()
 #checking if it's actually printed
 messages[0].people["FROM"][0].print_out()
-
+"""
 
 
 """

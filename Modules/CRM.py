@@ -27,10 +27,6 @@ class CRM(Frame):
         columns = ('First Name', 'Last Name', 'Gender', 'Birthday')
         self.tree = Treeview(self, columns=columns)
         self.tree.pack(fill=BOTH, expand=1)
-        #self.tree.heading('First Name', text='First Name')
-        #self.tree.heading('Last Name', text='Last Name')
-        #self.tree.heading('Gender', text='Gender')
-        #self.tree.heading('Birthday', text='Birthday')
         self.tree.column('#0', width=10)
         for col in columns:
             #self.tree.heading(col, text=col, command=lambda: self.header_clicked(col))
@@ -56,9 +52,24 @@ class CRM(Frame):
 
     def item_clicked(self, event):
         item_id = str(self.tree.focus())
-        item = self.tree.item(item_id)
-        print str(item)
+        person = self.find_person_by_id(item_id)
+        self.create_person_popup(person)
         print str(self.tree.focus())
+
+    def find_person_by_id(self, person_id):
+        print "searching for person with person id: %s" % person_id
+        for p in self.people:
+            print p.person_id
+            if str(p.person_id) == person_id:
+                print "Found person :)"
+                return p
+        print "Did not find person :("
+        return Person()
+
+    def create_person_popup(self, person):
+        top = Toplevel(height="300", width="500")
+        msg = Label(top, text=str(person.first_name) + " " + str(person.last_name))
+        msg.pack()
 
     def add_data_to_tree(self, tree):
         self.get_people_and_messages()

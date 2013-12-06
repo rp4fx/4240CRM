@@ -72,13 +72,14 @@ class DatabaseToMessage(DatabaseToEntity):
         return self.entities
 
     def query_message_table(self):
-        self.cursor.execute("SElECT * FROM message")
+        self.cursor.execute("SElECT messageid, content, subject, timestamp FROM message")
         rows_from_db = self.return_rows_db(self.cursor)
         for row in rows_from_db:
-            m = Message(row[0], row[1], row[2])
+            m = Message(row[0], row[1], row[3])
             m.messageid = row[0]
             m.content = row[1]
-            m.timestamp = row[2]
+            m.subject = row[2]
+            m.timestamp = row[3]
             self.entities.append(m)
 
     def query_attribute_tables(self):
@@ -187,10 +188,11 @@ class PersonMessageLinker:
                             self.add_relationship_to_message(person, message, relationship)
 
     def add_relationship_to_person(self, person, message, relationship):
-        if relationship in person.relationships:
+        if relationship in person.relationships.keys():
             person.relationships[relationship].append(message)
         else:
             person.relationships[relationship] = [message]
+        print "Added %s relationshoip to person %s" % (relationship, str(person.first_name) + str(person.last_name))
 
     def add_relationship_to_message(self, person, message, relationship):
         message.people[relationship].append(person)

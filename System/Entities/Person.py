@@ -32,7 +32,7 @@ class Person:
         print "Other Name: %s" %(self.other_name)
         print "Birthday: %s" %(self.birthday)
         print "Gender: %s" %(self.gender)
-        print "Id: %s" %s(self.person_id)
+        print "Id: %s" % (self.person_id)
         for email in self.emails:
             email.print_out()
         for phone in self.phones:

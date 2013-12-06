@@ -92,9 +92,6 @@ class IMAPConnector(Connector):
         pid = -1
         mid = -1
         email_list = []
-
-
-
         for emailmessage in self.emails: #inside IMAP, generated emailmessages
             #print 'email: '+emailmessage.people['FROM']
             flag = False#pulled from db reconstructed people (all)
@@ -115,10 +112,13 @@ class IMAPConnector(Connector):
                 print 'new created'
                 email = email_format(emailmessage.people['FROM']) #parse the email
                 #print email
-                email_list.append(email) #add address to person's known addresses
-                p = Person.Person()
-                p.emails.append(email)
-                self.person_list.append(p) #add to list of people to be pushed
+                if email not in email_list:
+                    email_list.append(email) #add address to person's known addresses
+
+                    p = Person.Person()
+                    p.emails.append(email)
+                    self.person_list.append(p) #add to list of people to be pushed
+
         #for email in email_list:
         #    print email
 
@@ -126,6 +126,8 @@ class IMAPConnector(Connector):
 
 
     #INSERT INTO EMAIL
+    def push_message_to_table(self):
+        e_db =
     def push_person_to_table(self):
          p_db = PersonToDatabase(self.person_list, "../../System/personal_graph.db")
          email_attr = EmailAttributeTableSetter("../../System/personal_graph.db")

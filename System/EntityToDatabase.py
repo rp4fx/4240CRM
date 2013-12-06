@@ -21,12 +21,8 @@ class EntityToDatabase:
 
 
 # RENAME THIS!!!! SHOULD BE EmailMessageToDatabase
-class EmailToDatabase(EntityToDatabase):
+class EmailMessageToDatabase(EntityToDatabase):
     def add_standard_entity_to_attribute_table(self):
-        phone_processor = PhoneAttributeTableSetter(self.db)
-        self.add_attribute_table_setter(phone_processor)
-        email_processor = EmailAttributeTableSetter(self.db)
-        self.add_attribute_table_setter(email_processor)
 
     def add_people_to_database(self):
         print 'hello'

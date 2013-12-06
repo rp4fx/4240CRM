@@ -106,6 +106,8 @@ class IMAPConnector(Connector):
                         #print email_format(emailmessage.people['FROM'])
                         pid = person.person_id
                         #print pid
+
+                        emailmsg_person(emailmessage.messageid,pid,"../../System/personal_graph.db")
                         self.personid_list.append(pid) #don't create new obj, just update DB
                         flag = True
                         break
@@ -148,6 +150,10 @@ def email_format(email):
         email = email_split[1].rstrip('>')
 
     return email
+
+def push_into_relation(emails):
+    for p in emails.people:
+        print 'do'
 
 
 '''

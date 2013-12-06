@@ -264,11 +264,9 @@ class emailmsg_person(link):
         self.cursor(query,(message.messageid,person.personid))
 
 
-def emailmsg_person(messageid_list,personid_list,db):
+def emailmsg_person(messageid,personid,db):
      conn = sqlite3.connect(db)
      cursor = conn.cursor()
-     for m in messageid_list:
-         for p in personid_list:
-            cursor('INSERT INTO messagePerson (messageid,personid) VALUES (?,?)',(m,p) )
+     cursor('INSERT INTO messagePerson (messageid,personid) VALUES (?,?)',(messageid,personid) )
      conn.commit()
      conn.close()

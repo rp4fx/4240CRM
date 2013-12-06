@@ -41,6 +41,14 @@ class CRM(Frame):
 
     def header_clicked(self, col):
         print "Clicked on a header %s" % col
+        if col == "First Name":
+            FirstNameTreeSortStrategy().sort(self.tree, "name")
+        elif col == "Last Name":
+            LastNameTreeSortStrategy().sort(self.tree, "name")
+        elif col == "Gender":
+            GenderTreeSortStrategy().sort(self.tree, "gender")
+        elif col == "Birthday":
+            BirthdayTreeSortStrategy().sort(self.tree, "birthday")
 
     def add_scrollbars_to_tree(self, tree):
         y_scrollbar = Scrollbar(tree)
@@ -382,8 +390,113 @@ class MessagePopUp:
     def format_person(self, person):
         return str(person.first_name) + " " + str(person.last_name)
 
+
+class TreeSortStrategy:
+    def sort(self, tree, sort_column):
+        tree_node_ids = tree.get_children()
+        tree_nodes_to_sort = self.create_tree_node_list_to_sort(tree, tree_node_ids)
+        sorted_tree_nodes = self.get_sorted_tree_nodes(tree_nodes_to_sort)
+        self.attach_sorted_items_to_tree(tree, sorted_tree_nodes, sort_column)
+
+    def create_tree_node_list_to_sort(self, tree, tree_node_ids):
+        return []
+
+    def get_sorted_tree_nodes(self, tree_nodes_to_sort):
+        return []
+
+    def attach_sorted_items_to_tree(self, tree, sorted_tree_nodes, sort_column):
+        blank_items = []
+        for item in sorted_tree_nodes:
+            if item[sort_column] is " " or item[sort_column] is "":
+                blank_items.append(item)
+            else:
+                tree.move(item["item_id"], "", "end")
+        for item in blank_items:
+            tree.move(item["item_id"], "", "end")
+
+
+class FirstNameTreeSortStrategy(TreeSortStrategy):
+    def get_sorted_tree_nodes(self, tree_nodes_to_sort):
+        return sorted(tree_nodes_to_sort, key=lambda item: item["name"])
+
+    def create_tree_node_list_to_sort(self, tree, tree_node_ids):
+        tree_nodes_to_sort = []
+        for item in tree_node_ids:
+            tree.detach(item)
+            item_first_name = str(tree.item(item)["values"][0])
+            item_last_name = str(tree.item(item)["values"][1])
+            temp_dict = {}
+            temp_dict["item_id"] = item
+            if item_first_name is not "":
+                temp_dict['name'] = item_first_name + " " + item_last_name
+            else:
+                temp_dict['name'] = item_first_name
+            tree_nodes_to_sort.append(temp_dict)
+        return tree_nodes_to_sort
+
+
+class LastNameTreeSortStrategy(TreeSortStrategy):
+    def get_sorted_tree_nodes(self, tree_nodes_to_sort):
+        return sorted(tree_nodes_to_sort, key=lambda item: item["name"])
+
+    def create_tree_node_list_to_sort(self, tree, tree_node_ids):
+        tree_nodes_to_sort = []
+        for item in tree_node_ids:
+            tree.detach(item)
+            item_first_name = str(tree.item(item)["values"][0])
+            item_last_name = str(tree.item(item)["values"][1])
+            temp_dict = {}
+            temp_dict["item_id"] = item
+            if item_last_name is not "":
+                temp_dict['name'] = item_last_name + " " + item_first_name
+            else:
+                temp_dict['name'] = item_last_name
+            tree_nodes_to_sort.append(temp_dict)
+        return tree_nodes_to_sort
+
+
+class GenderTreeSortStrategy(TreeSortStrategy):
+    def get_sorted_tree_nodes(self, tree_nodes_to_sort):
+        return sorted(tree_nodes_to_sort, key=lambda item: item["gender"])
+
+    def create_tree_node_list_to_sort(self, tree, tree_node_ids):
+        tree_nodes_to_sort = []
+        for item in tree_node_ids:
+            tree.detach(item)
+            item_gender = str(tree.item(item)["values"][2])
+            temp_dict = {}
+            temp_dict["item_id"] = item
+            temp_dict['gender'] = item_gender
+            tree_nodes_to_sort.append(temp_dict)
+        return tree_nodes_to_sort
+
+
+class BirthdayTreeSortStrategy(TreeSortStrategy):
+    def get_sorted_tree_nodes(self, tree_nodes_to_sort):
+        return sorted(tree_nodes_to_sort, cmp=self.compare_birthdays)
+
+    def compare_birthdays(self, item1, item2):
+        if int(item1["birthday"]) - int(item2["birthday"]) > 0:
+            return 1
+        elif int(item1["birthday"]) - int(item2["birthday"]) < 0:
+            return -1
+        else:
+            return 0
+
+    def create_tree_node_list_to_sort(self, tree, tree_node_ids):
+        tree_nodes_to_sort = []
+        for item in tree_node_ids:
+            tree.detach(item)
+            item_birthday = str(tree.item(item)["values"][3])
+            temp_dict = {}
+            temp_dict["item_id"] = item
+            temp_dict['birthday'] = item_birthday
+            tree_nodes_to_sort.append(temp_dict)
+        return tree_nodes_to_sort
+
+
 def main():
-    print 'do something'
+    print 'Loading...'
     root = Tk()
     root.geometry("1000x1000+100+100")
     app = CRM(root)

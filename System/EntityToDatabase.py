@@ -147,14 +147,19 @@ class EmailAttributeTableSetter(AttributeTableSetter):
             self.connect_to_database()
         for email in self.parent.emails:
             emailid = self.insert_email(email, self.parentid)
+            #print 'self.parentid: '
+            #print self.parentid
             print "Inserted email for person %s with id %s" %(self.parentid, emailid)
         if self.opened_connection:
             self.close_db_connection()
 
     def insert_email(self, email, personid):
+        print 'email: '+email
+        print 'personid: '
+        print personid
         query = 'INSERT INTO email (personid, address) VALUES (?, ?)'
         try:
-            self.cursor.execute(query, (personid, email.address))
+            self.cursor.execute(query, (personid, email))
 
             return self.cursor.lastrowid
 

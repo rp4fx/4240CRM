@@ -300,7 +300,7 @@ class PersonPopUp:
             if relationship in person.relationships.keys():
                 for message in person.relationships[relationship]:
                     messages_tree_has_messages = True
-                    pretty_date = get_time_from_timestamp(message.timestamp) 
+                    pretty_date = get_time_from_timestamp(message.timestamp)
                     message_tree.insert('', 'end', str(message.messageid), text=str(message.messageid), tags=('#message'), values=("message.source", str(message.subject), pretty_date))
                     #temp_message_label = Label(messages_frame, text=str(message.subject))
                     #temp_message_label.pack(fill=BOTH)

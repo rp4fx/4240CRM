@@ -107,12 +107,12 @@ class IMAPConnector(Connector):
                         flag=True
                         break
                 if(flag == False):
-
+                    email = email_format(emailmessage.people['FROM'])
                     email_list.append(email)
                     p = Person.Person()
                     p.emails.append(email)
                     person_list.append(p)
-                    p_db = PersonToDatabase([p], "../../System/personal_graph.db")
+            p_db = PersonToDatabase(person_list, "../../System/personal_graph.db")
             email_attr = EmailAttributeTableSetter("../../System/personal_graph.db")
 
             p_db.add_attribute_table_setter(email_attr)
@@ -129,8 +129,8 @@ def email_format(email):
         email = email
         email_split = email.split('<')
         email = email_split[1].rstrip('>')
-    else:
-        return email
+
+    return email
 
 '''
     def process_feed(self, feed, processing_method):

@@ -45,8 +45,8 @@ class Person:
         name = self.first_name + " " + self.last_name
         return name
 
-    def __str__(self):
-        self.print_out()
+    #def __str__(self):
+    #    self.print_out()
 
 class GetNameStrategy:
     def get_name(self):

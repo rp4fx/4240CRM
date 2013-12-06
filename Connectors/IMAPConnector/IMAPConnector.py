@@ -89,28 +89,38 @@ class IMAPConnector(Connector):
         peoplelist=dbfrom.get_people_from_database()
         pid = -1
         mid = -1
+        email_list =[]
+        pid_existing =[]
+
+        person_list = []
         for emailmessage in self.emails: #inside IMAP, generated emailmessages
             #print emailmessage.people['FROM']
+            flag=False
             for person in peoplelist:    #pulled from db reconstructed people (all)
                 for pemail in person.emails:
                     #for name in emailmessage.people['FROM']: #one set of emailaddress
 
-                        #print pemail.address +" name: "+name + " FROM: "
+                        # pemail.address +" name: "+name + " FROM: "
                     if pemail.address in emailmessage.people['FROM']:
                         pid = person.person_id
-                        print pid
-                    else:
-                        email = emailmessage.people['FROM']
-                        email_split = email.split('<')
-                        email = email_split[1].rstrip('>')
-                        p = Person()
-                        p.email.append(email)
-                        p_db = PersonToDatabase([p], "../../System/personal_graph.db")
-                        email_attr = EmailAttributeTableSetter("../../System/personal_graph.db")
-                        p_db.add_attribute_table_setter(email_attr)
-                        pid = p_db.add_people_to_database()[0]
-                        print pid
-
+                        pid_existing.append(pid)
+                        flag=True
+                        break
+                if(flag == False):
+                    email = emailmessage.people['FROM']
+                    email_split = email.split('<')
+                    email = email_split[1].rstrip('>')
+                    email_list.append(email)
+                    p = Person.Person()
+                    p.emails.append(email)
+                    person_list.append(p)
+        #for p in person_list:
+        #    print "person "
+        #    print p
+        p_db = PersonToDatabase([person_list], "../../System/personal_graph.db")
+        email_attr = EmailAttributeTableSetter("../../System/personal_graph.db")
+        p_db.add_attribute_table_setter(email_attr)
+        pid_new = p_db.add_people_to_database()
         #INSERT INTO EMAIL
 
 

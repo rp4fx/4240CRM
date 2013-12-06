@@ -144,6 +144,8 @@ class EmailAttributeTableSetter(AttributeTableSetter):
         query = 'INSERT INTO email (personid, address) VALUES (?, ?)'
         try:
             self.cursor.execute(query, (personid, email.address))
+
             return self.cursor.lastrowid
+
         except:
             return -1

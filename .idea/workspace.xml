@@ -18,7 +18,7 @@
     <SUITE FILE_PATH="coverage/4240CRM$launcher.coverage" NAME="launcher Coverage Results" MODIFIED="1385928442687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/System" />
     <SUITE FILE_PATH="coverage/4240CRM$FacebookContactsConnector.coverage" NAME="FacebookContactsConnector Coverage Results" MODIFIED="1385915519221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Connectors/GoogleContactsConnector" />
     <SUITE FILE_PATH="coverage/4240CRM$GoogleContactsConnector.coverage" NAME="GoogleContactsConnector Coverage Results" MODIFIED="1385927745800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Connectors/GoogleContactsConnector" />
-    <SUITE FILE_PATH="coverage/4240CRM$IMAPConnector.coverage" NAME="IMAPConnector Coverage Results" MODIFIED="1386294591775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Connectors/IMAPConnector" />
+    <SUITE FILE_PATH="coverage/4240CRM$IMAPConnector.coverage" NAME="IMAPConnector Coverage Results" MODIFIED="1386306196007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Connectors/IMAPConnector" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -32,19 +32,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EntityToDatabase.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="EntityToDatabase.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="38" selection-start="2882" selection-end="2882" vertical-scroll-proportion="0.0" vertical-offset="860" max-vertical-offset="2567">
+            <state line="136" column="0" selection-start="5243" selection-end="5243" vertical-scroll-proportion="0.33241758" vertical-offset="2191" max-vertical-offset="2652">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IMAPConnector.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="IMAPConnector.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="44" selection-start="3592" selection-end="3592" vertical-scroll-proportion="0.45132744" vertical-offset="1598" max-vertical-offset="3400">
+            <state line="120" column="34" selection-start="4196" selection-end="4196" vertical-scroll-proportion="0.0" vertical-offset="1751" max-vertical-offset="3570">
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
               </folding>
@@ -55,8 +55,10 @@
       <file leaf-file-name="Email.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/Entities/Email.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="26" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
-              <folding />
+            <state line="10" column="26" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="272">
+              <folding>
+                <marker date="1386293790745" expanded="true" signature="59:140" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -64,7 +66,7 @@
       <file leaf-file-name="EmailMessage.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/Entities/EmailMessage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="21" selection-start="509" selection-end="509" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
+            <state line="59" column="69" selection-start="2419" selection-end="2419" vertical-scroll-proportion="0.0" vertical-offset="1003" max-vertical-offset="1394">
               <folding />
             </state>
           </provider>
@@ -82,11 +84,13 @@
       <file leaf-file-name="DatabasetoEntity.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/DatabasetoEntity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="56" column="29" selection-start="1635" selection-end="1635" vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="5491">
+            <state line="127" column="23" selection-start="3923" selection-end="3923" vertical-scroll-proportion="0.0" vertical-offset="2159" max-vertical-offset="5644">
               <folding>
-                <marker date="1386288692099" expanded="true" signature="1303:1323" placeholder="SElECT * FRO..person..." />
-                <marker date="1386288692099" expanded="true" signature="2267:2288" placeholder="SElECT * FRO..message..." />
-                <marker date="1386288692099" expanded="true" signature="5450:5477" placeholder="SElECT * FRO..messagePerson..." />
+                <marker date="1386295736899" expanded="true" signature="1303:1323" placeholder="SElECT * FRO..person..." />
+                <marker date="1386295736899" expanded="true" signature="2267:2325" placeholder="SElECT messa..message..." />
+                <marker date="1386295736899" expanded="true" signature="2357:2378" placeholder="SElECT * FRO..message..." />
+                <marker date="1386295736899" expanded="true" signature="5518:5545" placeholder="SElECT * FRO..messagePerson..." />
+                <marker date="1386295736899" expanded="true" signature="5577:5604" placeholder="SElECT * FRO..messagePerson..." />
               </folding>
             </state>
           </provider>
@@ -104,7 +108,7 @@
       <file leaf-file-name="Person.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/Entities/Person.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1751">
+            <state line="47" column="0" selection-start="1647" selection-end="1696" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1751">
               <folding />
             </state>
           </provider>
@@ -113,7 +117,7 @@
       <file leaf-file-name="GoogleContactsConnector.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Connectors/GoogleContactsConnector/GoogleContactsConnector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="37" selection-start="4367" selection-end="4373" vertical-scroll-proportion="-9.48" vertical-offset="1548" max-vertical-offset="1887">
+            <state line="111" column="37" selection-start="4367" selection-end="4373" vertical-scroll-proportion="0.0" vertical-offset="1887" max-vertical-offset="1989">
               <folding />
             </state>
           </provider>
@@ -146,11 +150,12 @@
         <option value="$PROJECT_DIR$/System/Entities/Profile.py" />
         <option value="$PROJECT_DIR$/Modules/Module.py" />
         <option value="$PROJECT_DIR$/System/Entities/Message.py" />
-        <option value="$PROJECT_DIR$/System/Entities/Person.py" />
         <option value="$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py" />
         <option value="$PROJECT_DIR$/System/Entities/EmailMessage.py" />
         <option value="$PROJECT_DIR$/System/DatabasetoEntity.py" />
         <option value="$PROJECT_DIR$/System/Entities/Email.py" />
+        <option value="$PROJECT_DIR$/System/EntityToDatabase.py" />
+        <option value="$PROJECT_DIR$/System/Entities/Person.py" />
         <option value="$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py" />
       </list>
     </option>
@@ -313,12 +318,12 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$USER_HOME$/CS 3240" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -424,7 +429,9 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py" />
       <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
       <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
@@ -657,7 +664,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980174" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27753305" sideWeight="0.67487687" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39901477" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32451499" sideWeight="0.5003965" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32512316" sideWeight="0.49960348" order="2" side_tool="false" content_ui="tabs" />
@@ -673,24 +680,24 @@
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329806" sideWeight="0.49960348" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39901477" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32451499" sideWeight="0.5003965" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32676518" sideWeight="0.49960348" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980174" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2783505" sideWeight="0.68" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27753305" sideWeight="0.67487687" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32512316" sideWeight="0.49960348" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -713,11 +720,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/System/Entities/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Modules/Module.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="116" column="0" selection-start="3807" selection-end="3807" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
@@ -740,9 +742,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="27" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0" vertical-offset="158" max-vertical-offset="3196">
-          <folding />
-        </state>
+        <state line="18" column="27" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0" vertical-offset="158" max-vertical-offset="3196" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/System/launcher.py">
@@ -764,27 +764,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/System/DatabasetoEntity.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="29" selection-start="1635" selection-end="1635" vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="5491">
-          <folding>
-            <marker date="1386288692099" expanded="true" signature="1303:1323" placeholder="SElECT * FRO..person..." />
-            <marker date="1386288692099" expanded="true" signature="2267:2288" placeholder="SElECT * FRO..message..." />
-            <marker date="1386288692099" expanded="true" signature="5450:5477" placeholder="SElECT * FRO..messagePerson..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/System/Entities/EmailMessage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="21" selection-start="509" selection-end="509" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Connectors/GoogleContactsConnector/GoogleContactsConnector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="37" selection-start="4367" selection-end="4373" vertical-scroll-proportion="-9.48" vertical-offset="1548" max-vertical-offset="1887">
+        <state line="111" column="37" selection-start="4367" selection-end="4373" vertical-scroll-proportion="0.0" vertical-offset="1887" max-vertical-offset="1989">
           <folding />
         </state>
       </provider>
@@ -792,30 +774,57 @@
     <entry file="file://$PROJECT_DIR$/System/Entities/Email.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="26" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="272">
+          <folding>
+            <marker date="1386293790745" expanded="true" signature="59:140" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/System/Entities/EmailMessage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="69" selection-start="2419" selection-end="2419" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1326">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/System/DatabasetoEntity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="127" column="23" selection-start="3923" selection-end="3923" vertical-scroll-proportion="0.0" vertical-offset="1768" max-vertical-offset="5525">
+          <folding>
+            <marker date="1386295736899" expanded="true" signature="1303:1323" placeholder="SElECT * FRO..person..." />
+            <marker date="1386295736899" expanded="true" signature="2267:2325" placeholder="SElECT messa..message..." />
+            <marker date="1386295736899" expanded="true" signature="2357:2378" placeholder="SElECT * FRO..message..." />
+            <marker date="1386295736899" expanded="true" signature="5518:5545" placeholder="SElECT * FRO..messagePerson..." />
+            <marker date="1386295736899" expanded="true" signature="5577:5604" placeholder="SElECT * FRO..messagePerson..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/imaplib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="90" column="25" selection-start="3484" selection-end="3484" vertical-scroll-proportion="0.33241758" vertical-offset="1409" max-vertical-offset="25908" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/System/Entities/Person.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1751">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="38" selection-start="2882" selection-end="2882" vertical-scroll-proportion="0.0" vertical-offset="860" max-vertical-offset="2567">
+        <state line="47" column="0" selection-start="1647" selection-end="1696" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1751">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="44" selection-start="3592" selection-end="3592" vertical-scroll-proportion="0.45132744" vertical-offset="1598" max-vertical-offset="3400">
+        <state line="120" column="34" selection-start="4196" selection-end="4196" vertical-scroll-proportion="0.0" vertical-offset="1751" max-vertical-offset="3570">
           <folding>
             <element signature="e#24#38#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="136" column="0" selection-start="5243" selection-end="5243" vertical-scroll-proportion="0.33241758" vertical-offset="2191" max-vertical-offset="2652">
+          <folding />
         </state>
       </provider>
     </entry>

@@ -6,6 +6,23 @@ from ttk import *
 #from PIL import Image, ImageTk
 from functools import partial
 from System.DatabaseToEntity import *
+import datetime
+import time
+
+
+def get_time_from_timestamp(unix_time):
+    if unix_time is 0:
+        str_time = ""
+    else:
+        str_time = datetime.datetime.fromtimestamp(int(unix_time)).strftime('%Y-%m-%d %H:%M:%S')
+    return str_time
+
+def get_timestamp_from_time(str_time):
+    if str_time is "":
+        return 0
+    else:
+        time_object = time.strptime(str_time, '%Y-%m-%d %H:%M:%S')
+        return time.mktime(time_object)
 
 
 class CRM(Frame):
@@ -27,7 +44,7 @@ class CRM(Frame):
         #self.add_quit_button()
 
     def add_tree(self):
-        columns = ('First Name', 'Last Name', 'Gender', 'Birthday')
+        columns = ('First Name', 'Last Name', 'Gender', 'Birthday', "Last Interaction")
         self.tree = Treeview(self, columns=columns)
         self.tree.pack(fill=BOTH, expand=1)
         self.tree.column('#0', width=10)
@@ -50,6 +67,8 @@ class CRM(Frame):
         elif col == "Birthday":
             print "Birthday sorting is not currently supported."
             #BirthdayTreeSortStrategy().sort(self.tree, "birthday")
+        elif col == "Last Interaction":
+            LastInteractionTreeSortStrategy().sort(self.tree, "last_interaction")
 
     def add_scrollbars_to_tree(self, tree):
         y_scrollbar = Scrollbar(tree)
@@ -104,17 +123,31 @@ class CRM(Frame):
     def add_people_to_tree(self, tree):
         index = 1
         for person in self.people:
+            self.set_last_interaction(person)
+            last_interaction_pretty = get_time_from_timestamp(int(person.relationships["LAST_INTERACTION"]))
             try:
                 #tree.insert('', 'end', str(person.person_id), text=str(person.person_id), tags=('#person'), values=(str(person.first_name) + " " + str(person.last_name) + " " + str(person.gender) + " " + str(person.birthday)))
-                tree.insert('', 'end', str(person.person_id), text=str(person.person_id), tags=('#person'), values=(str(person.first_name), str(person.last_name), str(person.gender), str(person.birthday)))
+                tree.insert('', 'end', str(person.person_id), text=str(person.person_id), tags=('#person'), values=(str(person.first_name), str(person.last_name), str(person.gender), str(person.birthday), last_interaction_pretty))
                 print "Person ID: " + str(person.person_id)
                 print "First Name: " + str(person.first_name)
                 print "Last Name: " + str(person.last_name)
                 print "Gender: " + str(person.gender)
                 print "Birthday: " + str(person.birthday)
+                print "Last Interaction: " + str(person.relationships["LAST_INTERACTION"])
             except Exception,e:
                 print str(e)
             index += 1
+
+    def set_last_interaction(self, person):
+        last_interaction = 0
+        for relationship in ["TO", "FROM", "CC", "BCC"]:
+            try:
+                for message in person.relationships[relationship]:
+                    if message.timestamp > last_interaction:
+                        last_interaction = message.timestamp
+            except:
+                print "No relationship %s" %(relationship)
+        person.relationships["LAST_INTERACTION"] = last_interaction
 
     def maximize(self):
         sw = self.parent.winfo_screenwidth()-100
@@ -267,7 +300,8 @@ class PersonPopUp:
             if relationship in person.relationships.keys():
                 for message in person.relationships[relationship]:
                     messages_tree_has_messages = True
-                    message_tree.insert('', 'end', str(message.messageid), text=str(message.messageid), tags=('#message'), values=("message.source", str(message.subject), str(message.timestamp)))
+                    pretty_date = get_time_from_timestamp(message.timestamp) 
+                    message_tree.insert('', 'end', str(message.messageid), text=str(message.messageid), tags=('#message'), values=("message.source", str(message.subject), pretty_date))
                     #temp_message_label = Label(messages_frame, text=str(message.subject))
                     #temp_message_label.pack(fill=BOTH)
 
@@ -492,6 +526,32 @@ class BirthdayTreeSortStrategy(TreeSortStrategy):
             temp_dict = {}
             temp_dict["item_id"] = item
             temp_dict['birthday'] = item_birthday
+            tree_nodes_to_sort.append(temp_dict)
+        return tree_nodes_to_sort
+
+
+class LastInteractionTreeSortStrategy(TreeSortStrategy):
+    def get_sorted_tree_nodes(self, tree_nodes_to_sort):
+        return sorted(tree_nodes_to_sort, cmp=self.compare_last_interaction)
+
+    def compare_last_interaction(self, item1, item2):
+        timestamp1 = get_timestamp_from_time(item1["last_interaction"])
+        timestamp2 = get_timestamp_from_time(item2["last_interaction"])
+        if timestamp1 - timestamp2 < 0:
+            return 1
+        elif timestamp1 - timestamp2 > 0:
+            return -1
+        else:
+            return 0
+
+    def create_tree_node_list_to_sort(self, tree, tree_node_ids):
+        tree_nodes_to_sort = []
+        for item in tree_node_ids:
+            tree.detach(item)
+            item_last_interaction = str(tree.item(item)["values"][4])
+            temp_dict = {}
+            temp_dict["item_id"] = item
+            temp_dict['last_interaction'] = item_last_interaction
             tree_nodes_to_sort.append(temp_dict)
         return tree_nodes_to_sort
 

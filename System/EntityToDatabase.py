@@ -60,12 +60,15 @@ class PersonToDatabase(EntityToDatabase):
 
     def add_people_to_database(self):
         self.connect_to_database()
+        self.personid_list = []
         for person in self.entities:
             personid = self.insert_person(person)
+            self.personid_list.append(personid)
             print "Inserted person with id %s" %(personid)
             for attribute_table_setter in self.attribute_table_setters:
                 attribute_table_setter.add_to_table(person, personid, self.cursor)
         self.close_db_connection()
+        return self.personid_list
 
     def insert_person(self, person):
         query = 'INSERT INTO person (firstname, lastname, othername, birthday, gender, note) ' \

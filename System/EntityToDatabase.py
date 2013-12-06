@@ -19,6 +19,7 @@ class EntityToDatabase:
     def add_attribute_table_setter(self, attribute_table_setter):
         self.attribute_table_setters.append(attribute_table_setter)
 
+
 # RENAME THIS!!!! SHOULD BE EmailMessageToDatabase
 class EmailToDatabase(EntityToDatabase):
     def add_standard_entity_to_attribute_table(self):
@@ -28,6 +29,7 @@ class EmailToDatabase(EntityToDatabase):
         self.add_attribute_table_setter(email_processor)
 
     def add_people_to_database(self):
+        print 'hello'
         self.connect_to_database()
         print 'entity'
         print self.entities
@@ -67,10 +69,15 @@ class PersonToDatabase(EntityToDatabase):
         for person in self.entities:
             personid = self.insert_person(person)
             self.personid_list.append(personid)
+
             print "Inserted person with id %s" %(personid)
+
             for attribute_table_setter in self.attribute_table_setters:
+
                 attribute_table_setter.add_to_table(person, personid, self.cursor)
+
         self.close_db_connection()
+
         return self.personid_list
 
     def insert_person(self, person):
@@ -100,6 +107,7 @@ class AttributeTableSetter:
 
     def add_to_table(self, parent, parentid, cursor=None):
         self.prepare_to_add(parent, parentid, cursor)
+
         print "Override this method!"
 
     def connect_to_database(self):

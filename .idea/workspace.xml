@@ -18,7 +18,7 @@
     <SUITE FILE_PATH="coverage/4240CRM$launcher.coverage" NAME="launcher Coverage Results" MODIFIED="1385928442687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/System" />
     <SUITE FILE_PATH="coverage/4240CRM$FacebookContactsConnector.coverage" NAME="FacebookContactsConnector Coverage Results" MODIFIED="1385915519221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Connectors/GoogleContactsConnector" />
     <SUITE FILE_PATH="coverage/4240CRM$GoogleContactsConnector.coverage" NAME="GoogleContactsConnector Coverage Results" MODIFIED="1385927745800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Connectors/GoogleContactsConnector" />
-    <SUITE FILE_PATH="coverage/4240CRM$IMAPConnector.coverage" NAME="IMAPConnector Coverage Results" MODIFIED="1386306196007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Connectors/IMAPConnector" />
+    <SUITE FILE_PATH="coverage/4240CRM$IMAPConnector.coverage" NAME="IMAPConnector Coverage Results" MODIFIED="1386308558124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Connectors/IMAPConnector" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -32,19 +32,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EntityToDatabase.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="EntityToDatabase.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="0" selection-start="5243" selection-end="5243" vertical-scroll-proportion="0.33241758" vertical-offset="2191" max-vertical-offset="2652">
+            <state line="144" column="31" selection-start="5256" selection-end="5256" vertical-scroll-proportion="-6.76" vertical-offset="2279" max-vertical-offset="2839">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IMAPConnector.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="IMAPConnector.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="120" column="34" selection-start="4196" selection-end="4196" vertical-scroll-proportion="0.0" vertical-offset="1751" max-vertical-offset="3570">
+            <state line="125" column="0" selection-start="4226" selection-end="4226" vertical-scroll-proportion="0.5796703" vertical-offset="1914" max-vertical-offset="3689">
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
               </folding>
@@ -154,8 +154,8 @@
         <option value="$PROJECT_DIR$/System/Entities/EmailMessage.py" />
         <option value="$PROJECT_DIR$/System/DatabasetoEntity.py" />
         <option value="$PROJECT_DIR$/System/Entities/Email.py" />
-        <option value="$PROJECT_DIR$/System/EntityToDatabase.py" />
         <option value="$PROJECT_DIR$/System/Entities/Person.py" />
+        <option value="$PROJECT_DIR$/System/EntityToDatabase.py" />
         <option value="$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py" />
       </list>
     </option>
@@ -812,19 +812,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
+    <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="34" selection-start="4196" selection-end="4196" vertical-scroll-proportion="0.0" vertical-offset="1751" max-vertical-offset="3570">
-          <folding>
-            <element signature="e#24#38#0" expanded="true" />
-          </folding>
+        <state line="144" column="31" selection-start="5256" selection-end="5256" vertical-scroll-proportion="-6.76" vertical-offset="2279" max-vertical-offset="2839">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
+    <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="0" selection-start="5243" selection-end="5243" vertical-scroll-proportion="0.33241758" vertical-offset="2191" max-vertical-offset="2652">
-          <folding />
+        <state line="125" column="0" selection-start="4226" selection-end="4226" vertical-scroll-proportion="0.5796703" vertical-offset="1914" max-vertical-offset="3689">
+          <folding>
+            <element signature="e#24#38#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -19,7 +19,6 @@ class EntityToDatabase:
     def add_attribute_table_setter(self, attribute_table_setter):
         self.attribute_table_setters.append(attribute_table_setter)
 
-
 # RENAME THIS!!!! SHOULD BE EmailMessageToDatabase
 class EmailToDatabase(EntityToDatabase):
     def add_standard_entity_to_attribute_table(self):
@@ -29,11 +28,7 @@ class EmailToDatabase(EntityToDatabase):
         self.add_attribute_table_setter(email_processor)
 
     def add_people_to_database(self):
-        print 'hello'
         self.connect_to_database()
-        print 'entity'
-        print self.entities
-        print 'entity end'
         for person in self.entities:
             personid = self.insert_person(person)
             print "Inserted person with id %s" %(personid)
@@ -69,31 +64,57 @@ class PersonToDatabase(EntityToDatabase):
         for person in self.entities:
             personid = self.insert_person(person)
             self.personid_list.append(personid)
-
-            print "Inserted person with id %s" %(personid)
-
-            for attribute_table_setter in self.attribute_table_setters:
-
-                attribute_table_setter.add_to_table(person, personid, self.cursor)
+            self.process_person(person, personid)
 
         self.close_db_connection()
-
         return self.personid_list
 
     def insert_person(self, person):
-        query = 'INSERT INTO person (firstname, lastname, othername, birthday, gender, note) ' \
+        index = self.person_in_db(person)
+        if index > 0:
+            print "CAUGHT DUPLICATE!!!"
+            return index
+        else:
+            query = 'INSERT INTO person (firstname, lastname, othername, birthday, gender, note) ' \
                 'VALUES (?, ?, ?, ?, ?, ?)'
-        try:
-            self.cursor.execute(query, (person.first_name,
+            try:
+                self.cursor.execute(query, (person.first_name,
                                         person.last_name,
                                         person.other_name,
                                         person.birthday,
                                         person.gender,
                                         person.note))
-            return self.cursor.lastrowid
-        except:
-            return -1
+                return self.cursor.lastrowid
+            except:
+                return -1
 
+    def person_in_db(self, person):
+
+        query = "SELECT personid FROM person WHERE firstname='%s' AND lastname='%s' AND gender='%s'" % (person.first_name, person.last_name, person.gender)
+        print
+        try:
+            self.cursor.execute(query)
+            result = self.cursor.fetchall()
+            if len(result) > 0:
+                return result[0][0]
+            else:
+                return -1
+            #print result
+        except:
+            print "Error in query"
+
+
+    def process_person(self, person, personid):
+        print "Inserted person with id %s" %(personid)
+        for attribute_table_setter in self.attribute_table_setters:
+            attribute_table_setter.add_to_table(person, personid, self.cursor)
+
+    def add_person_to_database(self, person):
+        self.connect_to_database()
+        person_id = self.insert_person(person)
+        self.process_person(person, person_id)
+        self.close_db_connection()
+        return person_id
 
 class AttributeTableSetter:
     def __init__(self, db):
@@ -107,7 +128,6 @@ class AttributeTableSetter:
 
     def add_to_table(self, parent, parentid, cursor=None):
         self.prepare_to_add(parent, parentid, cursor)
-
         print "Override this method!"
 
     def connect_to_database(self):
@@ -155,8 +175,6 @@ class EmailAttributeTableSetter(AttributeTableSetter):
         query = 'INSERT INTO email (personid, address) VALUES (?, ?)'
         try:
             self.cursor.execute(query, (personid, email.address))
-
             return self.cursor.lastrowid
-
         except:
             return -1

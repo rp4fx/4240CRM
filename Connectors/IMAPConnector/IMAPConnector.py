@@ -18,6 +18,8 @@ class IMAPConnector(Connector):
         self.password = ''
         self.email_id = ''
         self.db = db
+        self.person_list =[]
+        self.personid_list = []
 
     def serve(self):
     # try:
@@ -90,44 +92,48 @@ class IMAPConnector(Connector):
         pid = -1
         mid = -1
         email_list = []
-        pid_existing = []
-
-        person_list = []
-        print
         for emailmessage in self.emails: #inside IMAP, generated emailmessages
-            print emailmessage.people['FROM']
+            #print 'email: '+emailmessage.people['FROM']
             flag = False#pulled from db reconstructed people (all)
 
-        for person in peoplelist:
-            for pemail in person.emails:
+            for person in peoplelist:
+                for pemail in person.emails:
             #for name in emailmessage.people['FROM']: #one set of emailaddress
 
             # pemail.address +" name: "+name + " FROM: "
-                if pemail.address in emailmessage.people['FROM']:
-                    pid = person.person_id
-                    pid_existing.append(pid)
-                    flag = True
-                    break
+                    if pemail.address in emailmessage.people['FROM']: #if there is a person in db with an email contained in an emailmessage
+                        #print email_format(emailmessage.people['FROM'])
+                        pid = person.person_id
+                        self.personid_list.append(pid) #don't create new obj, just update DB
+                        flag = True
+                        break
 
-        if (flag == False):
-            email = email_format(emailmessage.people['FROM'])
-            email_list.append(email)
-            p = Person.Person()
-            p.emails.append(email)
-            person_list.append(p)
-        for email in email_list:
-            print email
-        p_db = PersonToDatabase(person_list, "../../System/personal_graph.db")
-        email_attr = EmailAttributeTableSetter("../../System/personal_graph.db")
+            if (flag == False): #If email from emessage not found in people from db
+                print 'new created'
+                email = email_format(emailmessage.people['FROM']) #parse the email
+                #print email
+                if email not in email_list:
+                    email_list.append(email) #add address to person's known addresses
 
-        p_db.add_attribute_table_setter(email_attr)
+                    p = Person.Person()
+                    p.emails.append(email)
+                    self.person_list.append(p) #add to list of people to be pushed
 
-        pid_new = p_db.add_people_to_database()
+        #for email in email_list:
+        #    print email
+
+        #self.push_person_to_table()
 
 
     #INSERT INTO EMAIL
+    def push_message_to_table(self):
+        e_db =
+    def push_person_to_table(self):
+         p_db = PersonToDatabase(self.person_list, "../../System/personal_graph.db")
+         email_attr = EmailAttributeTableSetter("../../System/personal_graph.db")
+         p_db.add_attribute_table_setter(email_attr)
 
-
+         pid_new = p_db.add_people_to_database()
 def email_format(email):
     if ('>' in email):
         email = email
@@ -215,3 +221,7 @@ conn = IMAPConnector("../../System/personal_graph.db")
 conn.run()
 #conn.check_success()
 conn.find_people()
+print conn.person_list
+print "personidlist"
+print conn.personid_list
+conn.push_person_to_table()

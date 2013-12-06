@@ -8,7 +8,7 @@ class Message:
         self.content = content
         self.subject = ''
         self.timestamp = timestamp #Mon, 2 Dec 2013 23:22:23 -0500
-        self.people = {"TO": [], "FROM": [], "CC": [], "BCC": []}
+        self.people = {"TO": [], "FROM": [], "CC": [], "BCC": []} #Storing person object
 
 
     def __str__(self):

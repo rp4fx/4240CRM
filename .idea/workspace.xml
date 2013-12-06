@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" name="Default" comment="push facebook messages to db">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/EntityToDatabase.py" afterPath="$PROJECT_DIR$/System/EntityToDatabase.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py" afterPath="$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/Entities/Person.py" afterPath="$PROJECT_DIR$/System/Entities/Person.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/launcher.py" afterPath="$PROJECT_DIR$/System/launcher.py" />
+    <list default="true" id="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" name="Default" comment="push facebook messages to db is complete. duplicate checking and prepared for relational database.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/personal_graph.db" afterPath="$PROJECT_DIR$/System/personal_graph.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="4240CRM.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386360065856" ignored="false" />
-    <file path="/EntityToDatabase.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386365967625" ignored="false" />
-    <file path="/FacebookContactsConnector.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386361057485" ignored="false" />
-    <file path="/launcher.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386365322697" ignored="false" />
+    <file path="/Dummy.txt" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386366397344" ignored="false" />
+    <file path="/FacebookContactsConnector.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386320495092" ignored="false" />
+    <file path="/Message.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386306071944" ignored="false" />
+    <file path="/EntityToDatabase.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386324842130" ignored="false" />
+    <file path="/Person.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386308024702" ignored="false" />
+    <file path="/db_init_reset.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386321690519" ignored="false" />
+    <file path="/launcher.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386359439469" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,9 +22,9 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/4240CRM$IMAPConnector.coverage" NAME="IMAPConnector Coverage Results" MODIFIED="1386357515022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Connectors/IMAPConnector" />
-    <SUITE FILE_PATH="coverage/4240CRM$Module.coverage" NAME="Module Coverage Results" MODIFIED="1385916051483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Modules" />
+    <SUITE FILE_PATH="coverage/4240CRM$IMAPConnector.coverage" NAME="IMAPConnector Coverage Results" MODIFIED="1386294591775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Connectors/IMAPConnector" />
     <SUITE FILE_PATH="coverage/4240CRM$Organization.coverage" NAME="Organization Coverage Results" MODIFIED="1385930319091" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/System/Entities" />
+    <SUITE FILE_PATH="coverage/4240CRM$Module.coverage" NAME="Module Coverage Results" MODIFIED="1385916051483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Modules" />
     <SUITE FILE_PATH="coverage/4240CRM$GoogleContactsConnector.coverage" NAME="GoogleContactsConnector Coverage Results" MODIFIED="1385927745800" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Connectors/GoogleContactsConnector" />
     <SUITE FILE_PATH="coverage/4240CRM$db_init_reset.coverage" NAME="db_init_reset Coverage Results" MODIFIED="1385921898427" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/System" />
     <SUITE FILE_PATH="coverage/4240CRM$launcher.coverage" NAME="launcher Coverage Results" MODIFIED="1385928442687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/System" />
@@ -37,30 +36,16 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="DatabaseView">
-    <flatten value="false" />
-    <groupTables value="false" />
-    <sortChildren value="false" />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="4240CRM" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FacebookContactsConnector.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="19" selection-start="1510" selection-end="1517" vertical-scroll-proportion="-7.12">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EntityToDatabase.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="EntityToDatabase.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="108" column="72" selection-start="4097" selection-end="4097" vertical-scroll-proportion="0.3652174">
+            <state line="69" column="8" selection-start="2313" selection-end="2313" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -75,10 +60,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="FacebookContactsConnector.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="30" selection-start="1572" selection-end="1572" vertical-scroll-proportion="0.03244275">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Message.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/Entities/Message.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="32" selection-start="476" selection-end="476" vertical-scroll-proportion="0.0">
+            <state line="10" column="88" selection-start="342" selection-end="342" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -87,34 +81,7 @@
       <file leaf-file-name="Person.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/Entities/Person.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="25" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IMAPConnector.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="99" selection-start="3884" selection-end="3884" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmailMessage.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/System/Entities/EmailMessage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="26" selection-start="460" selection-end="460" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="db_init_reset.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/System/db_init_reset.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="29" selection-start="2190" selection-end="2190" vertical-scroll-proportion="0.0">
+            <state line="34" column="25" selection-start="1296" selection-end="1296" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -123,7 +90,25 @@
       <file leaf-file-name="launcher.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/System/launcher.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="0" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0">
+            <state line="7" column="0" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CRM.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Modules/CRM.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="0" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="db_init_reset.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/System/db_init_reset.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="47" selection-start="1939" selection-end="1939" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -153,14 +138,14 @@
         <option value="$PROJECT_DIR$/System/Entities/Organization.py" />
         <option value="$PROJECT_DIR$/System/Entities/Profile.py" />
         <option value="$PROJECT_DIR$/Modules/Module.py" />
+        <option value="$PROJECT_DIR$/System/Entities/EmailMessage.py" />
         <option value="$PROJECT_DIR$/System/DatabasetoEntity.py" />
         <option value="$PROJECT_DIR$/System/Entities/Email.py" />
+        <option value="$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py" />
         <option value="$PROJECT_DIR$/System/Entities/Message.py" />
         <option value="$PROJECT_DIR$/System/db_init_reset.py" />
-        <option value="$PROJECT_DIR$/System/Entities/EmailMessage.py" />
-        <option value="$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py" />
-        <option value="$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py" />
         <option value="$PROJECT_DIR$/System/Entities/Person.py" />
+        <option value="$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py" />
         <option value="$PROJECT_DIR$/System/launcher.py" />
         <option value="$PROJECT_DIR$/System/EntityToDatabase.py" />
       </list>
@@ -228,24 +213,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="System" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="4240CRM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="4240CRM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="System" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Entities" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -334,18 +301,18 @@
     <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Music/4240CRM" />
+    <property name="last_opened_file_path" value="$USER_HOME$/CS 3240" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="151" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="825" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="825" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="825" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="151" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="150" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -436,20 +403,20 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="EntityToDatabase" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration default="false" name="CRM" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/System" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Modules" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="4240CRM" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/System/EntityToDatabase.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Modules/CRM.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -587,14 +554,14 @@
       <item index="1" class="java.lang.String" itemvalue="Python.FacebookContactsConnector" />
       <item index="2" class="java.lang.String" itemvalue="Python.IMAPConnector" />
       <item index="3" class="java.lang.String" itemvalue="Python.db_init_reset" />
-      <item index="4" class="java.lang.String" itemvalue="Python.EntityToDatabase" />
+      <item index="4" class="java.lang.String" itemvalue="Python.CRM" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.launcher" />
         <item index="1" class="java.lang.String" itemvalue="Python.db_init_reset" />
-        <item index="2" class="java.lang.String" itemvalue="Python.FacebookContactsConnector" />
-        <item index="3" class="java.lang.String" itemvalue="Python.EntityToDatabase" />
+        <item index="2" class="java.lang.String" itemvalue="Python.CRM" />
+        <item index="3" class="java.lang.String" itemvalue="Python.FacebookContactsConnector" />
         <item index="4" class="java.lang.String" itemvalue="Python.IMAPConnector" />
       </list>
     </recent_temporary>
@@ -687,22 +654,26 @@
       <created>1386323513819</created>
       <updated>1386323513819</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="push facebook messages to db is complete. duplicate checking and prepared for relational database.">
+      <created>1386325061673</created>
+      <updated>1386325061673</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329806" sideWeight="0.49960348" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3280303" sideWeight="0.67808217" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980174" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28939393" sideWeight="0.67808217" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29469696" sideWeight="0.6774744" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32363012" sideWeight="0.5007576" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3219178" sideWeight="0.49924242" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3218391" sideWeight="0.49924242" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32534248" sideWeight="0.49960348" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -757,7 +728,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="push facebook messages to db" />
+    <option name="LAST_COMMIT_MESSAGE" value="push facebook messages to db is complete. duplicate checking and prepared for relational database." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -780,6 +751,7 @@
     <MESSAGE value="Changed people[] over to lists from strings" />
     <MESSAGE value="retry of initial push" />
     <MESSAGE value="push facebook messages to db" />
+    <MESSAGE value="push facebook messages to db is complete. duplicate checking and prepared for relational database." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -797,19 +769,14 @@
         <state line="18" column="0" selection-start="415" selection-end="415" vertical-scroll-proportion="0.54642856" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Modules/CRM.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="92" selection-end="92" vertical-scroll-proportion="0.44262296" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/System/Entities/Organization.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="4" selection-start="30" selection-end="31" vertical-scroll-proportion="-1.04" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/System/DatabasetoEntity.py">
+    <entry file="file://$PROJECT_DIR$/System/Entities/EmailMessage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="29" selection-start="1635" selection-end="1635" vertical-scroll-proportion="0.0" />
+        <state line="16" column="21" selection-start="509" selection-end="509" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Connectors/GoogleContactsConnector/GoogleContactsConnector.py">
@@ -822,6 +789,11 @@
         <state line="10" column="26" selection-start="193" selection-end="193" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="103" column="44" selection-start="3592" selection-end="3592" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://C:/Python27/Lib/site-packages/facepy/graph_api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="280" column="0" selection-start="9803" selection-end="9803" vertical-scroll-proportion="0.0">
@@ -831,56 +803,54 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/System/Entities/Message.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="32" selection-start="476" selection-end="476" vertical-scroll-proportion="0.0">
+        <state line="10" column="88" selection-start="342" selection-end="342" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/System/Entities/EmailMessage.py">
+    <entry file="file://$PROJECT_DIR$/Modules/CRM.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="26" selection-start="460" selection-end="460" vertical-scroll-proportion="0.0">
+        <state line="7" column="0" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
+    <entry file="file://$PROJECT_DIR$/System/DatabasetoEntity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="99" selection-start="3884" selection-end="3884" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="56" column="29" selection-start="1635" selection-end="1635" vertical-scroll-proportion="0.048850574" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/System/Entities/Person.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="25" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="19" selection-start="1510" selection-end="1517" vertical-scroll-proportion="-7.12">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/System/db_init_reset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="29" selection-start="2190" selection-end="2190" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/System/launcher.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="0" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0">
+        <state line="34" column="25" selection-start="1296" selection-end="1296" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/System/EntityToDatabase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="72" selection-start="4097" selection-end="4097" vertical-scroll-proportion="0.3652174">
+        <state line="69" column="8" selection-start="2313" selection-end="2313" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/System/db_init_reset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="47" selection-start="1939" selection-end="1939" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/System/launcher.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Connectors/FacebookContactsConnector/FacebookContactsConnector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="30" selection-start="1572" selection-end="1572" vertical-scroll-proportion="0.03244275">
           <folding />
         </state>
       </provider>

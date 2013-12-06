@@ -4,5 +4,5 @@ from Connectors.FacebookContactsConnector import FacebookContactsConnector
 
 conn = GoogleContactsConnector.GoogleContactsConnector("./personal_graph.db")
 conn.run()
-#fb = FacebookContactsConnector.FacebookContactsConnector("./personal_graph.db")
-#fb.run()
+fb = FacebookContactsConnector.FacebookContactsConnector("./personal_graph.db")
+fb.run()

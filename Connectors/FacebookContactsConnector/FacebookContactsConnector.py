@@ -8,7 +8,7 @@ from facepy import *
 import datetime
 
 ACCESS_TOKEN = "CAADaQW5ft88BAEIZB3SCjneeI6wZBqzqyL8msZCDemqhZAwMXCiiaXZAFbYSh1LzFJvgRYrYVOsGTmjGpcGxHBZAZAKY1N1CK4w2ZClZAG1z7XAZCYUKIcryzL4DAHKd57NngVUjxsHJnarEY2d3HzPLz77HfgnOWCzRxFCWsWSf81JlQIXX4z3Ab5ruWXmZBoNB7QZD"
-LIMIT = 1
+LIMIT = 500
 APP_SECRET = "eec6ae1b9b6445375c03cb9624f7b49f"
 APP_ID = 239974559496143
 class FacebookContactsConnector:
@@ -18,7 +18,8 @@ class FacebookContactsConnector:
         self.db = db
         self.app_id = APP_ID
         self.app_secret = APP_SECRET
-        self.access_token = ACCESS_TOKEN
+        #self.access_token = ACCESS_TOKEN
+        self.access_token = raw_input('Please enter your access token: ')
         #token, date = get_extended_access_token(self.access_token, self.app_id, self.app_secret)
         self.graph = GraphAPI(self.access_token)
         self.friends = self.import_friends()
@@ -188,7 +189,7 @@ class FacebookContactsConnector:
     def run(self):
         #Get All information Locally
         # CURRENTLY JUST GIVES FRIENDS THAT YOU'VE FB MESSAGED RECENTLY
-        # self.process_friends()
+        self.process_friends()
 
        # print self.graph.get("me")["name"]
         self.process_messages()

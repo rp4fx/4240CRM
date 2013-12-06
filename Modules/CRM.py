@@ -48,7 +48,8 @@ class CRM(Frame):
         elif col == "Gender":
             GenderTreeSortStrategy().sort(self.tree, "gender")
         elif col == "Birthday":
-            BirthdayTreeSortStrategy().sort(self.tree, "birthday")
+            print "Birthday sorting is not currently supported."
+            #BirthdayTreeSortStrategy().sort(self.tree, "birthday")
 
     def add_scrollbars_to_tree(self, tree):
         y_scrollbar = Scrollbar(tree)

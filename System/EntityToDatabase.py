@@ -85,7 +85,6 @@ class PersonToDatabase(EntityToDatabase):
                 return self.cursor.lastrowid
             except:
                 return -1
-
     def update_person(self, person, person_id):
         query = "SELECT * from person WHERE personid=%d" % (person_id)
        # print query
@@ -121,10 +120,10 @@ class PersonToDatabase(EntityToDatabase):
                 print "UPDATE SUCCESSFUL: "
             except:
                 print "Update failed"
-
     def person_in_db(self, person):
 
-        query = "SELECT personid FROM person WHERE firstname='%s' AND lastname='%s' " % (person.first_name, person.last_name)
+        query = "SELECT personid FROM person WHERE firstname='%s' AND lastname='%s' AND gender='%s'" % (person.first_name, person.last_name, person.gender)
+        
         try:
             self.cursor.execute(query)
             result = self.cursor.fetchall()
@@ -187,7 +186,7 @@ class FacebookMessageToDatabase(EntityToDatabase):
     def message_in_db(self, message):
         content = self.strip(message.content)
         query = "SELECT messageid FROM message WHERE content='%s' AND timestamp=%d " % (content, message.timestamp)
-        #print query
+        print query
         try:
             self.cursor.execute(query)
             result = self.cursor.fetchall()

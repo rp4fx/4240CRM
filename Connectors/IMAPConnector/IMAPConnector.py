@@ -98,7 +98,7 @@ class IMAPConnector(Connector):
                         #print pemail.address +" name: "+name + " FROM: "
                     if pemail.address in emailmessage.people['FROM']:
                         pid = person.person_id
-                        #print pid
+                        print pid
                     else:
                         email = emailmessage.people['FROM']
                         email_split = email.split('<')
@@ -109,6 +109,7 @@ class IMAPConnector(Connector):
                         email_attr = EmailAttributeTableSetter("../../System/personal_graph.db")
                         p_db.add_attribute_table_setter(email_attr)
                         pid = p_db.add_people_to_database()[0]
+                        print pid
 
         #INSERT INTO EMAIL
 

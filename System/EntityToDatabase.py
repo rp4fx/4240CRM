@@ -69,7 +69,7 @@ class PersonToDatabase(EntityToDatabase):
     def insert_person(self, person):
         index = self.person_in_db(person)
         if index > 0:
-            print "CAUGHT DUPLICATE!!!"
+            self.update_person(person, index)
             return index
         else:
             query = 'INSERT INTO person (firstname, lastname, othername, birthday, gender, note) ' \
@@ -86,10 +86,45 @@ class PersonToDatabase(EntityToDatabase):
             except:
                 return -1
 
+    def update_person(self, person, person_id):
+        query = "SELECT * from person WHERE personid=%d" % (person_id)
+       # print query
+        try:
+            self.cursor.execute(query)
+            result = self.cursor.fetchall()[0]
+            #print result[1] == person.first_name
+            self.parse_differences(result, person, person_id)
+
+        except:
+            print "Error Updating", person.first_name + " " + person.last_name
+    #result [personid, firstname, lastname, othername, birthday, gender, note]
+    def parse_differences(self, result, person, person_id):
+        if person.other_name:
+            self.update_field("othername", result[3], person.other_name, person_id)
+        if person.birthday:
+            self.update_field("birthday", result[4], person.birthday, person_id)
+        if person.gender:
+            self.update_field("gender", result[5], person.gender, person_id)
+        if person.note:
+            self.update_field("note", result[6], person.note, person_id)
+
+    def update_field(self, field, old_value, new_value, person_id):
+        if old_value == new_value:
+            print "NO UPDATE NEEDED"
+            return
+        else:
+            query = "UPDATE person SET %s='%s' WHERE personid = %d" % (field, new_value, person_id)
+            print query
+            try:
+                print "ATTEMPTING TO UPDATE: " + field
+                self.cursor.execute(query)
+                print "UPDATE SUCCESSFUL: "
+            except:
+                print "Update failed"
+
     def person_in_db(self, person):
 
         query = "SELECT personid FROM person WHERE firstname='%s' AND lastname='%s' " % (person.first_name, person.last_name)
-        print
         try:
             self.cursor.execute(query)
             result = self.cursor.fetchall()
@@ -152,7 +187,7 @@ class FacebookMessageToDatabase(EntityToDatabase):
     def message_in_db(self, message):
         content = self.strip(message.content)
         query = "SELECT messageid FROM message WHERE content='%s' AND timestamp=%d " % (content, message.timestamp)
-        print query
+        #print query
         try:
             self.cursor.execute(query)
             result = self.cursor.fetchall()

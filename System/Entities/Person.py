@@ -8,7 +8,7 @@ class Person:
         self.first_name = ''
         self.last_name = ''
         self.other_name = ''
-        self.birthday = -1
+        self.birthday = ''
         self.gender = ''
         self.emails = []
         self.phones = []

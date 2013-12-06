@@ -29,6 +29,9 @@ class EmailToDatabase(EntityToDatabase):
 
     def add_people_to_database(self):
         self.connect_to_database()
+        print 'entity'
+        print self.entities
+        print 'entity end'
         for person in self.entities:
             personid = self.insert_person(person)
             print "Inserted person with id %s" %(personid)

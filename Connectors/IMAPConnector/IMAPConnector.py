@@ -119,6 +119,7 @@ class IMAPConnector(Connector):
         #    print p
         p_db = PersonToDatabase([person_list], "../../System/personal_graph.db")
         email_attr = EmailAttributeTableSetter("../../System/personal_graph.db")
+
         p_db.add_attribute_table_setter(email_attr)
         pid_new = p_db.add_people_to_database()
         #INSERT INTO EMAIL

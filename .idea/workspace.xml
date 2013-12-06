@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/System/EntityToDatabase.py" afterPath="$PROJECT_DIR$/System/EntityToDatabase.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="4240CRM.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386315446110" ignored="false" />
+    <file path="/Dummy.txt" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386315733358" ignored="false" />
     <file path="/FacebookContactsConnector.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386310724675" ignored="false" />
     <file path="/Message.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386306071944" ignored="false" />
     <file path="/EntityToDatabase.py" changelist="e8e5165a-2686-4cb4-b7bb-3c0afbbb6696" time="1386314560114" ignored="false" />
@@ -640,7 +639,11 @@
       <created>1386315451944</created>
       <updated>1386315451944</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="retry of initial push">
+      <created>1386315736599</created>
+      <updated>1386315736599</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -710,7 +713,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed people[] over to lists from strings" />
+    <option name="LAST_COMMIT_MESSAGE" value="retry of initial push" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -731,6 +734,7 @@
     <MESSAGE value="METHOD AGAIN" />
     <MESSAGE value="COMMIT" />
     <MESSAGE value="Changed people[] over to lists from strings" />
+    <MESSAGE value="retry of initial push" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

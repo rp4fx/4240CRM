@@ -1,5 +1,6 @@
 __author__ = 'Timur'
 import sqlite3
+import string
 
 
 class EntityToDatabase:
@@ -115,6 +116,58 @@ class PersonToDatabase(EntityToDatabase):
         self.process_person(person, person_id)
         self.close_db_connection()
         return person_id
+
+class FacebookMessageToDatabase(EntityToDatabase):
+
+    def add_to_message_table(self):
+        self.connect_to_database()
+        self.message_id_list = []
+        for conversation in self.entities:
+            for message in conversation:
+                message_id = self.insert_message(message)
+                self.message_id_list.append(message_id)
+                #self.process_message(message, message)
+        self.close_db_connection()
+        return self.message_id_list
+
+    def insert_message(self, message):
+        #preprocess for relational db
+        people = message.people
+        person_to = people["TO"]
+        person_from = people["FROM"]
+        #cc, bcc = -1
+        #MUST CHECK FOR ESCAPE CHARACTERS
+        content = self.strip(message.content)
+        subject = "Facebook Message"
+        query = "INSERT INTO message (content, subject, timestamp) VALUES ('%s', '%s', %d)" % (content, subject, message.timestamp)
+
+        try:
+            self.cursor.execute(query)
+            return self.cursor.lastrowid
+
+        except:
+            print "Insert_message failed you cunt."
+
+    def strip(self, s):
+        remove_punct_map = dict.fromkeys(map(ord, string.punctuation))
+        ret = s.translate(remove_punct_map)
+        #print ret
+        return ret
+
+    def kill_char(self, string, n): # n = position of which character you want to remove
+        begin = string[:n]    # from beginning to n (n not included)
+        end = string[n+1:]    # n+1 through end of string
+        return begin + end
+
+
+    def get_message_id(self, message):
+        print 0
+    def message_in_db(self, message):
+        print 0
+
+    def relate_message_to_people(self, message):
+        print 0
+
 
 class AttributeTableSetter:
     def __init__(self, db):

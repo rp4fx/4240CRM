@@ -1,16 +1,14 @@
 from System.Entities import EmailMessage, Person, Phone, Message
 from System.Entities.Organization import *
-#from Connectors.Connector import Connector
-#from System.Entities.Person import GetNameFromGoogleContactsStrategy
 from System.Entities.Person import GetNameFromFacebookContactsStrategy
-from System.EntityToDatabase import PersonToDatabase
+from System.EntityToDatabase import PersonToDatabase, FacebookMessageToDatabase
 
 #Have to install through pip install requests/facepy
 from facepy import *
 import datetime
 
-ACCESS_TOKEN = "CAADaQW5ft88BACZCAcRtTT5YuZB2ZApsoAEkvndRuGrA7FrACz6A329MwcnlQDo90X1UoRgjv6pDvfJwxOGqwY1ZC7kV1JLSSlaxrfRZAaBUXRDVZAdNVnWf7iMZCBDtRXjJkq5qllIsZCp5ZCUOzZAxVzAZCGMaqWJJqmZBGI9ZBZBYOWaZCWZAqPFq07LzGeLqGH81nnUZD"
-LIMIT = 100
+ACCESS_TOKEN = "CAADaQW5ft88BAIgTU4Ssikn261eRFwdmaaqmnM2Tk9WpFYPc5ja7i93gJldlbjfb79LpnmPCsbb0A5ZBjOprbZCZA9jbA6nD68QPabNvDtLV1PDVZAk5s1rZBQaKqFY0eltto4zzZCVmUy23ZCX6QsDag48sQsuZCkJXFVw2MZAwXdZCOtCatgklh3Xur1WPhRdSYZD"
+LIMIT = 1
 APP_SECRET = "eec6ae1b9b6445375c03cb9624f7b49f"
 APP_ID = 239974559496143
 class FacebookContactsConnector:
@@ -94,12 +92,13 @@ class FacebookContactsConnector:
     def org_in_db(self, org):
         return False
     #True if pushed, False if already in DB
-    def push_org_db(self, org):
+    '''def push_org_db(self, org):
         if self.org_in_db(org):
             return False
         else:
             print "TO DO: PUSHING TO DB:", org
             return True
+    '''
 
     def process_messages(self):
 
@@ -142,7 +141,8 @@ class FacebookContactsConnector:
     def build_message(self, m, conversant_ids):
         body = m["body"]
         id = m["message_id"]
-        time_stamp = self.get_time(m["created_time"])
+
+        time_stamp = m["created_time"]
         message = Message.Message(id, body, time_stamp)
         information = self.get_message_information(m, conversant_ids, message)
         message.set_people(information)
@@ -153,7 +153,7 @@ class FacebookContactsConnector:
         person_from = self.person_from_contacts(from_id)
         to_id = self.get_recipient(from_id, conversant_ids)
         person_to = self.person_from_contacts(to_id)
-        information = {"TO": person_to, "FROM": person_from, "CC": "", "BCC": ""}
+        information = {"TO": [person_to], "FROM": [person_from], "CC": [], "BCC": []}
         return information
 
     #NEED TO SWITCH THIS.
@@ -179,13 +179,20 @@ class FacebookContactsConnector:
         str_time = datetime.datetime.fromtimestamp(int(unix_time)).strftime('%Y-%m-%d %H:%M:%S')
         return str_time
 
+    def push_messages_to_db(self):
+        print "Adding Messages to Database..."
+        fb_message_db = FacebookMessageToDatabase(self.message_threads, self.db)
+        fb_message_db.add_to_message_table()
+
+
     def run(self):
         #Get All information Locally
-        self.process_friends()
-        #self.add_contacts_to_db()
-        #print self.contacts
-        print self.graph.get("me")["name"]
+        # CURRENTLY JUST GIVES FRIENDS THAT YOU'VE FB MESSAGED RECENTLY
+        # self.process_friends()
+
+       # print self.graph.get("me")["name"]
         self.process_messages()
+        self.push_messages_to_db()
 
         print len(self.contacts)
         '''

@@ -125,28 +125,26 @@ class FacebookMessageToDatabase(EntityToDatabase):
         for conversation in self.entities:
             for message in conversation:
                 message_id = self.insert_message(message)
+                self.relate_message_to_people(message, message_id)
                 self.message_id_list.append(message_id)
                 #self.process_message(message, message)
         self.close_db_connection()
         return self.message_id_list
 
     def insert_message(self, message):
-        #preprocess for relational db
-        people = message.people
-        person_to = people["TO"]
-        person_from = people["FROM"]
-        #cc, bcc = -1
         #MUST CHECK FOR ESCAPE CHARACTERS
-        content = self.strip(message.content)
-        subject = "Facebook Message"
-        query = "INSERT INTO message (content, subject, timestamp) VALUES ('%s', '%s', %d)" % (content, subject, message.timestamp)
-
-        try:
-            self.cursor.execute(query)
-            return self.cursor.lastrowid
-
-        except:
-            print "Insert_message failed you cunt."
+        index = self.message_in_db(message)
+        if index > 0:
+            return index
+        else:
+            content = self.strip(message.content)
+            subject = "Facebook Message"
+            query = "INSERT INTO message (content, subject, timestamp) VALUES ('%s', '%s', %d)" % (content, subject, message.timestamp)
+            try:
+                self.cursor.execute(query)
+                return self.cursor.lastrowid
+            except:
+                print "Weird Escape Keys Likely in Content."
 
     def strip(self, s):
         remove_punct_map = dict.fromkeys(map(ord, string.punctuation))
@@ -154,20 +152,32 @@ class FacebookMessageToDatabase(EntityToDatabase):
         #print ret
         return ret
 
-    def kill_char(self, string, n): # n = position of which character you want to remove
-        begin = string[:n]    # from beginning to n (n not included)
-        end = string[n+1:]    # n+1 through end of string
-        return begin + end
-
-
-    def get_message_id(self, message):
-        print 0
     def message_in_db(self, message):
-        print 0
+        content = self.strip(message.content)
+        query = "SELECT messageid FROM message WHERE content='%s' AND timestamp=%d " % (content, message.timestamp)
+        print query
+        try:
+            self.cursor.execute(query)
+            result = self.cursor.fetchall()
+            if len(result) > 0:
+                return result[0][0]
+            else:
+                return -1
+            #print result
+        except:
+            print "Error in query"
 
-    def relate_message_to_people(self, message):
-        print 0
-
+    def relate_message_to_people(self, message, message_id):
+        #preprocess for relational db
+        people = message.people
+        person_to_id = people["TO"][0].person_id
+        person_from_id = people["FROM"][0].person_id
+        query = "INSERT INTO messagePerson (messageid, personid, relationship) VALUES (%d, %d, '%s')"
+        try:
+            self.cursor.execute(query % (message_id, person_from_id, "from"))
+            self.cursor.execute(query % (message_id, person_to_id, "to"))
+        except:
+            print "SQL ERROR"
 
 class AttributeTableSetter:
     def __init__(self, db):

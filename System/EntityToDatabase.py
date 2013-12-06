@@ -237,3 +237,38 @@ class EmailAttributeTableSetter(AttributeTableSetter):
         self.cursor.execute(query, (personid, email.address))
         return self.cursor.lastrowid
 
+class link:
+    def __init__(self,entities1,entities2):
+        self.entities1 =entities1
+        self.entities2 = entities2
+        self.db = ''
+
+    def connect_to_database(self):
+        self.conn = sqlite3.connect(self.db)
+        self.cursor = self.conn.cursor()
+
+    def close_db_connection(self):
+        self.conn.commit()
+        self.conn.close()
+
+class emailmsg_person(link):
+
+    def add_msg_person(self):
+        self.connect_to_database()
+        for m in self.messages:
+            for p in self.person:
+                self.insert_into(m,p)
+
+    def insert_into(self,message,person):
+        query = 'INSERT INTO messagePerson (messageid,personid) VALUES (?,?)'
+        self.cursor(query,(message.messageid,person.personid))
+
+
+def emailmsg_person(messageid_list,personid_list,db):
+     conn = sqlite3.connect(db)
+     cursor = conn.cursor()
+     for m in messageid_list:
+         for p in personid_list:
+            cursor('INSERT INTO messagePerson (messageid,personid) VALUES (?,?)',(m,p) )
+     conn.commit()
+     conn.close()

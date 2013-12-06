@@ -64,57 +64,26 @@ class PersonToDatabase(EntityToDatabase):
         for person in self.entities:
             personid = self.insert_person(person)
             self.personid_list.append(personid)
-            self.process_person(person, personid)
-
+            print "Inserted person with id %s" %(personid)
+            for attribute_table_setter in self.attribute_table_setters:
+                attribute_table_setter.add_to_table(person, personid, self.cursor)
         self.close_db_connection()
         return self.personid_list
 
     def insert_person(self, person):
-        index = self.person_in_db(person)
-        if index > 0:
-            print "CAUGHT DUPLICATE!!!"
-            return index
-        else:
-            query = 'INSERT INTO person (firstname, lastname, othername, birthday, gender, note) ' \
+        query = 'INSERT INTO person (firstname, lastname, othername, birthday, gender, note) ' \
                 'VALUES (?, ?, ?, ?, ?, ?)'
-            try:
-                self.cursor.execute(query, (person.first_name,
+        try:
+            self.cursor.execute(query, (person.first_name,
                                         person.last_name,
                                         person.other_name,
                                         person.birthday,
                                         person.gender,
                                         person.note))
-                return self.cursor.lastrowid
-            except:
-                return -1
-
-    def person_in_db(self, person):
-
-        query = "SELECT personid FROM person WHERE firstname='%s' AND lastname='%s' AND gender='%s'" % (person.first_name, person.last_name, person.gender)
-        print
-        try:
-            self.cursor.execute(query)
-            result = self.cursor.fetchall()
-            if len(result) > 0:
-                return result[0][0]
-            else:
-                return -1
-            #print result
+            return self.cursor.lastrowid
         except:
-            print "Error in query"
+            return -1
 
-
-    def process_person(self, person, personid):
-        print "Inserted person with id %s" %(personid)
-        for attribute_table_setter in self.attribute_table_setters:
-            attribute_table_setter.add_to_table(person, personid, self.cursor)
-
-    def add_person_to_database(self, person):
-        self.connect_to_database()
-        person_id = self.insert_person(person)
-        self.process_person(person, person_id)
-        self.close_db_connection()
-        return person_id
 
 class AttributeTableSetter:
     def __init__(self, db):

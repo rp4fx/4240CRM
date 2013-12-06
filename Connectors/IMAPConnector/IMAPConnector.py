@@ -1,54 +1,56 @@
 __author___ = 'Zachary'
 import imaplib
 import time
-from datetime import date,timedelta
+from datetime import date, timedelta
 from System.Entities import EmailMessage, Person, Phone
 from Connectors.Connector import Connector
 from System.Entities.EmailMessage import fillerStrategy
 from System.EntityToDatabase import EmailToDatabase
-from System.DatabasetoEntity import DatabaseToPerson,EmailAttributeTableGetter
+from System.DatabasetoEntity import DatabaseToPerson, EmailAttributeTableGetter
 from System.EntityToDatabase import *
 
 
 class IMAPConnector(Connector):
-
-    def __init__(self,db):
+    def __init__(self, db):
         self.emails = []
         self.server = self.serve()
         self.username = ''
         self.password = ''
-        self.email_id=''
-        self.db=db
+        self.email_id = ''
+        self.db = db
+        self.person_list =[]
+        self.personid_list = []
+
     def serve(self):
-       # try:
-            return imaplib.IMAP4_SSL("imap.gmail.com",993)
+    # try:
+        return imaplib.IMAP4_SSL("imap.gmail.com", 993)
 
     def run(self):
         print "Starting the IMAP Connector"
         #self.serve()
-        self.username='cs4240crm'
-        self.password='rohantimurzach'
+        self.username = 'cs4240crm'
+        self.password = 'rohantimurzach'
         #self.request_credentials()
         self.print_credentials()
         self.import_emails()
         #try:
-         #   self.import_emails()
-          #  self.print_emails()
-           # self.add_emails_to_db()
+        #   self.import_emails()
+        #  self.print_emails()
+        # self.add_emails_to_db()
         #except gdata.client.BadAuthentication:
-         #   print 'Invalid user credentials given.'
-          #  return
+        #   print 'Invalid user credentials given.'
+        #  return
 
     def import_emails(self):
         self.login()
-        e_ids=self.search(self.emailquery())
+        e_ids = self.search(self.emailquery())
         for id in e_ids[0].split():
             e = EmailMessage.EmailMessage()
-            e.fillerStrategy.fill(self.server,id)
+            e.fillerStrategy.fill(self.server, id)
             e.set_message()
             self.emails.append(e)
-        #feed = self.gd_client.GetContacts()
-        #self.process_feed(feed, self.create_person)
+            #feed = self.gd_client.GetContacts()
+            #self.process_feed(feed, self.create_person)
 
     def check_success(self):
         for email in self.emails:
@@ -58,19 +60,19 @@ class IMAPConnector(Connector):
             print email.content
 
     def emailquery(self):
-        t=date.today()-timedelta(days=90)
-        t.replace(month=t.month-3)
-        if(t.month<0):
-            t.replace(month=12+t.month)
-        searchquery ='(SINCE "{}")'.format(t.strftime("%d-%b-%Y"))
+        t = date.today() - timedelta(days=90)
+        t.replace(month=t.month - 3)
+        if (t.month < 0):
+            t.replace(month=12 + t.month)
+        searchquery = '(SINCE "{}")'.format(t.strftime("%d-%b-%Y"))
         return searchquery
 
-    def search(self,emailquery):
-        status,e_ids =self.server.search(None,emailquery)
+    def search(self, emailquery):
+        status, e_ids = self.server.search(None, emailquery)
         return e_ids
 
     def login(self):
-        self.server.login(self.username,self.password)
+        self.server.login(self.username, self.password)
         self.server.select()
         #self.gd_client.ClientLogin(username, password, self.gd_client.source)
 
@@ -80,39 +82,65 @@ class IMAPConnector(Connector):
         entity_to_database.add_standard_entity_to_attribute_table()
         entity_to_database.add_message_to_database()
 
-    def format(self,estring):
+    def format(self, estring):
         estring
 
     def find_people(self):
-        dbfrom=DatabaseToPerson(self.db)
+        dbfrom = DatabaseToPerson(self.db)
         dbfrom.add_attribute_table_getter(EmailAttributeTableGetter(self.db))
-        peoplelist=dbfrom.get_people_from_database()
+        peoplelist = dbfrom.get_people_from_database()
         pid = -1
         mid = -1
+        email_list = []
         for emailmessage in self.emails: #inside IMAP, generated emailmessages
-            #print emailmessage.people['FROM']
-            for person in peoplelist:    #pulled from db reconstructed people (all)
+            #print 'email: '+emailmessage.people['FROM']
+            flag = False#pulled from db reconstructed people (all)
+
+            for person in peoplelist:
                 for pemail in person.emails:
-                    #for name in emailmessage.people['FROM']: #one set of emailaddress
+            #for name in emailmessage.people['FROM']: #one set of emailaddress
 
-                        #print pemail.address +" name: "+name + " FROM: "
-                    if pemail.address in emailmessage.people['FROM']:
+            # pemail.address +" name: "+name + " FROM: "
+                    if pemail.address in emailmessage.people['FROM']: #if there is a person in db with an email contained in an emailmessage
+                        #print email_format(emailmessage.people['FROM'])
                         pid = person.person_id
-                        print pid
-                    else:
-                        email = emailmessage.people['FROM']
-                        email_split = email.split('<')
-                        email = email_split[1].rstrip('>')
-                        p = Person()
-                        p.email.append(email)
-                        p_db = PersonToDatabase([p], "../../System/personal_graph.db")
-                        email_attr = EmailAttributeTableSetter("../../System/personal_graph.db")
-                        p_db.add_attribute_table_setter(email_attr)
-                        pid = p_db.add_people_to_database()[0]
-                        print pid
+                        self.personid_list.append(pid) #don't create new obj, just update DB
+                        flag = True
+                        break
 
-        #INSERT INTO EMAIL
+            if (flag == False): #If email from emessage not found in people from db
+                print 'new created'
+                email = email_format(emailmessage.people['FROM']) #parse the email
+                #print email
+                if email not in email_list:
+                    email_list.append(email) #add address to person's known addresses
 
+                    p = Person.Person()
+                    p.emails.append(email)
+                    self.person_list.append(p) #add to list of people to be pushed
+
+        #for email in email_list:
+        #    print email
+
+        #self.push_person_to_table()
+
+
+    #INSERT INTO EMAIL
+    def push_message_to_table(self):
+        e_db =
+    def push_person_to_table(self):
+         p_db = PersonToDatabase(self.person_list, "../../System/personal_graph.db")
+         email_attr = EmailAttributeTableSetter("../../System/personal_graph.db")
+         p_db.add_attribute_table_setter(email_attr)
+
+         pid_new = p_db.add_people_to_database()
+def email_format(email):
+    if ('>' in email):
+        email = email
+        email_split = email.split('<')
+        email = email_split[1].rstrip('>')
+
+    return email
 
 
 '''
@@ -193,3 +221,7 @@ conn = IMAPConnector("../../System/personal_graph.db")
 conn.run()
 #conn.check_success()
 conn.find_people()
+print conn.person_list
+print "personidlist"
+print conn.personid_list
+conn.push_person_to_table()

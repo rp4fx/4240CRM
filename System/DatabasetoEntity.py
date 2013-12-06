@@ -43,6 +43,7 @@ class DatabaseToPerson(DatabaseToEntity):
         self.close_db_connection()
         return self.entities   # return a list of people
 
+
     def query_person_table(self):
         self.cursor.execute("SElECT * FROM person")
         rows_from_db = self.return_rows_db(self.cursor)
@@ -56,6 +57,9 @@ class DatabaseToPerson(DatabaseToEntity):
             p.gender = row[5]
             p.note = row[6]
             self.entities.append(p)
+
+
+
 
     def query_attribute_tables(self):
         for person in self.entities:

@@ -58,16 +58,19 @@ class FacebookContactsConnector:
         count = 0;
         for f in self.friends:
             id = f["id"]
-            friend = self.build_person_from_id(id)
-            key = friend.person_id
-            self.contacts[key] = friend
+            try:
+                friend = self.build_person_from_id(id)
+                key = friend.person_id
+                self.contacts[key] = friend
             #pass full education history in
             #if "education" in friend:
               #  self.process_education(friend["education"])
             #Limited for purposes of testing
-            count += 1
-            if count > LIMIT:
-                return
+                count += 1
+                if count > LIMIT:
+                    return
+            except:
+                print "Could not build a person object with id %s" %(str(id))
     def build_person(self, friend):
         info = self.get_user_info(friend)
         p = Person.Person()
@@ -102,11 +105,11 @@ class FacebookContactsConnector:
     '''
 
     def process_messages(self):
+        inbox = self.get_inbox()
+        self.process_inbox(inbox)
+        self.push_messages_to_db()
 
-        #folder_id = 0 === Inbox
-        query = "SELECT thread_id FROM thread WHERE folder_id=0"
-        inbox = self.graph.fql(query)["data"]
-        #print inbox
+    def process_inbox(self, inbox):
         count = 0
         for thread in inbox:
             thread_id = thread["thread_id"]
@@ -114,8 +117,12 @@ class FacebookContactsConnector:
             self.message_threads.append(conversation)
             count += 1
             if count > LIMIT:
-                return
+                break
     #returns a list of processed messages from the given thread_id
+    def get_inbox(self):
+        query = "SELECT thread_id FROM thread WHERE folder_id=0"
+        inbox = self.graph.fql(query)["data"]
+        return inbox
     def get_conversation(self, thread_id):
         conversation = []
         query = "SELECT message_id, body, created_time, author_id FROM message WHERE thread_id="+thread_id
@@ -193,7 +200,7 @@ class FacebookContactsConnector:
 
        # print self.graph.get("me")["name"]
         self.process_messages()
-        self.push_messages_to_db()
+        #self.push_messages_to_db()
 
         print len(self.contacts)
         '''

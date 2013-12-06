@@ -9,15 +9,13 @@ from System.EntityToDatabase import PersonToDatabase
 from facepy import *
 import datetime
 
-ACCESS_TOKEN = "CAADaQW5ft88BAA0e4cHSfNMJSKrEfQGnE5dFVRzwgO1AhXrf51mFhrVb8v9jWvepGUO2muZAcRHGWRjZAGua5ZAWoUeP4OTtOn0Kl8jyMulqKVB0XpuKWejBmXDR6UdxFzZByeDK8A6PaGpGjPZBQspjixxaa9oZCfi3T0kjBzZB8IPszJOCetReLuX5N9Cc0YZD"
-LIMIT = 5
+ACCESS_TOKEN = "CAADaQW5ft88BACZCAcRtTT5YuZB2ZApsoAEkvndRuGrA7FrACz6A329MwcnlQDo90X1UoRgjv6pDvfJwxOGqwY1ZC7kV1JLSSlaxrfRZAaBUXRDVZAdNVnWf7iMZCBDtRXjJkq5qllIsZCp5ZCUOzZAxVzAZCGMaqWJJqmZBGI9ZBZBYOWaZCWZAqPFq07LzGeLqGH81nnUZD"
+LIMIT = 100
 APP_SECRET = "eec6ae1b9b6445375c03cb9624f7b49f"
 APP_ID = 239974559496143
 class FacebookContactsConnector:
 
     def __init__(self, db):
-        #Willl have to hardcode access code until GUI is written
-        #self.my_connector = Connector()
         self.contacts = {} #"Firstname LastName": Person Object
         self.db = db
         self.app_id = APP_ID
@@ -52,6 +50,7 @@ class FacebookContactsConnector:
 
     def build_person_from_id(self, id):
         user = self.graph.get(str(id))
+        #check to see if
         person = self.build_person(user)
         return person
 
@@ -61,8 +60,8 @@ class FacebookContactsConnector:
         for f in self.friends:
             id = f["id"]
             friend = self.build_person_from_id(id)
-            name = friend.get_name()
-            self.contacts[name] = friend
+            key = friend.person_id
+            self.contacts[key] = friend
             #pass full education history in
             #if "education" in friend:
               #  self.process_education(friend["education"])
@@ -72,13 +71,20 @@ class FacebookContactsConnector:
                 return
     def build_person(self, friend):
         info = self.get_user_info(friend)
-        #check for organization
         p = Person.Person()
         fb_strategy = GetNameFromFacebookContactsStrategy(friend)
         p.add_name_from_service(fb_strategy)
         p.birthday = info["birthday"]
         p.gender = info["gender"]
+        p.person_id = self.get_person_id(p)
         return p
+
+    def get_person_id(self, person):
+        entity_to_db = PersonToDatabase([], self.db)
+        entity_to_db.add_standard_attribute_table_setters()
+        person_id = entity_to_db.add_person_to_database(person)
+        return person_id
+
 
     def process_education(self, education):
         for school in education:
@@ -95,19 +101,8 @@ class FacebookContactsConnector:
             print "TO DO: PUSHING TO DB:", org
             return True
 
-    def person_in_db(self, person):
-        return False
-
-    #True if pushed; False otherwise
-    def push_person_db(self, person):
-        if self.person_in_db(person):
-            return False
-        else:
-            # print "TO DO: PUSHING TO DB:", person
-            return True
-
     def process_messages(self):
-        threads = []
+
         #folder_id = 0 === Inbox
         query = "SELECT thread_id FROM thread WHERE folder_id=0"
         inbox = self.graph.fql(query)["data"]
@@ -156,23 +151,21 @@ class FacebookContactsConnector:
     def get_message_information(self, m, conversant_ids, message):
         from_id = m["author_id"]
         person_from = self.person_from_contacts(from_id)
-        person_from.add_message(message)
         to_id = self.get_recipient(from_id, conversant_ids)
         person_to = self.person_from_contacts(to_id)
-        person_to.add_message(message)
         information = {"TO": person_to, "FROM": person_from, "CC": "", "BCC": ""}
         return information
 
-    #Check for person in contacts, if not, add them to contact list
+    #NEED TO SWITCH THIS.
     def person_from_contacts(self, id):
         person = self.build_person_from_id(id)
-        name = person.get_name()
-        if name in self.contacts:
+        person_id = person.person_id
+        if person_id in self.contacts:
             #print name + " in contacts"
-            person = self.contacts[name]
+            person = self.contacts[person_id]
         else:
             #print "MESSAGE FROM NEW CONTACT"
-            self.contacts[name] = person
+            self.contacts[person_id] = person
 
         return person
 
@@ -186,28 +179,22 @@ class FacebookContactsConnector:
         str_time = datetime.datetime.fromtimestamp(int(unix_time)).strftime('%Y-%m-%d %H:%M:%S')
         return str_time
 
-    def add_contacts_to_db(self):
-        entity_to_database = PersonToDatabase(self.people, self.db)
-        entity_to_database.add_standard_attribute_table_setters()
-        entity_to_database.add_people_to_database()
-
-
-    def update_contacts_for_conversations(self, conversation, person_to, person_from):
-        name_to = person_to.get_name()
-        print name_to in self.contacts
-
-
     def run(self):
         #Get All information Locally
         self.process_friends()
+        #self.add_contacts_to_db()
         #print self.contacts
+        print self.graph.get("me")["name"]
         self.process_messages()
 
+        print len(self.contacts)
+        '''
         for person in self.contacts:
             messages = self.contacts[person].messages
             for m in messages:
                 print self.contacts[person].get_name()
                 print m
+        '''
 
-f = FacebookContactsConnector("personal_graph.db")
-f.run()
+#f = FacebookContactsConnector("../personal_graph.db")
+#f.run()

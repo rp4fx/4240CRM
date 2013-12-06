@@ -24,8 +24,6 @@ class Person:
         self.last_name = name[1]
         self.other_name = name[2]
 
-    def add_message(self, message):
-        self.messages.append(message)
 
     def print_out(self):
         print "---------------------------------"
@@ -34,6 +32,7 @@ class Person:
         print "Other Name: %s" %(self.other_name)
         print "Birthday: %s" %(self.birthday)
         print "Gender: %s" %(self.gender)
+        print "Id: %s" %s(self.person_id)
         for email in self.emails:
             email.print_out()
         for phone in self.phones:
@@ -45,8 +44,7 @@ class Person:
         name = self.first_name + " " + self.last_name
         return name
 
-    def __str__(self):
-        self.print_out()
+
 
 class GetNameStrategy:
     def get_name(self):

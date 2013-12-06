@@ -67,11 +67,11 @@ class PersonToDatabase(EntityToDatabase):
         return self.personid_list
 
     def insert_person(self, person):
-        #index = self.person_in_db(person)
-        #if index > 0:
-        #    print "CAUGHT DUPLICATE!!!"
-        #    return index
-        #else:
+        index = self.person_in_db(person)
+        if index > 0:
+            print "CAUGHT DUPLICATE!!!"
+            return index
+        else:
             query = 'INSERT INTO person (firstname, lastname, othername, birthday, gender, note) ' \
                 'VALUES (?, ?, ?, ?, ?, ?)'
             try:
@@ -88,7 +88,7 @@ class PersonToDatabase(EntityToDatabase):
 
     def person_in_db(self, person):
 
-        query = "SELECT personid FROM person WHERE firstname='%s' AND lastname='%s' AND gender='%s'" % (person.first_name, person.last_name, person.gender)
+        query = "SELECT personid FROM person WHERE firstname='%s' AND lastname='%s' " % (person.first_name, person.last_name)
         print
         try:
             self.cursor.execute(query)

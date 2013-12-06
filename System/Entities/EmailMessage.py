@@ -19,6 +19,7 @@ class EmailMessage(Message.Message):
         self.timestamp = self.fillerStrategy.timestamp #Mon, 2 Dec 2013 23:22:23 -0500
         #self.people["TO":self.fillerStrategy.addressto,"FROM":self.fillerStrategy.addressfrom,"CC":self.fillerStrategy.addresscc,"BCC":self.fillerStrategy.addressbcc]
         self.set_people(self.fillerStrategy.information)
+        self.messageid =None
 
 class fillerStrategy:
     def __init__(self):

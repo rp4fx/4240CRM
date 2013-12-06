@@ -21,35 +21,31 @@ class EntityToDatabase:
         self.attribute_table_setters.append(attribute_table_setter)
 
 # RENAME THIS!!!! SHOULD BE EmailMessageToDatabase
-class EmailToDatabase(EntityToDatabase):
-    def add_standard_entity_to_attribute_table(self):
-        phone_processor = PhoneAttributeTableSetter(self.db)
-        self.add_attribute_table_setter(phone_processor)
-        email_processor = EmailAttributeTableSetter(self.db)
-        self.add_attribute_table_setter(email_processor)
+class EmailMessageToDatabase(EntityToDatabase):
 
-    def add_people_to_database(self):
+
+    def add_message_to_database(self):
         self.connect_to_database()
-        for person in self.entities:
-            personid = self.insert_person(person)
-            print "Inserted person with id %s" %(personid)
-            for entity_to_attribute_table in self.add_attribute_table_setter:
-                entity_to_attribute_table.add_to_table(person, personid, self.cursor)
-        self.close_db_connection()
+        self.messageid_list = []
+        for message in self.entities:
+            messageid = self.insert_message(message)
+            self.messageid_list.append(messageid)
+            print "Inserted message with id %s" %(messageid)
 
-    def insert_person(self, person):
-        query = 'INSERT INTO person (firstname, lastname, othername, birthday, gender, note) ' \
-                'VALUES (?, ?, ?, ?, ?, ?)'
-        try:
-            self.cursor.execute(query, (person.first_name,
-                                        person.last_name,
-                                        person.other_name,
-                                        person.birthday,
-                                        person.gender,
-                                        person.note))
-            return self.cursor.lastrowid
-        except:
-            return -1
+        self.close_db_connection()
+        return self.messageid_list
+
+    def insert_message(self, message):
+        query = 'INSERT INTO message (messageid, content, subject,timestamp) ' \
+                'VALUES (?, ?, ?, ?)'
+
+        self.cursor.execute(query, (message.messageid,
+                                        message.content,
+                                        message.subject,
+                                        message.timestamp))
+
+        return self.cursor.lastrowid
+
 
 class PersonToDatabase(EntityToDatabase):
     # cheater method so that I don't have to add the PhoneToAttributeTable and EmailToAttributeTable myself
@@ -67,15 +63,15 @@ class PersonToDatabase(EntityToDatabase):
             self.personid_list.append(personid)
             self.process_person(person, personid)
 
-        self.close_db_connection()
+        #self.close_db_connection()
         return self.personid_list
 
     def insert_person(self, person):
-        index = self.person_in_db(person)
-        if index > 0:
-            print "CAUGHT DUPLICATE!!!"
-            return index
-        else:
+        #index = self.person_in_db(person)
+        #if index > 0:
+        #    print "CAUGHT DUPLICATE!!!"
+        #    return index
+        #else:
             query = 'INSERT INTO person (firstname, lastname, othername, birthday, gender, note) ' \
                 'VALUES (?, ?, ?, ?, ?, ?)'
             try:
@@ -85,6 +81,7 @@ class PersonToDatabase(EntityToDatabase):
                                         person.birthday,
                                         person.gender,
                                         person.note))
+                self.conn.commit()
                 return self.cursor.lastrowid
             except:
                 return -1
@@ -236,8 +233,7 @@ class EmailAttributeTableSetter(AttributeTableSetter):
 
     def insert_email(self, email, personid):
         query = 'INSERT INTO email (personid, address) VALUES (?, ?)'
-        try:
-            self.cursor.execute(query, (personid, email.address))
-            return self.cursor.lastrowid
-        except:
-            return -1
+
+        self.cursor.execute(query, (personid, email.address))
+        return self.cursor.lastrowid
+

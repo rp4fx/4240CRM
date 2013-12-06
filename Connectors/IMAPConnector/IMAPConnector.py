@@ -2,10 +2,10 @@ __author___ = 'Zachary'
 import imaplib
 import time
 from datetime import date, timedelta
-from System.Entities import EmailMessage, Person, Phone
+from System.Entities import EmailMessage, Person, Phone, Email
 from Connectors.Connector import Connector
 from System.Entities.EmailMessage import fillerStrategy
-from System.EntityToDatabase import EmailToDatabase
+from System.EntityToDatabase import EmailMessageToDatabase
 from System.DatabasetoEntity import DatabaseToPerson, EmailAttributeTableGetter
 from System.EntityToDatabase import *
 
@@ -20,6 +20,7 @@ class IMAPConnector(Connector):
         self.db = db
         self.person_list =[]
         self.personid_list = []
+        self.messageid_list = []
 
     def serve(self):
     # try:
@@ -78,12 +79,12 @@ class IMAPConnector(Connector):
 
     def add_emails_to_database(self):
         self.find_people()
-        entity_to_database = EmailToDatabase(self.people, self.db)
+        entity_to_database = EmailMessageToDatabase(self.people, self.db)
         entity_to_database.add_standard_entity_to_attribute_table()
         entity_to_database.add_message_to_database()
 
-    def format(self, estring):
-        estring
+    #def format(self, estring):
+    #    estring
 
     def find_people(self):
         dbfrom = DatabaseToPerson(self.db)
@@ -104,6 +105,7 @@ class IMAPConnector(Connector):
                     if pemail.address in emailmessage.people['FROM']: #if there is a person in db with an email contained in an emailmessage
                         #print email_format(emailmessage.people['FROM'])
                         pid = person.person_id
+                        #print pid
                         self.personid_list.append(pid) #don't create new obj, just update DB
                         flag = True
                         break
@@ -113,10 +115,12 @@ class IMAPConnector(Connector):
                 email = email_format(emailmessage.people['FROM']) #parse the email
                 #print email
                 if email not in email_list:
-                    email_list.append(email) #add address to person's known addresses
+                    em = Email.Email()
+                    em.address= email
+                    email_list.append(em) #add address to person's known addresses
 
                     p = Person.Person()
-                    p.emails.append(email)
+                    p.emails.append(em)
                     self.person_list.append(p) #add to list of people to be pushed
 
         #for email in email_list:
@@ -127,11 +131,14 @@ class IMAPConnector(Connector):
 
     #INSERT INTO EMAIL
     def push_message_to_table(self):
-        e_db =
+        e_db = EmailMessageToDatabase(self.emails, "../../System/personal_graph.db")
+        e_db.add_message_to_database()
+
     def push_person_to_table(self):
          p_db = PersonToDatabase(self.person_list, "../../System/personal_graph.db")
          email_attr = EmailAttributeTableSetter("../../System/personal_graph.db")
          p_db.add_attribute_table_setter(email_attr)
+
 
          pid_new = p_db.add_people_to_database()
 def email_format(email):
@@ -221,7 +228,8 @@ conn = IMAPConnector("../../System/personal_graph.db")
 conn.run()
 #conn.check_success()
 conn.find_people()
-print conn.person_list
-print "personidlist"
-print conn.personid_list
-conn.push_person_to_table()
+#print conn.person_list
+#print "personidlist"
+#print conn.personid_list
+#conn.push_person_to_table()
+conn.push_message_to_table()

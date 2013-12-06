@@ -6,6 +6,8 @@ from System.Entities import EmailMessage, Person, Phone
 from Connectors.Connector import Connector
 from System.Entities.EmailMessage import fillerStrategy
 from System.EntityToDatabase import EmailToDatabase
+from System.DatabasetoEntity import DatabaseToPerson,EmailAttributeTableGetter
+from System.EntityToDatabase import *
 
 
 class IMAPConnector(Connector):
@@ -16,11 +18,10 @@ class IMAPConnector(Connector):
         self.username = ''
         self.password = ''
         self.email_id=''
-        #self.db
+        self.db=db
     def serve(self):
        # try:
             return imaplib.IMAP4_SSL("imap.gmail.com",993)
-
 
     def run(self):
         print "Starting the IMAP Connector"
@@ -49,29 +50,70 @@ class IMAPConnector(Connector):
         #feed = self.gd_client.GetContacts()
         #self.process_feed(feed, self.create_person)
 
+    def check_success(self):
+        for email in self.emails:
+            print email.subject
+            print email.timestamp
+            print email.people
+            print email.content
+
     def emailquery(self):
         t=date.today()-timedelta(days=90)
         t.replace(month=t.month-3)
         if(t.month<0):
             t.replace(month=12+t.month)
         searchquery ='(SINCE "{}")'.format(t.strftime("%d-%b-%Y"))
-
         return searchquery
 
     def search(self,emailquery):
         status,e_ids =self.server.search(None,emailquery)
         return e_ids
+
     def login(self):
         self.server.login(self.username,self.password)
         self.server.select()
         #self.gd_client.ClientLogin(username, password, self.gd_client.source)
+
     def add_emails_to_database(self):
         self.find_people()
         entity_to_database = EmailToDatabase(self.people, self.db)
         entity_to_database.add_standard_entity_to_attribute_table()
         entity_to_database.add_message_to_database()
+
+    def format(self,estring):
+        estring
+
     def find_people(self):
-        self.db
+        dbfrom=DatabaseToPerson(self.db)
+        dbfrom.add_attribute_table_getter(EmailAttributeTableGetter(self.db))
+        peoplelist=dbfrom.get_people_from_database()
+        pid = -1
+        mid = -1
+        for emailmessage in self.emails: #inside IMAP, generated emailmessages
+            #print emailmessage.people['FROM']
+            for person in peoplelist:    #pulled from db reconstructed people (all)
+                for pemail in person.emails:
+                    #for name in emailmessage.people['FROM']: #one set of emailaddress
+
+                        #print pemail.address +" name: "+name + " FROM: "
+                    if pemail.address in emailmessage.people['FROM']:
+                        pid = person.person_id
+                        #print pid
+                    else:
+                        email = emailmessage.people['FROM']
+                        email_split = email.split('<')
+                        email = email_split[1].rstrip('>')
+                        p = Person()
+                        p.email.append(email)
+                        p_db = PersonToDatabase([p], "../../System/personal_graph.db")
+                        email_attr = EmailAttributeTableSetter("../../System/personal_graph.db")
+                        p_db.add_attribute_table_setter(email_attr)
+                        pid = p_db.add_people_to_database()[0]
+
+        #INSERT INTO EMAIL
+
+
+
 '''
     def process_feed(self, feed, processing_method):
         ctr = 0
@@ -146,5 +188,7 @@ class IMAPConnector(Connector):
         entity_to_database.add_standard_entity_to_attribute_table()
         entity_to_database.add_people_to_database()
         '''
-conn = IMAPConnector(None)
+conn = IMAPConnector("../../System/personal_graph.db")
 conn.run()
+#conn.check_success()
+conn.find_people()

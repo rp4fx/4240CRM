@@ -44,7 +44,7 @@
       <file leaf-file-name="IMAPConnector.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="62" selection-start="4060" selection-end="4060" vertical-scroll-proportion="0.8023599" vertical-offset="1598" max-vertical-offset="3383">
+            <state line="103" column="44" selection-start="3592" selection-end="3592" vertical-scroll-proportion="0.45132744" vertical-offset="1598" max-vertical-offset="3400">
               <folding>
                 <element signature="e#24#38#0" expanded="true" />
               </folding>
@@ -812,7 +812,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Connectors/IMAPConnector/IMAPConnector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="62" selection-start="4060" selection-end="4060" vertical-scroll-proportion="0.8023599" vertical-offset="1598" max-vertical-offset="3383">
+        <state line="103" column="44" selection-start="3592" selection-end="3592" vertical-scroll-proportion="0.45132744" vertical-offset="1598" max-vertical-offset="3400">
           <folding>
             <element signature="e#24#38#0" expanded="true" />
           </folding>

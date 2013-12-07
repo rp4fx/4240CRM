@@ -92,7 +92,7 @@ class IMAPConnector(Connector):
     #def format(self, estring):
     #    estring
 
-    def find_people(self):
+    def find_people(self,relationship):
         dbfrom = DatabaseToPerson(self.db)
         dbfrom.add_attribute_table_getter(EmailAttributeTableGetter(self.db))
         peoplelist = dbfrom.get_people_from_database()
@@ -108,20 +108,20 @@ class IMAPConnector(Connector):
             #for name in emailmessage.people['FROM']: #one set of emailaddress
 
             # pemail.address +" name: "+name + " FROM: "
-                    if pemail.address == email_format(emailmessage.people['FROM']): #if there is a person in db with an email contained in an emailmessage
+                    if pemail.address == email_format(emailmessage.people[relationship]): #if there is a person in db with an email contained in an emailmessage
                         #print email_format(emailmessage.people['FROM'])
                         pid = person.person_id
                         #print pid
                         #self.personid_list.append(pid)
                         print "Existing Contact Identified, Relationship added"+str(pid)
-                        emailmsg_person(emailmessage.messageid,pid,"FROM","../../System/personal_graph.db")
+                        emailmsg_person(emailmessage.messageid,pid,"relationship","../../System/personal_graph.db")
                              #don't create new obj, just update DB
                         flag = True
                         break
 
             if (flag == False): #If email from emessage not found in people from db
 
-                email = email_format(emailmessage.people['FROM']) #parse the email
+                email = email_format(emailmessage.people[relationship]) #parse the email
                 #print email
                 #if email not in email_list:
                 em = Email.Email()
@@ -189,7 +189,8 @@ conn = IMAPConnector("../../System/personal_graph.db")
 conn.run()
 #conn.check_success()
 conn.push_message_to_table()
-conn.find_people()
+for relation in ['FROM','TO','CC','BCC']:
+    conn.find_people(relation)
 #print conn.person_list
 #print "personidlist"
 #print conn.personid_list

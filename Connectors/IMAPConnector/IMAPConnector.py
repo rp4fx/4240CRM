@@ -6,7 +6,7 @@ from System.Entities import EmailMessage, Person, Phone, Email
 from Connectors.Connector import Connector
 from System.Entities.EmailMessage import fillerStrategy
 from System.EntityToDatabase import EmailMessageToDatabase
-from System.DatabasetoEntity import DatabaseToPerson, EmailAttributeTableGetter
+from System.DatabaseToEntity import DatabaseToPerson, EmailAttributeTableGetter
 from System.EntityToDatabase import *
 
 

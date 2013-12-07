@@ -31,8 +31,8 @@ class IMAPConnector(Connector):
     def run(self):
         print "Starting the IMAP Connector"
         #self.serve()
-        self.username = 'da.t.aleshin'
-        self.password = 'gutendurak9173428'
+        self.username = 'cs4240crm'
+        self.password = 'rohantimurzach'
         #self.request_credentials()
         self.print_credentials()
         self.import_emails()

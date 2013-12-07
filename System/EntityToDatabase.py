@@ -44,6 +44,7 @@ class EmailMessageToDatabase(EntityToDatabase):
                                         message.subject,
                                         message.timestamp))
 
+        message.messageid = self.cursor.lastrowid
         return self.cursor.lastrowid
 
 
@@ -85,6 +86,20 @@ class PersonToDatabase(EntityToDatabase):
                 return self.cursor.lastrowid
             except:
                 return -1
+    def person_in_db(self, person):
+
+        query = "SELECT personid FROM person WHERE firstname='%s' AND lastname='%s'" % (person.first_name, person.last_name)
+        print
+        try:
+            self.cursor.execute(query)
+            result = self.cursor.fetchall()
+            if len(result) > 0:
+                return result[0][0]
+            else:
+                return -1
+            #print result
+        except:
+            print "Error in query"
     def update_person(self, person, person_id):
         query = "SELECT * from person WHERE personid=%d" % (person_id)
        # print query

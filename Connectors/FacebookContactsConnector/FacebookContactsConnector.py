@@ -7,7 +7,7 @@ from System.EntityToDatabase import PersonToDatabase, FacebookMessageToDatabase
 from facepy import *
 import datetime
 
-ACCESS_TOKEN = "CAADaQW5ft88BAEIZB3SCjneeI6wZBqzqyL8msZCDemqhZAwMXCiiaXZAFbYSh1LzFJvgRYrYVOsGTmjGpcGxHBZAZAKY1N1CK4w2ZClZAG1z7XAZCYUKIcryzL4DAHKd57NngVUjxsHJnarEY2d3HzPLz77HfgnOWCzRxFCWsWSf81JlQIXX4z3Ab5ruWXmZBoNB7QZD"
+ACCESS_TOKEN = "CAADaQW5ft88BAApHPEXapBZCzjthGx7hx8e40IZCZCE9C8QDaEO678R1FvlLga1u3pUdYVMtOks7MPOcpgS6Ywalt7mtpAdAaU2s0mRfNmZCDsZBOtOLtbbavxVUnsfyFftb3a0ZCfbj2qPGeZBTVZA4z9ock6iGRjJ38RZCdM5CXnlwiYZACR7kGjFgg8DI9lH58ZD"
 LIMIT = 500
 APP_SECRET = "eec6ae1b9b6445375c03cb9624f7b49f"
 APP_ID = 239974559496143
@@ -123,6 +123,7 @@ class FacebookContactsConnector:
         query = "SELECT thread_id FROM thread WHERE folder_id=0"
         inbox = self.graph.fql(query)["data"]
         return inbox
+
     def get_conversation(self, thread_id):
         conversation = []
         query = "SELECT message_id, body, created_time, author_id FROM message WHERE thread_id="+thread_id
@@ -152,8 +153,8 @@ class FacebookContactsConnector:
 
         time_stamp = m["created_time"]
         message = Message.Message(id, body, time_stamp)
-        information = self.get_message_information(m, conversant_ids, message)
-        message.set_people(information)
+        people = self.get_message_information(m, conversant_ids, message)
+        message.set_people(people)
         return message
 
     def get_message_information(self, m, conversant_ids, message):
@@ -174,7 +175,6 @@ class FacebookContactsConnector:
         else:
             #print "MESSAGE FROM NEW CONTACT"
             self.contacts[person_id] = person
-
         return person
 
     def get_recipient(self, from_id, conversant_ids):

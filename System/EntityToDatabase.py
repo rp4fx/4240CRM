@@ -205,8 +205,8 @@ class FacebookMessageToDatabase(EntityToDatabase):
         person_from_id = people["FROM"][0].person_id
         query = "INSERT INTO messagePerson (messageid, personid, relationship) VALUES (%d, %d, '%s')"
         try:
-            self.cursor.execute(query % (message_id, person_from_id, "from"))
-            self.cursor.execute(query % (message_id, person_to_id, "to"))
+            self.cursor.execute(query % (message_id, person_from_id, "FROM"))
+            self.cursor.execute(query % (message_id, person_to_id, "TO"))
         except:
             print "SQL ERROR"
 

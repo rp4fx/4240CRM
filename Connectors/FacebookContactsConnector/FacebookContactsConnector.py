@@ -48,14 +48,17 @@ class FacebookContactsConnector:
         return org
 
     def build_person_from_id(self, id):
-        user = self.graph.get(str(id))
-        #check to see if
-        person = self.build_person(user)
+        try:
+            user = self.graph.get(str(id))
+            #check to see if
+            person = self.build_person(user)
+        except:
+            person = Person.Person()
         return person
 
     #build a new person for all contacts. push the friends that aren't in db to db
     def process_friends(self):
-        count = 0;
+        count = 0
         for f in self.friends:
             id = f["id"]
             try:

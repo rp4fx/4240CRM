@@ -4,15 +4,16 @@ import time
 import email
 from datetime import date
 import Message
+
+
 class EmailMessage(Message.Message):
     def __init__(self):
         self.fillerStrategy=fillerFromIMAPStrategy()
         self.content = ''
         self.subject =''
-        self.timestamp = '' #Mon, 2 Dec 2013 23:22:23 -0500
+        self.timestamp = 0 #Mon, 2 Dec 2013 23:22:23 -0500
         self.people = {"TO": [], "FROM": [], "CC": [], "BCC": []}
-    def print_out(self):
-        print self.address
+
     def set_message(self):
         self.content = self.fillerStrategy.textbody
         self.subject = self.fillerStrategy.subject
@@ -27,6 +28,7 @@ class fillerStrategy:
         self.addressfrom=[]
         self.addresscc=[]
         self.addressbcc=[]
+        self.textbody = ''
     def fill(self, source, identifier):
         return 1
 
@@ -69,7 +71,7 @@ class fillerFromIMAPStrategy(fillerStrategy):
 
                 #self.addresscc=msg['CC']
                 #self.addressbcc=msg['BCC']
-                self.timestamp=msg['DATE']
+                self.timestamp = time.mktime(email.utils.parsedate(msg['DATE']))
                 self.information=msg
                 #print "To:"+self.addressto+" From:"+self.addressfrom+" Subject:"+self.subject+ "Body:"+self.textbody
                # elif:

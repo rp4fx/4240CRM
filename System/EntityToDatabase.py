@@ -313,9 +313,9 @@ class emailmsg_person(link):
         self.cursor(query,(message.messageid,person.personid))
 
 
-def emailmsg_person(messageid,personid,db):
+def emailmsg_person(messageid,personid,relationship,db):
      conn = sqlite3.connect(db)
      cursor = conn.cursor()
-     cursor('INSERT INTO messagePerson (messageid,personid) VALUES (?,?)',(messageid,personid) )
+     cursor.execute('INSERT INTO messagePerson (messageid,personid, relationship) VALUES (?,?,?)',(messageid,personid,relationship) )
      conn.commit()
      conn.close()

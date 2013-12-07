@@ -31,8 +31,8 @@ class IMAPConnector(Connector):
     def run(self):
         print "Starting the IMAP Connector"
         #self.serve()
-        self.username = 'cs4240crm'
-        self.password = 'rohantimurzach'
+        self.username = 'da.t.aleshin'
+        self.password = 'gutendurak9173428'
         #self.request_credentials()
         self.print_credentials()
         self.import_emails()
@@ -47,8 +47,10 @@ class IMAPConnector(Connector):
     def import_emails(self):
         self.login()
         e_ids = self.search(self.emailquery())
+        e_ids = e_ids[0].split()
+        e_ids.reverse()
         count = 0
-        for id in e_ids[0].split():
+        for id in e_ids:
             if count > 20:
                 break
             e = EmailMessage.EmailMessage()
@@ -83,15 +85,6 @@ class IMAPConnector(Connector):
         self.server.select()
         #self.gd_client.ClientLogin(username, password, self.gd_client.source)
 
-    def add_emails_to_database(self):
-        self.find_people()
-        entity_to_database = EmailMessageToDatabase(self.people, self.db)
-        #entity_to_database.add_standard_entity_to_attribute_table()
-        entity_to_database.add_message_to_database()
-
-    #def format(self, estring):
-    #    estring
-
     def find_people(self,relationship):
         dbfrom = DatabaseToPerson(self.db)
         dbfrom.add_attribute_table_getter(EmailAttributeTableGetter(self.db))
@@ -114,7 +107,7 @@ class IMAPConnector(Connector):
                         #print pid
                         #self.personid_list.append(pid)
                         print "Existing Contact Identified, Relationship added"+str(pid)
-                        emailmsg_person(emailmessage.messageid,pid,"relationship","../../System/personal_graph.db")
+                        emailmsg_person(emailmessage.messageid,pid,relationship,"../../System/personal_graph.db")
                              #don't create new obj, just update DB
                         flag = True
                         break
@@ -126,14 +119,14 @@ class IMAPConnector(Connector):
                 #if email not in email_list:
                 em = Email.Email()
                 em.address= email
-                print "new Email created:"+email
+                #print "new Email created:"+email
                 #    if em not in email_list:
                 #email_list.append(em) #add address to person's known addresses
                 p = Person.Person()
                 #p.emails=email_list
                 p.emails.append(em)
                 peoplelist.append(p)
-                print "new Person w/email"+p.emails[0].address
+                #print "new Person w/email"+p.emails[0].address
                 if p not in self.person_list:
                     self.person_list.append(p) #add to list of people to be pushed
                 if p not in self.push_these_people_to_database:
@@ -172,10 +165,11 @@ class IMAPConnector(Connector):
          pid_new = p_db.add_people_to_database()
 
 def email_format(email):
-    if ('>' in email):
-        email = email
-        email_split = email.split('<')
-        email = email_split[1].rstrip('>')
+    if email is not None:
+        if ('>' in email):
+            email = email
+            email_split = email.split('<')
+            email = email_split[1].rstrip('>')
 
     return email
 
